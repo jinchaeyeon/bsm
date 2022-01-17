@@ -32,7 +32,7 @@ a {
 	text-decoration: none;
 }
 
-side_toggle_btn: :before {
+.side_toggle_btn: :before {
 	content: ">";
 	display: inline-block;
 	width: 50px;
@@ -67,6 +67,7 @@ side_toggle_btn: :before {
 	padding: 40px 0;
 	border-bottom: 1px solid black;
 }
+
 </style>
 </head>
 <body>
@@ -75,8 +76,8 @@ side_toggle_btn: :before {
 		<lable for="side_btn" class="side_toggle_btn"></lable>
 		<divclass_"side_list"> 
 			<a href="/main" class="side_link">총괄</a>
-			<a href="/customer_management" class="side_link">거래처 리스트</a> 
-			<a href="/manager_management" class="side_link">담당자 리스트</a>
+			<a href="/customer_management" class="side_link">고객 관리</a> 
+			<a href="/manager_management" class="side_link">담당자 관리</a>
 			<a href="/pipeline" class="side_link">파이프라인</a> 
 			<a href="/business" class="side_link">사업관리</a> 
 			<a href="/Estimate" class="side_link">견적서 관리</a> 
