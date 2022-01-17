@@ -508,19 +508,19 @@ form {
 
 <script type="text/javascript">
 			function clickTrEvent(trObj) {
-				var link = "http://127.0.0.1:8000/EstimateDetail";
+				var link = "/EstimateDetail";
 
 				location.href = link;
 			};
 			
 			function clickRegisterEvent(trObj) {
-				var link = "http://127.0.0.1:8000/Estimate";
+				var link = "/Estimate";
 
 				location.href = link;
 			};
 
 			function clickSearchEvent(trObj) {
-				var link = "http://127.0.0.1:8000/Estimate";
+				var link = "/Estimate";
 
 				location.href = link;
 			};

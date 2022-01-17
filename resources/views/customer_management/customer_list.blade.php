@@ -484,13 +484,13 @@ form {
 		
 			
 			function clickRegisterEvent(trObj) {
-				var link = "http://127.0.0.1:8000/customer_management";
+				var link = "/customer_management";
 
 				location.href = link;
 			};
 
 			function clickSearchEvent(trObj) {
-				var link = "http://127.0.0.1:8000/customer_management";
+				var link = "/customer_management";
 
 				location.href = link;
 			};

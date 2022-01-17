@@ -504,7 +504,7 @@ th {
 </style>
 <script type="text/javascript">
 			function clickTrEvent(trObj) {
-				var link = "http://127.0.0.1:8000/OrderBookDetail";
+				var link = "/OrderBookDetail";
 
 				location.href = link;
 			};
