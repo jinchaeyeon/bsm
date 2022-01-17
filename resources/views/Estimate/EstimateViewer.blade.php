@@ -668,42 +668,6 @@ function pageing()
 }
 
 pageing()?>
-<button class="trigger"
-			style="width: 5%; float: right; margin-top: 10px;" value="aa">등록</button>
-		<div class="modal">
-			<div class="modal-content">
-				<span class="close-button">&times;</span>
-				<h1 class="title">견적서 등록</h1>
-				<label>사업 번호</label> <input class="registerSearch" type="number"
-					name="number"> <label></label> <input class="registerSearch"
-					type="button" id="register" value="등록"
-					onclick="javascript:clickRegisterEvent(this)">
-			</div>
-		</div>
-
-		<script type="text/javascript"> 
-         var modal = document.querySelector(".modal"); 
-         var trigger = document.querySelector(".trigger"); 
-         var closeButton = document.querySelector(".close-button"); 
-         var registerButton = document.querySelector("#register");
-
-        //console.log(modal);
-
-        function toggleModal() { 
-             modal.classList.toggle("show-modal"); 
-         }
-
-        function windowOnClick(event) { 
-             if (event.target === modal) { 
-                 toggleModal(); 
-             } 
-         }
-
-        trigger.addEventListener("click", toggleModal); 
-         closeButton.addEventListener("click", toggleModal); 
-         register.addEventListener("click", toggleModal); 
-         window.addEventListener("click", windowOnClick); 
-     </script>
 		<div style="margin-top: 10px;">
 			<label><input type="radio" name="chk_info" value="부서별"
 				onclick="javascript:checkRadio()">부서별 검색</label><label><input
