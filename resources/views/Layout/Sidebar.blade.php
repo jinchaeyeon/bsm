@@ -64,7 +64,7 @@ a {
 .side_link {
 	display: block;
 	text-align: center;
-	padding: 40px 0;
+	padding: 10px 0;
 	border-bottom: 1px solid black;
 }
 
