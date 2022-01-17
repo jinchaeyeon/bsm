@@ -6,7 +6,7 @@
 </head>
 <body>
 @include('Layout.Sidebar')
-<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;margin-top: 5%;width: 77%;float:right">
+<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;width: 77%;float:right">
     <h1>
         사업
     </h1>
@@ -211,11 +211,13 @@
         </tbody>
     </table>
 
-    <div>
+    <div style="margin-top: 5px">
+        <span>
         <button>이전달</button>
         <button>다음달</button>
+    </span>
+        <button id="register-trigger" style="float: right">등록</button>
     </div>
-    <button id="register-trigger">등록</button>
 </div>
 
 
@@ -323,6 +325,10 @@
     table button {
         display: inline;
         width: 50%;
+    }
+
+    button {
+        border: 0 solid #e2e8f0;
     }
 </style>
 

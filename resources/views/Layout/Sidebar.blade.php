@@ -78,14 +78,14 @@ a {
 			<a href="/" class="side_link">총괄</a>
 			<a href="/customer_management" class="side_link">고객 관리</a> 
 			<a href="/manager_management" class="side_link">담당자 관리</a>
-			<a href="/pipeline" class="side_link">파이프라인</a> 
-			<a href="/business" class="side_link">사업관리</a> 
-			<a href="/Estimate" class="side_link">견적서 관리</a> 
-			<a href="/Statistics" class="side_link">사업분석</a> 
-			<a href="/OrderBook" class="side_link">수주품의서 관리</a> 
-			<a href="/representative" class="side_link">영업담당자관리</a> 
-			<a href="/item" class="side_link">품목 목록</a> 
-			<a href="/authority" class="side_link">사용자 권한 부여</a> 
+			<a href="/pipeline" class="side_link">파이프라인 관리</a>
+			<a href="/business" class="side_link">진행상황 관리</a>
+			<a href="/Estimate" class="side_link">견적 관리</a>
+			<a href="/Statistics" class="side_link">사업분석</a>
+			<a href="/OrderBook" class="side_link">수주 관리</a>
+			<a href="/representative" class="side_link">영업담당자 관리</a>
+			<a href="/item" class="side_link">품목 관리</a>
+			<a href="/authority" class="side_link">권한 관리</a>
 		</div>
 	</header>
 </body>

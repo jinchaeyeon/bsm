@@ -562,7 +562,7 @@
 </head>
 <body class="antialiased">
 @include('Layout.Sidebar')
-<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;margin-top: 5%;width: 77%;float:right">
+<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;width: 77%;float:right">
     <table class="table_Representative_List"
            style="text-align: center; border: 1px solid black; width: 100%;">
         <caption>
