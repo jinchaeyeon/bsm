@@ -41,7 +41,7 @@
         </tbody>
     </table>
 
-    <button style="width: auto" id="register-trigger">등록</button>
+    <button style="width: auto; float: right; width: 5%; margin-top: 5px" id="register-trigger">등록</button>
 </div>
 <div style="visibility: hidden">
     <div id="register-modal" class = "modal">
@@ -64,8 +64,6 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
 
@@ -91,6 +89,7 @@
 
     button {
         width: 50%;
+        border: 0 solid #e2e8f0;
     }
     table {
         width: 100%;
@@ -100,8 +99,6 @@
     thead {
         background-color: #eeeeee
     }
-
-
 
     .modal-content {
         position: absolute;
