@@ -74,9 +74,9 @@ a {
 	<header>
 		<input type="checkbox" id="side_btn" class="side_input blind" />
 		<lable for="side_btn" class="side_toggle_btn"></lable>
-		<divclass_"side_list">
-			<a href="/main" class="side_link">총괄</a>
-			<a href="/customer_management" class="side_link">고객 관리</a>
+		<divclass_"side_list"> 
+			<a href="/" class="side_link">총괄</a>
+			<a href="/customer_management" class="side_link">고객 관리</a> 
 			<a href="/manager_management" class="side_link">담당자 관리</a>
 			<a href="/pipeline" class="side_link">파이프라인 관리</a>
 			<a href="/business" class="side_link">진행상황 관리</a>
