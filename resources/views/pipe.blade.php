@@ -7,7 +7,7 @@
 </head>
 <body>
 @include('Layout.Sidebar')
-<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;margin-top: 5%;width: 77%;float:right">
+<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;width: 77%;float:right">
     <h1>
         파이프 라인
     </h1>
