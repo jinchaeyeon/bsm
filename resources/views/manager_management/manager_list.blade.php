@@ -518,7 +518,7 @@ form {
 		<table class="table_Estimate_List"
 			style="text-align: centger; border: 1px solid black; width: 100%;">
 			<caption>
-				<h2>담당자 관리</h2>
+				<h2>asdfasdf담당자 관리</h2>
 			</caption>
 			<thead>
                 <tr>
