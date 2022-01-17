@@ -61,7 +61,7 @@ Route::get('/business', function () {
     return view('business');
 });
 
-Route::get('/main', function () {
+Route::get('/', function () {
     return view('main');
 });
 
@@ -70,12 +70,4 @@ Route::get('/main', function () {
 Route::get('/customer_management',[CustomerManagementController::class, 'Viewer']);
 Route::get('/manager_management', [ManagerManagementController::class, 'Viewer']);
 
-// 통합 (메인 페이지 아님 그냥 보여주기용)
-Route::get('/', function () {
-    return view('grid');
- });
-
-Route::get('/test', function () {
-    return view('test');
- });
 
