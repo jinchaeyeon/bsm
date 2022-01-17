@@ -575,8 +575,7 @@
         @endauth
     </div>
 @endif
-
-<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; margin-top: 5%">
+<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;margin-top: 5%;width: 77%;float:right">
     <table class="table_Representative_List"
            style="text-align: center; border: 1px solid black; width: 100%;">
         <caption>

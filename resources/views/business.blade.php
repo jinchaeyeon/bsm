@@ -5,215 +5,218 @@
     <title>Document</title>
 </head>
 <body>
-<h1>
-    사업
-</h1>
-<h2>컨설팅사업본부_파이프라인</h2>
-<h2>2022년 8월</h2>
-<div style="margin-top: 10px;">
-    <label><input type="radio" name="chk_info" value="부서별"
-                  onclick="javascript:checkRadio()">부서별 검색</label><label><input
-            type="radio" name="chk_info" value="기간별"
-            onclick="javascript:checkRadio()">기간별 검색</label> <label><input
-            type="radio" name="chk_info" value="담당자별"
-            onclick="javascript:checkRadio()">담당자별 검색</label> <label><input
-            type="radio" name="chk_info" value="거래처별"
-            onclick="javascript:checkRadio()">거래처별 검색</label>
-</div>
+@include('Layout.Sidebar')
+<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;margin-top: 5%;width: 77%;float:right">
+    <h1>
+        사업
+    </h1>
+    <h2>컨설팅사업본부_파이프라인</h2>
+    <h2>2022년 8월</h2>
+    <div style="margin-top: 10px;">
+        <label><input type="radio" name="chk_info" value="부서별"
+                      onclick="javascript:checkRadio()">부서별 검색</label><label><input
+                type="radio" name="chk_info" value="기간별"
+                onclick="javascript:checkRadio()">기간별 검색</label> <label><input
+                type="radio" name="chk_info" value="담당자별"
+                onclick="javascript:checkRadio()">담당자별 검색</label> <label><input
+                type="radio" name="chk_info" value="거래처별"
+                onclick="javascript:checkRadio()">거래처별 검색</label>
+    </div>
 
-<div>
-    <div id="1" style="display: none;">
-        부서 이름 :&nbsp; <input class="registerSearch" type="string"
-                             name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+    <div>
+        <div id="1" style="display: none;">
+            부서 이름 :&nbsp; <input class="registerSearch" type="string"
+                                 name="string">&nbsp;&nbsp;<span style="color: grey"><i
+                    class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+        </div>
+        <div id="2" style="display: none;">
+            기간 :&nbsp; <input class="registerSearch" type="date" name="string">~<input class="registerSearch" type="date" name="string">&nbsp;&nbsp;<span
+                style="color: grey"><i class="fas fa-search"
+                                       onclick="javascript:clickSearchEvent(this)"></i></span>
+        </div>
+        <div id="3" style="display: none;">
+            담당자 이름 :&nbsp; <input class="registerSearch" type="string"
+                                  name="string">&nbsp;&nbsp;<span style="color: grey"><i
+                    class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+        </div>
+        <div id="4" style="display: none;">
+            거래처 이름 :&nbsp; <input class="registerSearch" type="string"
+                                  name="string">&nbsp;&nbsp;<span style="color: grey"><i
+                    class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+        </div>
     </div>
-    <div id="2" style="display: none;">
-        기간 :&nbsp; <input class="registerSearch" type="date" name="string">~<input class="registerSearch" type="date" name="string">&nbsp;&nbsp;<span
-            style="color: grey"><i class="fas fa-search"
-                                   onclick="javascript:clickSearchEvent(this)"></i></span>
-    </div>
-    <div id="3" style="display: none;">
-        담당자 이름 :&nbsp; <input class="registerSearch" type="string"
-                              name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
-    </div>
-    <div id="4" style="display: none;">
-        거래처 이름 :&nbsp; <input class="registerSearch" type="string"
-                              name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
-    </div>
-</div>
-<table>
-    <thead>
-    <tr>
-        <th>번호</th>
-        <th>거래처</th>
-        <th>고객사</th>
-        <th>건명</th>
-        <th>예상 매출</th>
-        <th>예상 매입</th>
-        <th>예상 매출이익</th>
-        <th>발행시기</th>
-        <th>최종컨택일</th>
-        <th>진행률</th>
-        <th>담당자</th>
-        <th>진행사항</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>1</td>
-        <td>LG</td>
-        <td>AIC</td>
-        <td>유지보수</td>
-        <td>9000</td>
-        <td>1700</td>
-        <td>7260</td>
-        <td>Q3</td>
-        <td>5월 3일</td>
-        <td>80%</td>
-        <td>홍길동</td>
-        <td></td>
-        <td class="buttonColumn">
-            <button class="edit-trigger">수정</button>
-            <button>삭제</button>
-        </td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>LG</td>
-        <td>AIC</td>
-        <td>유지보수</td>
-        <td>9000</td>
-        <td>1700</td>
-        <td>7260</td>
-        <td>Q3</td>
-        <td>5월 3일</td>
-        <td>80%</td>
-        <td>홍길동</td>
-        <td></td>
-        <td class="buttonColumn">
-            <button class="edit-trigger">수정</button>
-            <button>삭제</button>
-        </td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>LG</td>
-        <td>AIC</td>
-        <td>유지보수</td>
-        <td>9000</td>
-        <td>1700</td>
-        <td>7260</td>
-        <td>Q3</td>
-        <td>5월 3일</td>
-        <td>80%</td>
-        <td>홍길동</td>
-        <td></td>
-        <td class="buttonColumn">
-            <button class="edit-trigger">수정</button>
-            <button>삭제</button>
-        </td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>LG</td>
-        <td>AIC</td>
-        <td>유지보수</td>
-        <td>9000</td>
-        <td>1700</td>
-        <td>7260</td>
-        <td>Q3</td>
-        <td>5월 3일</td>
-        <td>80%</td>
-        <td>홍길동</td>
-        <td></td>
-        <td class="buttonColumn">
-            <button class="edit-trigger">수정</button>
-            <button>삭제</button>
-        </td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>LG</td>
-        <td>AIC</td>
-        <td>유지보수</td>
-        <td>9000</td>
-        <td>1700</td>
-        <td>7260</td>
-        <td>Q3</td>
-        <td>5월 3일</td>
-        <td>80%</td>
-        <td>홍길동</td>
-        <td></td>
-        <td class="buttonColumn">
-            <button class="edit-trigger">수정</button>
-            <button>삭제</button>
-        </td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>LG</td>
-        <td>AIC</td>
-        <td>유지보수</td>
-        <td>9000</td>
-        <td>1700</td>
-        <td>7260</td>
-        <td>Q3</td>
-        <td>5월 3일</td>
-        <td>80%</td>
-        <td>홍길동</td>
-        <td></td>
-        <td class="buttonColumn">
-            <button class="edit-trigger">수정</button>
-            <button>삭제</button>
-        </td>
-    </tr>
-    <tr>
-        <td>7</td>
-        <td>LG</td>
-        <td>AIC</td>
-        <td>유지보수</td>
-        <td>9000</td>
-        <td>1700</td>
-        <td>7260</td>
-        <td>Q3</td>
-        <td>5월 3일</td>
-        <td>80%</td>
-        <td>홍길동</td>
-        <td></td>
-        <td class="buttonColumn">
-            <button class="edit-trigger">수정</button>
-            <button>삭제</button>
-        </td>
-    </tr>
-    <tr>
-        <td>8</td>
-        <td>LG</td>
-        <td>AIC</td>
-        <td>유지보수</td>
-        <td>9000</td>
-        <td>1700</td>
-        <td>7260</td>
-        <td>Q3</td>
-        <td>5월 3일</td>
-        <td>80%</td>
-        <td>홍길동</td>
-        <td></td>
-        <td class="buttonColumn">
-            <button class="edit-trigger">수정</button>
-            <button>삭제</button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>거래처</th>
+            <th>고객사</th>
+            <th>건명</th>
+            <th>예상 매출</th>
+            <th>예상 매입</th>
+            <th>예상 매출이익</th>
+            <th>발행시기</th>
+            <th>최종컨택일</th>
+            <th>진행률</th>
+            <th>담당자</th>
+            <th>진행사항</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>LG</td>
+            <td>AIC</td>
+            <td>유지보수</td>
+            <td>9000</td>
+            <td>1700</td>
+            <td>7260</td>
+            <td>Q3</td>
+            <td>5월 3일</td>
+            <td>80%</td>
+            <td>홍길동</td>
+            <td></td>
+            <td class="buttonColumn">
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>LG</td>
+            <td>AIC</td>
+            <td>유지보수</td>
+            <td>9000</td>
+            <td>1700</td>
+            <td>7260</td>
+            <td>Q3</td>
+            <td>5월 3일</td>
+            <td>80%</td>
+            <td>홍길동</td>
+            <td></td>
+            <td class="buttonColumn">
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>LG</td>
+            <td>AIC</td>
+            <td>유지보수</td>
+            <td>9000</td>
+            <td>1700</td>
+            <td>7260</td>
+            <td>Q3</td>
+            <td>5월 3일</td>
+            <td>80%</td>
+            <td>홍길동</td>
+            <td></td>
+            <td class="buttonColumn">
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>LG</td>
+            <td>AIC</td>
+            <td>유지보수</td>
+            <td>9000</td>
+            <td>1700</td>
+            <td>7260</td>
+            <td>Q3</td>
+            <td>5월 3일</td>
+            <td>80%</td>
+            <td>홍길동</td>
+            <td></td>
+            <td class="buttonColumn">
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>LG</td>
+            <td>AIC</td>
+            <td>유지보수</td>
+            <td>9000</td>
+            <td>1700</td>
+            <td>7260</td>
+            <td>Q3</td>
+            <td>5월 3일</td>
+            <td>80%</td>
+            <td>홍길동</td>
+            <td></td>
+            <td class="buttonColumn">
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>LG</td>
+            <td>AIC</td>
+            <td>유지보수</td>
+            <td>9000</td>
+            <td>1700</td>
+            <td>7260</td>
+            <td>Q3</td>
+            <td>5월 3일</td>
+            <td>80%</td>
+            <td>홍길동</td>
+            <td></td>
+            <td class="buttonColumn">
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>LG</td>
+            <td>AIC</td>
+            <td>유지보수</td>
+            <td>9000</td>
+            <td>1700</td>
+            <td>7260</td>
+            <td>Q3</td>
+            <td>5월 3일</td>
+            <td>80%</td>
+            <td>홍길동</td>
+            <td></td>
+            <td class="buttonColumn">
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>LG</td>
+            <td>AIC</td>
+            <td>유지보수</td>
+            <td>9000</td>
+            <td>1700</td>
+            <td>7260</td>
+            <td>Q3</td>
+            <td>5월 3일</td>
+            <td>80%</td>
+            <td>홍길동</td>
+            <td></td>
+            <td class="buttonColumn">
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-<div>
-    <button>이전달</button>
-    <button>다음달</button>
+    <div>
+        <button>이전달</button>
+        <button>다음달</button>
+    </div>
+    <button id="register-trigger">등록</button>
 </div>
-<button id="register-trigger">등록</button>
 
 
 <div id="register-modal" class="modal">
@@ -324,6 +327,11 @@
 </style>
 
 <style>
+    a {
+        color: inherit;
+        text-decoration: inherit
+    }
+
     .modal {
         position: fixed;
         left: 0;

@@ -6,77 +6,70 @@
     <link rel="stylesheet" type="text/css" href="../css/table.css">
 </head>
 <body>
-<h1>
-    파이프 라인
-</h1>
-<table>
-    <thead>
-    <td>번호</td>
-    <td>명칭</td>
-    <td></td>
-    </thead>
-    <tbody>
-    <tr>
-        <td>1</td>
-        <td>OTS사업본부_파이프라인</td>
-        <td><button class="edit-trigger">수정</button><button>삭제</button></td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>스마트플랫폼사업본부_파이프라인</td>
-        <td><button class="edit-trigger">수정</button><button>삭제</button></td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>중부지사_파이프라인</td>
-        <td><button class="edit-trigger">수정</button><button>삭제</button></td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td><a href="business">컨설팅사업본부_파이프라인</a></td>
-        <td><button class="edit-trigger">수정</button><button>삭제</button></td>
-    </tr>
-    </tbody>
-</table>
+@include('Layout.Sidebar')
+<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;margin-top: 5%;width: 77%;float:right">
+    <h1>
+        파이프 라인
+    </h1>
+    <table>
+        <thead>
+        <td>번호</td>
+        <td>명칭</td>
+        <td></td>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>OTS사업본부_파이프라인</td>
+            <td><button class="edit-trigger">수정</button><button>삭제</button></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>스마트플랫폼사업본부_파이프라인</td>
+            <td><button class="edit-trigger">수정</button><button>삭제</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>중부지사_파이프라인</td>
+            <td><button class="edit-trigger">수정</button><button>삭제</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><a href="business">컨설팅사업본부_파이프라인</a></td>
+            <td><button class="edit-trigger">수정</button><button>삭제</button></td>
+        </tr>
+        </tbody>
+    </table>
 
-<button style="width: auto" id="register-trigger">등록</button>
+    <button style="width: auto" id="register-trigger">등록</button>
+</div>
+<div style="visibility: hidden">
+    <div id="register-modal" class = "modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h1 class="title">파이프 라인 등록</h1>
+            <label>명칭</label>
+            <input class="registerSearch" type="text" name="name">
+            <input class="registerSearch" type="button" id="register" value="등록" onclick="javascript:clickRegisterEvent(this)">
+        </div>
+    </div>
 
-<div id="register-modal" class = "modal">
-    <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h1 class="title">파이프 라인 등록</h1>
-        <label>명칭</label>
-        <input class="registerSearch" type="text" name="name">
-        <input class="registerSearch" type="button" id="register" value="등록" onclick="javascript:clickRegisterEvent(this)">
+    <div id="edit-modal" class = "modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h1 class="title">파이프 라인 수정</h1>
+            <label>명칭</label>
+            <input class="registerSearch" type="text" name="name">
+            <input class="registerSearch" type="button" id="register" value="등록" onclick="javascript:clickRegisterEvent(this)">
+        </div>
     </div>
 </div>
 
-<div id="edit-modal" class = "modal">
-    <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h1 class="title">파이프 라인 수정</h1>
-        <label>명칭</label>
-        <input class="registerSearch" type="text" name="name">
-        <input class="registerSearch" type="button" id="register" value="등록" onclick="javascript:clickRegisterEvent(this)">
-    </div>
-</div>
 
 </body>
 </html>
 
 <style>
-    button {
-        width: 50%;
-    }
-    table {
-        width: 100%;
-        border: 1px solid black
-    }
-
-    thead {
-        background-color: #eeeeee
-    }
-
     .modal {
         position: fixed;
         left: 0;
@@ -90,6 +83,25 @@
         transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform
         0.25s;
     }
+
+    a {
+        color: inherit;
+        text-decoration: inherit
+    }
+
+    button {
+        width: 50%;
+    }
+    table {
+        width: 100%;
+        border: 1px solid black
+    }
+
+    thead {
+        background-color: #eeeeee
+    }
+
+
 
     .modal-content {
         position: absolute;
