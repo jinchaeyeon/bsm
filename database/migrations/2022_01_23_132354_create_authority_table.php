@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTestsTable extends Migration
+class CreateAuthorityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tests', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->string('description');
-            $table->string('icon');
-            $table->timestamps();
+        Schema::create('authority', function (Blueprint $table) {
+            $table->integer('id')->autoIncrement();
+            $table->string('user_id', 20)->nullable();
+            $table->enum('authority', ['edit', 'estimates', 'orderbook'])->nullable();
         });
     }
 
@@ -29,6 +27,6 @@ class CreateTestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tests');
+        Schema::dropIfExists('authority');
     }
 }
