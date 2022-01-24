@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>영업관리 시스템</title>
+<title>수주품의서 조회</title>
 
 <!-- Fonts -->
 <link
@@ -16,7 +16,9 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html {
 	line-height: 1.15;
-	-webkit-text-size-adjust: 100%
+	-webkit-text-size-adjust: 100%;
+	width: 1600px;
+  max-width: none !important;
 }
 
 body {
@@ -426,12 +428,7 @@ function clickTrEvent(trObj) {
 
 	location.href = link;
 };
-function clickCorrectionEvent(trObj) {
-	var link = "/OrderBookCorrection";
 
-	location.href = link;
-};
-		
 </script>
 </head>
 <body class="antialiased">
@@ -480,7 +477,7 @@ function clickCorrectionEvent(trObj) {
 				<tr>
 					<th>작성일자</th>
 					<th>계약번호</th>
-					<th>영업담당</th>
+					<th>담당부서</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -543,6 +540,7 @@ function clickCorrectionEvent(trObj) {
 				</tr>
 			</tbody>
 		</table>
+		<p>[주문내역]</p>
 		<table class="table_EstimateDetail_List3"
 			style="text-align: centger; border: 1px solid black; width: 100%;">
 			<thead>
@@ -587,6 +585,32 @@ function clickCorrectionEvent(trObj) {
 					<td></td>
 				</tr>
 				<tr>
+					<td>3</td>
+					<td style="word-break: break-all; width: 30%;">RED HAT
+						~~~~~~TGGGGGGDFDFDFDFdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</td>
+					<td>2</td>
+					<td>6,170,000</td>
+					<td>4,000,000</td>
+					<td>10,170,000</td>
+					<td>4,000,000</td>
+					<td>4,000,000</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td style="word-break: break-all; width: 30%;">RED HAT
+						~~~~~~TGGGGGGDFDFDFDFdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</td>
+					<td>2</td>
+					<td>6,170,000</td>
+					<td>4,000,000</td>
+					<td>10,170,000</td>
+					<td>4,000,000</td>
+					<td>4,000,000</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
 					<td colspan="2">합계 (VAT별도)</td>
 					<td colspan="2">2</td>
 					<td colspan="2">4,000,000</td>
@@ -612,6 +636,7 @@ function clickCorrectionEvent(trObj) {
 				</tr>
 			</tbody>
 		</table>
+		<p>[융자 정보]</p>
 		<table class="table_EstimateDetail_List3"
 			style="text-align: centger; border: 1px solid black; width: 100%; margin-top: 30px;">
 			<thead>
@@ -658,11 +683,6 @@ function clickCorrectionEvent(trObj) {
 					<td style="word-break: break-all; width: 40%;"></td>
 				</tr>
 				<tr>
-					<td>활성화날짜</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
-				</tr>
-				<tr>
 					<td>사업자번호</td>
 					<td style="word-break: break-all; width: 40%;"></td>
 					<td style="word-break: break-all; width: 40%;"></td>
@@ -679,7 +699,7 @@ function clickCorrectionEvent(trObj) {
 			onclick="javascript:clickTrEvent(this)">돌아가기</button>
 		<button class="trigger"
 			style="width: 5%; float: right; margin-top: 10px; margin-right: 10px; margin-bottom: 30px;"
-			value="aa" onclick="javascript:clickCorrectionEvent(this)">수정</button>
+			value="aa" onclick="javascript:clickTrEvent(this)">수정</button>
 	</div>
 </body>
 </html>

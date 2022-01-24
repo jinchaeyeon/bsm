@@ -22,10 +22,11 @@ use App\Http\Controllers\CustomerManagementController;
 // 채연 
 Route::get('/Estimate', [EstimateController::class, 'Viewer']);
 Route::get('/EstimateDetail', [EstimateController::class, 'Detail']);
+
 Route::get('/OrderBook', [OrderBookController::class, 'Viewer']);   // 수주 품위서 
-Route::get('/OrderBookRegister', [OrderBookController::class, 'Register']);
 Route::get('/OrderBookDetail', [OrderBookController::class, 'Detail']);
-Route::get('/OrderBookCorrection', [OrderBookController::class, 'Correction']);
+
+
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 
 // 기범
