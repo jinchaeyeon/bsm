@@ -23,8 +23,10 @@ use App\Http\Controllers\CustomerManagementController;
 Route::get('/Estimate', [EstimateController::class, 'Viewer']);
 Route::get('/EstimateDetail', [EstimateController::class, 'Detail']);
 
-Route::get('/OrderBook', [OrderBookController::class, 'Viewer']);   // 수주 품위서 
-Route::get('/OrderBookDetail', [OrderBookController::class, 'Detail']);
+// 수주품의서
+Route::get('/OrderBook', [OrderBookController::class, 'Viewer']);   // 수주 품위서 메인
+Route::get('/OrderBookDetail', [OrderBookController::class, 'Detail']); // 등록 
+Route::post('/OrderBookDetail', [OrderBookController::class, 'store']); // 생성 
 
 
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);

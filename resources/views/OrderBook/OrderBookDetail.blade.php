@@ -42,7 +42,6 @@ html {
 
 *, :after, :before {
 	box-sizing: border-box;
-	border: 0 solid #e2e8f0
 }
 
 a {
@@ -413,6 +412,10 @@ th {
 	padding: 5px;
 }
 
+.table_EstimateDetail_List3{
+	width: 100%;
+}
+
 .table_EstimateDetail_List3 th {
 	border: 2px solid black;
 }
@@ -435,6 +438,9 @@ function clickTrEvent(trObj) {
 @include('Layout.Sidebar')
 	<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
 		<h2 style="text-align: center;">수주 품의서</h2>
+
+		<form action="/OrderBookDetail" method="POST">
+
 		<table class="table_EstimateDetail_List3"
 			style="text-align: centger; border: 1px solid black; width: 21%; float: right; margin-left: 40px;">
 			<thead>
@@ -480,13 +486,15 @@ function clickTrEvent(trObj) {
 					<th>담당부서</th>
 				</tr>
 			</thead>
+
 			<tbody>
 				<tr>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
+					<td><input type="text" name='created_at' id="created_at" value="자동생성조회"></td>
+					<td><input type="text" name='contract_number' id="contract_number" value="자동입력"></td>
+					<td><input type="text" name='department' id="department"></td>
 				</tr>
 			</tbody>
+
 		</table>
 		<table class="table_EstimateDetail_List2"
 			style="text-align: centger; border: 1px solid black; width: 30%; float: left; margin-top: 40px; margin-right: 30px;">
@@ -499,9 +507,9 @@ function clickTrEvent(trObj) {
 			</thead>
 			<tbody>
 				<tr>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
+					<td><input type="text" name='customer_name' id="customer_name"></td>
+					<td><input type="text" name='customer_categorize' id='customer_categorize'></td>
+					<td><input type="date" name='issue_tax_bill' id="issue_tax_bill"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -510,15 +518,15 @@ function clickTrEvent(trObj) {
 			<thead>
 				<tr>
 					<th>담당자</th>
-					<th>사입자번호</th>
+					<th>사업자번호</th>
 					<th>사업자주소</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>7</td>
-					<td>8</td>
-					<td>9</td>
+					<td><input type="text" name='manager' id="manager"></td>
+					<td><input type="text" name='m_business-num' id="m_business-num"></td>
+					<td><input type="text" name='m_business_address' id="m_business_address"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -534,15 +542,15 @@ function clickTrEvent(trObj) {
 			</thead>
 			<tbody>
 				<tr>
-					<td>10</td>
-					<td>11</td>
-					<td>12</td>
+					<td><input type="tel" name='m_phone' id="m_phone"></td>
+					<td><input type="email" name='m_mail' id="m_mail"></td>
+					<td><input type="date" name='signing_date' id="signing_date"></td>
 				</tr>
 			</tbody>
 		</table>
 		<p>[주문내역]</p>
 		<table class="table_EstimateDetail_List3"
-			style="text-align: centger; border: 1px solid black; width: 100%;">
+		style="text-align: centger; border: 1px solid black; width: 100%; margin-top: 30px;">
 			<thead>
 				<tr>
 					<th>No</th>
@@ -558,57 +566,61 @@ function clickTrEvent(trObj) {
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td style="word-break: break-all; width: 30%;">RED HAT
-						~~~~~~TGGGGGGDFDFDFDFdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</td>
-					<td>2</td>
-					<td>6,170,000</td>
-					<td>4,000,000</td>
-					<td>10,170,000</td>
-					<td>4,000,000</td>
-					<td>4,000,000</td>
-					<td></td>
-					<td></td>
+				<tr >
+					<td >1</td>
+					<td style="word-break: break-all; ">
+						<input type="text" name='item' id="item">
+					</td>
+					<td><input type="textarea" name='count' id="count"></input></td>
+					<td><input type="text" name='per_sales' id="per_sales"></input></td>
+					<td><input type="text" name='total_sales' id="total_sales"></input></td>
+					<td><input type="text" name='per_buy' id="per_buy"></input></td>
+					<td><input type="text" name='total_buy' id="total_buy"></input></td>
+					<td><input type="text" name='profit_sales' id="profit_sales"></input></td>
+					<td><input type="text" name='shop' id="shop"></input></td>
+					<td><input type="text" name='note' id="note"></input></td>
 				</tr>
 				<tr>
-					<td>2</td>
-					<td style="word-break: break-all; width: 30%;">RED HAT
-						~~~~~~TGGGGGGDFDFDFDFdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</td>
-					<td>2</td>
-					<td>6,170,000</td>
-					<td>4,000,000</td>
-					<td>10,170,000</td>
-					<td>4,000,000</td>
-					<td>4,000,000</td>
-					<td></td>
-					<td></td>
+					<td height="10">2</td>
+					<td style="word-break: break-all; ">
+						<input type="text" name='item' id="item">
+					</td>
+					<td><input type="text" name='count' id="count"></td>
+					<td><input type="text" name='per_sales' id="per_sales"></td>
+					<td><input type="text" name='total_sales' id="total_sales"></td>
+					<td><input type="text" name='per_buy' id="per_buy"></td>
+					<td><input type="text" name='total_buy' id="total_buy"></td>
+					<td><input type="text" name='profit_sales' id="profit_sales"></td>
+					<td><input type="text" name='shop' id="shop"></td>
+					<td><input type="text" name='note' id="note"></td>
 				</tr>
 				<tr>
-					<td>3</td>
-					<td style="word-break: break-all; width: 30%;">RED HAT
-						~~~~~~TGGGGGGDFDFDFDFdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</td>
-					<td>2</td>
-					<td>6,170,000</td>
-					<td>4,000,000</td>
-					<td>10,170,000</td>
-					<td>4,000,000</td>
-					<td>4,000,000</td>
-					<td></td>
-					<td></td>
+					<td height="10">3</td>
+					<td style="word-break: break-all; ">
+						<input type="text" name='item' id="item">
+					</td>
+					<td><input type="text" name='count' id="count"></td>
+					<td><input type="text" name='per_sales' id="per_sales"></td>
+					<td><input type="text" name='total_sales' id="total_sales"></td>
+					<td><input type="text" name='per_buy' id="per_buy"></td>
+					<td><input type="text" name='total_buy' id="total_buy"></td>
+					<td><input type="text" name='profit_sales' id="profit_sales"></td>
+					<td><input type="text" name='shop' id="shop"></td>
+					<td><input type="text" name='note' id="note"></td>
 				</tr>
 				<tr>
-					<td>4</td>
-					<td style="word-break: break-all; width: 30%;">RED HAT
-						~~~~~~TGGGGGGDFDFDFDFdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</td>
-					<td>2</td>
-					<td>6,170,000</td>
-					<td>4,000,000</td>
-					<td>10,170,000</td>
-					<td>4,000,000</td>
-					<td>4,000,000</td>
-					<td></td>
-					<td></td>
+					<td height="10">4</td>
+					<td style="word-break: break-all; ">
+						<input type="text" name='item' id="item">
+					</td>
+					<td><input type="text" name='count' id="count"></td>
+					<td><input type="text" name='per_sales' id="per_sales"></td>
+					<td><input type="text" name='total_sales' id="total_sales"></td>
+					<td><input type="text" name='per_buy' id="per_buy"></td>
+					<td><input type="text" name='total_buy' id="total_buy"></td>
+					<td><input type="text" name='profit_sales' id="profit_sales"></td>
+					<td><input type="text" name='shop' id="shop"></td>
+					<td><input type="text" name='note' id="note"></td>
 				</tr>
 				<tr>
 					<td colspan="2">합계 (VAT별도)</td>
@@ -620,19 +632,20 @@ function clickTrEvent(trObj) {
 					<td>12%</td>
 				</tr>
 				<tr>
-					<td>담당엔지니어</td>
+					<td height="10">담당엔지니어</td>
 					<td></td>
-					<td colspan="2">기술자원료</td>
+					<td >기술자원료</td>
 					<td colspan="2"></td>
 					<td>실영업이익</td>
 					<td></td>
 					<td>10,170,000</td>
 					<td></td>
+					<td></td>
 				</tr>
-				<tr height='100px'>
-					<td>참고내용</td>
+				<tr>
+					<td height="30" >참고내용</td>
 					<td style="word-break: break-all; width: 40%;" colspan="9">
-						~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
+					<input type="textarea" name='information' id="information"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -649,57 +662,61 @@ function clickTrEvent(trObj) {
 			<tbody>
 				<tr>
 					<td>프로젝트명</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
+					<td><input type="text" name='c_project_subject' id="c_project_subject"></input></td>
+					<td><input type="text" name='c_e_project_subject' id="c_e_project_subject"></input></td>
 				</tr>
 				<tr>
 					<td>회사명</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
+					<td><input type="text" name='customer' id="customer"></input></td>
+					<td><input type="text" name='e_customer' id="e_customer"></input></td>
 				</tr>
 				<tr>
 					<td>우편번호</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
+					<td><input type="text" name='c_zip_code' id="c_zip_code"></input></td>
+					<td><input type="text" name='c_e_zip_code' id="c_e_zip_code"></input></td>
 				</tr>
 				<tr>
 					<td>주소</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
+					<td><input type="text" name='c_address' id="c_address"></input></td>
+					<td><input type="text" name='c_e_address' id="c_e_address"></input></td>
 				</tr>
 				<tr>
 					<td>담당자</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
+					<td><input type="text" name='c_manager' id="c_manager"></input></td>
+					<td><input type="text" name='c_e_manager' id="c_e_manager"></input></td>
 				</tr>
 				<tr>
 					<td>전화번호</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
+					<td><input type="tel" name='c_phone' id="c_phone"></input></td>
+					<td><input type="tel" name='c_e_phone' id="c_e_phone"></input></td>
 				</tr>
 				<tr>
 					<td>이메일주소</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
+					<td><input type="email" name='c_mail' id="c_mail"></input></td>
+					<td><input type="email" name='e_mail' id="e_mail"></input></td>
 				</tr>
 				<tr>
 					<td>사업자번호</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
+					<td><input type="text" name='c_business_num' id="c_business_num"></input></td>
+					<td><input type="text" name='c_e_business-num' id="c_e_business-num"></input></td>
 				</tr>
 				<tr>
 					<td>계약기간</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
+					<td><input type="date" name='contact_date' id="contact_date"></input></td>
+					<td><input type="date" name='e_contact_date' id="e_contact_date"></input></td>
 				</tr>
 		
 		</table>
+		@csrf
+		<input type="submit" value="작성">
+		</form>
 		<button class="trigger"
 			style="width: 7%; float: right; margin-top: 10px;" value="aa"
 			onclick="javascript:clickTrEvent(this)">돌아가기</button>
 		<button class="trigger"
 			style="width: 5%; float: right; margin-top: 10px; margin-right: 10px; margin-bottom: 30px;"
 			value="aa" onclick="javascript:clickTrEvent(this)">수정</button>
+			
 	</div>
 </body>
 </html>

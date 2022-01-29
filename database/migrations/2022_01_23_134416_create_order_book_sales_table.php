@@ -24,8 +24,10 @@ class CreateOrderBookSalesTable extends Migration
             $table->integer('per_buy')->nullable();
             $table->integer('total_buy')->nullable();
             $table->string('shop', 45)->nullable();
+            $table->integer('profit_sales')->nullable();
             $table->string('note', 45)->nullable();
             $table->string('information', 70)->nullable();
+            $table->timestamps();
         });
     }
 

@@ -16,7 +16,6 @@ class CreateOrderBooksTable extends Migration
         Schema::create('order_books', function (Blueprint $table) {
             $table->integer('contract_number')->autoIncrement();
             $table->integer('estimate_id')->nullable();
-            $table->string('date_of_preparation_copy1')->nullable();
             $table->string('department', 45)->nullable();
             $table->string('customer_name', 45)->nullable();
             $table->string('customer_categorize', 45)->nullable();
@@ -25,14 +24,27 @@ class CreateOrderBooksTable extends Migration
             $table->string('m_business-num', 45)->nullable();
             $table->string('m_business_address', 45)->nullable();
             $table->string('m_phone', 45)->nullable();
-            $table->string('date_of_preparation', 45)->nullable();
-            $table->dateTime('pay_due_date', 0)->nullable();
+            $table->string('m_mail', 45)->nullable();
+            $table->dateTime('signing_date ', 0)->nullable();
             $table->string('c_project_subject', 45)->nullable();
+            $table->string('customer', 45)->nullable();
             $table->string('c_zip_code', 45)->nullable();
             $table->string('c_address', 45)->nullable();
             $table->string('c_manager', 45)->nullable();
             $table->string('c_phone', 45)->nullable();
+            $table->string('c_mail ', 45)->nullable();
             $table->string('c_business-num', 45)->nullable();
+            $table->dateTime('contact_date', 0)->nullable();
+            $table->string('c_e_project_subject', 45)->nullable();
+            $table->string('e_customer', 45)->nullable();
+            $table->string('c_e_zip_code', 45)->nullable();
+            $table->string('c_e_address', 45)->nullable();
+            $table->string('c_e_manager', 45)->nullable();
+            $table->string('c_e_phone', 45)->nullable();
+            $table->string('c_e_mail ', 45)->nullable();
+            $table->string('c_e_business-num', 45)->nullable();
+            $table->dateTime('e_contact_date', 0)->nullable();
+            $table->timestamps();
         });
     }
 
