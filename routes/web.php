@@ -8,25 +8,15 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ManagerManagementController;
 use App\Http\Controllers\CustomerManagementController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 // 채연 
 Route::get('/Estimate', [EstimateController::class, 'Viewer']);
 Route::get('/EstimateDetail', [EstimateController::class, 'Detail']);
 
 // 수주품의서
-Route::get('/OrderBook', [OrderBookController::class, 'Viewer']);   // 수주 품위서 메인
-Route::get('/OrderBookDetail', [OrderBookController::class, 'Detail']); // 등록 
-Route::post('/OrderBookDetail', [OrderBookController::class, 'store']); // 생성 
+Route::get('/OrderBook', [OrderBookController::class, 'index']); // 등록 
+Route::get('/OrderBook/create', [OrderBookController::class, 'create']); // 등록 
+Route::POST('/OrderBook', [OrderBookController::class, 'store']);
 
 
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<title>수주품의서 메인</title>
+<title>영업관리 시스템</title>
 
 <!-- Fonts -->
 <link
@@ -556,8 +556,6 @@ form {
 </head>
 <body class="antialiased">
 		@include('Layout.Sidebar')
-		
-
 		<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
 			<table class="table_Estimate_List"
 				style="text-align: centger; border: 1px solid black; width: 100%;">
@@ -578,12 +576,7 @@ form {
 						<th>조회</th>
 					</tr>
 				</thead>
-				<form action="/OrderBook">
-
-				</form>
 				<tbody>
-
-
 					<tr>
 						<td>1</td>
 						<td>2</td>
@@ -610,10 +603,8 @@ form {
 						<td><button id="SecondRow" type="button" style="width: 100%"
 								value="aa" onclick="javascript:clickTrEvent(this)">조회</button></td>
 					</tr>
-					
 				</tbody>
 			</table>
-
 			<div style="width: 5%; display: inline-block;"></div>
 			<?php
 
@@ -621,7 +612,7 @@ function pageing()
 {
 
     // 한번에 출력할 data수
-    $view_article = 5;
+    $view_article = 2;
     // page초기값 패이징여부
     if (isset($_GET['page']))
         $page = $_GET['page'];
