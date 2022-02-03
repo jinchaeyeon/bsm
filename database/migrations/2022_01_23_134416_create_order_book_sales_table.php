@@ -14,24 +14,24 @@ class CreateOrderBookSalesTable extends Migration
     public function up()
     {
         Schema::create('order_book_sales', function (Blueprint $table) {
-            $table->integer('order_book_id')->nullable();
-            $table->integer('item_id')->nullable();
+            $table->string('order_book_id')->nullable();
+            $table->string('text_order')->nullable();
+            $table->string('item_id')->nullable();
             $table->string('item')->nullable();
-            $table->integer('count')->nullable();
-            $table->integer('per_sales')->nullable();
-            $table->integer('total_sales')->nullable();
-            $table->integer('per_buy')->nullable();
-            $table->integer('total_buy')->nullable();
+            $table->string('count')->nullable();
+            $table->string('per_sales')->nullable();
+            $table->string('sales')->nullable();
+            $table->string('per_buy')->nullable();
+            $table->string('buy')->nullable();
             $table->string('shop', 45)->nullable();
-            $table->integer('profit_sales')->nullable();
+            $table->string('profit_sales')->nullable();
             $table->string('note', 45)->nullable();
             $table->string('information', 70)->nullable();
-            $table->string('sales_date', 45)->nullable();
-            $table->string('sales_amount', 45)->nullable();
-            $table->string('purchase_amount', 45)->nullable();
-            $table->string('supplier', 45)->nullable();
-            $table->dateTime('collected_date', 0)->nullable();
-            $table->string('collected_state', 45)->nullable();
+            $table->string('total_count', 45)->nullable();
+            $table->string('total_sales', 45)->nullable();
+            $table->string('total_buy', 45)->nullable();
+            $table->string('total_profits', 45)->nullable();
+            $table->dateTime('real_time_profit', 0)->nullable();
             $table->timestamps();
         });
     }

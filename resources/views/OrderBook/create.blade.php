@@ -467,13 +467,13 @@ th {
 				<tr>
 					<th>작성일자</th>
 					<th>계약번호</th>
-					<th>영업담당</th>
+					<th>담당부서</th>
 				</tr>
 			</thead>
 
 			<tbody>
 				<tr>
-					<td><input type="text" name='created_at' id="created_at" value="자동생성조회"></td>
+					<td><input type="text" name='created_at' id="created_at" ></td>
 					<td><input type="text" name='contract_number' id="contract_number" value="{{$contract_number+1}}"></td>
 					<td><input type="text" name='department' id="department"></td>
 				</tr>
@@ -556,9 +556,9 @@ th {
 					</td>
 					<td><input type="textarea" name='count1' id="count1"></input></td>
 					<td><input type="text" name='per_sales1' id="per_sales1"></input></td>
-					<td><input type="text" name='total_sales1' id="total_sales1"></input></td>
+					<td><input type="text" name='sales1' id="sales1"></input></td>
 					<td><input type="text" name='per_buy1' id="per_buy1"></input></td>
-					<td><input type="text" name='total_buy1' id="total_buy1"></input></td>
+					<td><input type="text" name='buy1' id="buy1"></input></td>
 					<td><input type="text" name='profit_sales1' id="profit_sales1"></input></td>
 					<td><input type="text" name='shop1' id="shop1"></input></td>
 					<td><input type="text" name='note1' id="note1"></input></td>
@@ -570,9 +570,9 @@ th {
 					</td>
 					<td><input type="text" name='count2' id="count2"></td>
 					<td><input type="text" name='per_sales2' id="per_sales2"></td>
-					<td><input type="text" name='total_sales2' id="total_sales2"></td>
+					<td><input type="text" name='sales2' id="sales2"></td>
 					<td><input type="text" name='per_buy2' id="per_buy2"></td>
-					<td><input type="text" name='total_buy'2 id="total_buy2"></td>
+					<td><input type="text" name='buy2' id="buy2"></td>
 					<td><input type="text" name='profit_sales2' id="profit_sales2"></td>
 					<td><input type="text" name='shop2' id="shop2"></td>
 					<td><input type="text" name='note2' id="note2"></td>
@@ -584,9 +584,9 @@ th {
 					</td>
 					<td><input type="text" name='count3' id="count3"></td>
 					<td><input type="text" name='per_sales3' id="per_sales3"></td>
-					<td><input type="text" name='total_sales3' id="total_sales3"></td>
+					<td><input type="text" name='sales3' id="sales3"></td>
 					<td><input type="text" name='per_buy3' id="per_buy3"></td>
-					<td><input type="text" name='total_buy3' id="total_buy3"></td>
+					<td><input type="text" name='buy3' id="buy3"></td>
 					<td><input type="text" name='profit_sales3' id="profit_sales3"></td>
 					<td><input type="text" name='shop3' id="shop3"></td>
 					<td><input type="text" name='note3' id="note3"></td>
@@ -598,9 +598,9 @@ th {
 					</td>
 					<td><input type="text" name='count4' id="count4"></td>
 					<td><input type="text" name='per_sales4' id="per_sales4"></td>
-					<td><input type="text" name='total_sales'4 id="total_sales4"></td>
+					<td><input type="text" name='sales4'4 id="sales4"></td>
 					<td><input type="text" name='per_buy4' id="per_buy4"></td>
-					<td><input type="text" name='total_buy4' id="total_buy4"></td>
+					<td><input type="text" name='buy4' id="buy4"></td>
 					<td><input type="text" name='profit_sales4' id="profit_sales4"></td>
 					<td><input type="text" name='shop4' id="shop4"></td>
 					<td><input type="text" name='note4' id="note4"></td>
@@ -608,10 +608,10 @@ th {
 				<tr>
 
 					<td colspan="2">합계 (VAT별도)</td>
-					<td colspan="2">2</td>
-					<td colspan="2">4,000,000</td>
-					<td>10,170,000</td>
-					<td>4,000,000</td>
+					<td colspan="2"><input type="text" name='total_count' id="total_count"></td>
+					<td colspan="2"><input type="text" name='total_sales' id="total_sales"></td>
+					<td><input type="text" name='total_buy' id="total_buy"></td>
+					<td><input type="text" name='total_profits' id="total_profits"></td>
 					<td>이익률</td>
 					<td>12%</td>
 				</tr>
@@ -622,7 +622,7 @@ th {
 					<td colspan="2"></td>
 					<td>실영업이익</td>
 					<td></td>
-					<td>10,170,000</td>
+					<td><input type="text" name='real_time_profit' id="real_time_profit"></td>
 					<td></td>
 					<td></td>
 				</tr>

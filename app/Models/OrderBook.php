@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderBook extends Model
 {
+    protected $primaryKey = 'contract_number';
     protected $fillable = [
                             'created_at', 'contract_number' ,'department' ,'customer_name' , 
                             'customer_categorize', 'issue_tax_bill', 'manager' , 

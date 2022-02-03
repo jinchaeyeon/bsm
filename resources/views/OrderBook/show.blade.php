@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.orderbook')
 
-<title>영업관리 시스템</title>
+@section('title')
+    수주품의서 조회
+@endsection
 
-<!-- Fonts -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
-	rel="stylesheet">
-
-<!-- Styles -->
+@section('style')
 <style>
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -422,28 +415,15 @@ th {
 	border: 2px solid black;
 }
 </style>
+@endsection
 
-<script type="text/javascript">
-function clickTrEvent(trObj) {
-	var link = "/OrderBook";
-
-	location.href = link;
-};
-function clickCorrectionEvent(trObj) {
-	var link = "/OrderBookCorrection";
-
-	location.href = link;
-};
-		
-</script>
-</head>
-<body class="antialiased">
+@section('content')
 @include('Layout.Sidebar')
 	<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
 		<h2 style="text-align: center;">수주 품의서</h2>
-
-		<form action="/OrderBookDetail" method="POST">
-
+        
+		<form action="/OrderBook/{{$temp['orderbook']->contract_number}}" method="POST">
+		@csrf
 		<table class="table_EstimateDetail_List3"
 			style="text-align: centger; border: 1px solid black; width: 21%; float: right; margin-left: 40px;">
 			<thead>
@@ -486,15 +466,15 @@ function clickCorrectionEvent(trObj) {
 				<tr>
 					<th>작성일자</th>
 					<th>계약번호</th>
-					<th>영업담당</th>
+					<th>담당부서</th>
 				</tr>
 			</thead>
 
 			<tbody>
 				<tr>
-					<td><input type="text" name='created_at' id="created_at" value="자동생성조회"></td>
-					<td><input type="text" name='contract_number' id="contract_number" value="자동입력"></td>
-					<td><input type="text" name='department' id="department"></td>
+					<td><input type="text" name='created_at' id="created_at" value="{{$temp['orderbook']->created_at}}"></td>
+					<td><input type="text" name='contract_number' id="contract_number"  value="{{$temp['orderbook']->contract_number}}"></td>
+					<td><input type="text" name='department' id="department" value="{{$temp['orderbook']->department}}"></td>
 				</tr>
 			</tbody>
 
@@ -510,9 +490,9 @@ function clickCorrectionEvent(trObj) {
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="text" name='customer_name' id="customer_name"></td>
-					<td><input type="text" name='customer_categorize' id='customer_categorize'></td>
-					<td><input type="date" name='issue_tax_bill' id="issue_tax_bill"></td>
+					<td><input type="text" name='customer_name' id="customer_name" value="{{$temp['orderbook']->customer_name}}"></td>
+					<td><input type="text" name='customer_categorize' id='customer_categorize' value="{{$temp['orderbook']->customer_categorize}}"></td>
+					<td><input type="text" name='issue_tax_bill' id="issue_tax_bill" value="{{$temp['orderbook']->issue_tax_bill}}"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -527,9 +507,9 @@ function clickCorrectionEvent(trObj) {
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="text" name='manager' id="manager"></td>
-					<td><input type="text" name='m_business-num' id="m_business-num"></td>
-					<td><input type="text" name='m_business_address' id="m_business_address"></td>
+					<td><input type="text" name='manager' id="manager" value="{{$temp['orderbook']->manager}}"></td>
+					<td><input type="text" name='m_business_num' id="m_business_num" value="{{$temp['orderbook']->m_business_num}}"></td>
+					<td><input type="text" name='m_business_address' id="m_business_address" value="{{$temp['orderbook']->m_business_address}}"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -545,9 +525,9 @@ function clickCorrectionEvent(trObj) {
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="tel" name='m_phone' id="m_phone"></td>
-					<td><input type="email" name='m_mail' id="m_mail"></td>
-					<td><input type="date" name='signing_date' id="signing_date"></td>
+					<td><input type="tel" name='m_phone' id="m_phone" value="{{$temp['orderbook']->m_phone}}"></td>
+					<td><input type="email" name='m_mail' id="m_mail" value="{{$temp['orderbook']->m_mail}}"></td>
+					<td><input type="text" name='signing_date' id="signing_date" value="{{$temp['orderbook']->signing_date}}"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -571,66 +551,66 @@ function clickCorrectionEvent(trObj) {
 				<tr >
 					<td >1</td>
 					<td style="word-break: break-all; ">
-						<input type="text" name='item' id="item">
+						<input type="text" name='item1' id="item1" value="{{$temp['orderbook_sales'][0]->item}}">
 					</td>
-					<td><input type="textarea" name='count' id="count"></input></td>
-					<td><input type="text" name='per_sales' id="per_sales"></input></td>
-					<td><input type="text" name='total_sales' id="total_sales"></input></td>
-					<td><input type="text" name='per_buy' id="per_buy"></input></td>
-					<td><input type="text" name='total_buy' id="total_buy"></input></td>
-					<td><input type="text" name='profit_sales' id="profit_sales"></input></td>
-					<td><input type="text" name='shop' id="shop"></input></td>
-					<td><input type="text" name='note' id="note"></input></td>
+					<td><input type="textarea" name='count1' id="count1" value="{{$temp['orderbook_sales'][0]->count}}"></input></td>
+					<td><input type="text" name='per_sales1' id="per_sales1" value="{{$temp['orderbook_sales'][0]->per_sales}}"></input></td>
+					<td><input type="text" name='sales1' id="sales1" value="{{$temp['orderbook_sales'][0]->sales}}"></input></td>
+					<td><input type="text" name='per_buy1' id="per_buy1" value="{{$temp['orderbook_sales'][0]->per_buy}}"></input></td>
+					<td><input type="text" name='buy1' id="buy1" value="{{$temp['orderbook_sales'][0]->buy}}"></input></td>
+					<td><input type="text" name='profit_sales1' id="profit_sales1" value="{{$temp['orderbook_sales'][0]->profit_sales}}"></input></td>
+					<td><input type="text" name='shop1' id="shop1" value="{{$temp['orderbook_sales'][0]->shop}}"></input></td>
+					<td><input type="text" name='note1' id="note1" value="{{$temp['orderbook_sales'][0]->note}}"></input></td>
 				</tr>
 				<tr>
 					<td height="10">2</td>
 					<td style="word-break: break-all; ">
-						<input type="text" name='item' id="item">
+						<input type="text" name='item2' id="item2" value="{{$temp['orderbook_sales'][1]->item}}">
 					</td>
-					<td><input type="text" name='count' id="count"></td>
-					<td><input type="text" name='per_sales' id="per_sales"></td>
-					<td><input type="text" name='total_sales' id="total_sales"></td>
-					<td><input type="text" name='per_buy' id="per_buy"></td>
-					<td><input type="text" name='total_buy' id="total_buy"></td>
-					<td><input type="text" name='profit_sales' id="profit_sales"></td>
-					<td><input type="text" name='shop' id="shop"></td>
-					<td><input type="text" name='note' id="note"></td>
+					<td><input type="text" name='count2' id="count2" value="{{$temp['orderbook_sales'][1]->count}}"></td>
+					<td><input type="text" name='per_sales2' id="per_sales2" value="{{$temp['orderbook_sales'][1]->per_sales}}"></td>
+					<td><input type="text" name='sales2' id="sales2" value="{{$temp['orderbook_sales'][1]->sales}}"></td>
+					<td><input type="text" name='per_buy2' id="per_buy2" value="{{$temp['orderbook_sales'][1]->per_buy}}"></td>
+					<td><input type="text" name='buy2' id="buy2" value="{{$temp['orderbook_sales'][1]->buy}}"></td>
+					<td><input type="text" name='profit_sales2' id="profit_sales2" value="{{$temp['orderbook_sales'][1]->profit_sales}}"></td>
+					<td><input type="text" name='shop2' id="shop2" value="{{$temp['orderbook_sales'][1]->shop}}"></td>
+					<td><input type="text" name='note2' id="note2" value="{{$temp['orderbook_sales'][1]->note}}"></td>
 				</tr>
 				<tr>
 					<td height="10">3</td>
 					<td style="word-break: break-all; ">
-						<input type="text" name='item' id="item">
+						<input type="text" name='item3' id="item3" value="{{$temp['orderbook_sales'][2]->item}}">
 					</td>
-					<td><input type="text" name='count' id="count"></td>
-					<td><input type="text" name='per_sales' id="per_sales"></td>
-					<td><input type="text" name='total_sales' id="total_sales"></td>
-					<td><input type="text" name='per_buy' id="per_buy"></td>
-					<td><input type="text" name='total_buy' id="total_buy"></td>
-					<td><input type="text" name='profit_sales' id="profit_sales"></td>
-					<td><input type="text" name='shop' id="shop"></td>
-					<td><input type="text" name='note' id="note"></td>
+					<td><input type="text" name='count3' id="count3" value="{{$temp['orderbook_sales'][2]->count}}"></td>
+					<td><input type="text" name='per_sales3' id="per_sales3" value="{{$temp['orderbook_sales'][2]->per_sales}}"></td>
+					<td><input type="text" name='sales3' id="sales3" value="{{$temp['orderbook_sales'][2]->sales}}"></td>
+					<td><input type="text" name='per_buy3' id="per_buy3" value="{{$temp['orderbook_sales'][2]->per_buy}}"></td>
+					<td><input type="text" name='buy3' id="buy3" value="{{$temp['orderbook_sales'][2]->buy}}"></td>
+					<td><input type="text" name='profit_sales3' id="profit_sales3" value="{{$temp['orderbook_sales'][2]->profit_sales}}"></td>
+					<td><input type="text" name='shop3' id="shop3" value="{{$temp['orderbook_sales'][2]->shop}}"></td>
+					<td><input type="text" name='note3' id="note3" value="{{$temp['orderbook_sales'][2]->note}}"></td>
 				</tr>
 				<tr>
 					<td height="10">4</td>
 					<td style="word-break: break-all; ">
-						<input type="text" name='item' id="item">
+						<input type="text" name='item4' id="item4" value="{{$temp['orderbook_sales'][3]->item}}">
 					</td>
-					<td><input type="text" name='count' id="count"></td>
-					<td><input type="text" name='per_sales' id="per_sales"></td>
-					<td><input type="text" name='total_sales' id="total_sales"></td>
-					<td><input type="text" name='per_buy' id="per_buy"></td>
-					<td><input type="text" name='total_buy' id="total_buy"></td>
-					<td><input type="text" name='profit_sales' id="profit_sales"></td>
-					<td><input type="text" name='shop' id="shop"></td>
-					<td><input type="text" name='note' id="note"></td>
+					<td><input type="text" name='count4' id="count4" value="{{$temp['orderbook_sales'][3]->count}}"></td>
+					<td><input type="text" name='per_sales4' id="per_sales4" value="{{$temp['orderbook_sales'][3]->per_sales}}"></td>
+					<td><input type="text" name='sales4'4 id="sales4" value="{{$temp['orderbook_sales'][3]->sales}}"></td>
+					<td><input type="text" name='per_buy4' id="per_buy4" value="{{$temp['orderbook_sales'][3]->per_buy}}"></td>
+					<td><input type="text" name='buy4' id="buy4" value="{{$temp['orderbook_sales'][3]->buy}}"></td>
+					<td><input type="text" name='profit_sales4' id="profit_sales4" value="{{$temp['orderbook_sales'][3]->profit_sales}}"></td>
+					<td><input type="text" name='shop4' id="shop4" value="{{$temp['orderbook_sales'][3]->shop}}"></td>
+					<td><input type="text" name='note4' id="note4" value="{{$temp['orderbook_sales'][3]->note}}"></td>
 				</tr>
 				<tr>
 
 					<td colspan="2">합계 (VAT별도)</td>
-					<td colspan="2">2</td>
-					<td colspan="2">4,000,000</td>
-					<td>10,170,000</td>
-					<td>4,000,000</td>
+					<td colspan="2"><input type="text" name='total_count' id="total_count" value="{{$temp['orderbook_sales'][0]->total_count}}"></td>
+					<td colspan="2"><input type="text" name='total_sales' id="total_sales" value="{{$temp['orderbook_sales'][0]->total_sales}}"></td>
+					<td><input type="text" name='total_buy' id="total_buy" value="{{$temp['orderbook_sales'][0]->total_buy}}"></td>
+					<td><input type="text" name='total_profits' id="total_profits" value="{{$temp['orderbook_sales'][0]->total_profits}}"></td>
 					<td>이익률</td>
 					<td>12%</td>
 				</tr>
@@ -641,14 +621,14 @@ function clickCorrectionEvent(trObj) {
 					<td colspan="2"></td>
 					<td>실영업이익</td>
 					<td></td>
-					<td>10,170,000</td>
+					<td><input type="text" name='real_time_profit' id="real_time_profit" value="{{$temp['orderbook_sales'][0]->real_time_profit}}"></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td height="30" >참고내용</td>
 					<td style="word-break: break-all; width: 40%;" colspan="9">
-					<input type="textarea" name='information' id="information"></td>
+					<input type="textarea" name='information' id="information" value="{{$temp['orderbook_sales'][0]->information}}"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -664,65 +644,63 @@ function clickCorrectionEvent(trObj) {
 			<tbody>
 				<tr>
 					<td>프로젝트명</td>
-					<td><input type="text" name='c_project_subject' id="c_project_subject"></input></td>
-					<td><input type="text" name='c_e_project_subject' id="c_e_project_subject"></input></td>
+					<td><input type="text" name='c_project_subject' id="c_project_subject" value="{{$temp['orderbook']->c_project_subject}}"></input></td>
+					<td><input type="text" name='c_e_project_subject' id="c_e_project_subject" value="{{$temp['orderbook']->c_e_project_subject}}"></input></td>
 				</tr>
 				<tr>
 					<td>회사명</td>
-					<td><input type="text" name='customer' id="customer"></input></td>
-					<td><input type="text" name='e_customer' id="e_customer"></input></td>
+					<td><input type="text" name='customer' id="customer" value="{{$temp['orderbook']->customer}}"></input></td>
+					<td><input type="text" name='e_customer' id="e_customer" value="{{$temp['orderbook']->e_customer}}"></input></td>
 				</tr>
 				<tr>
 					<td>우편번호</td>
-					<td><input type="text" name='c_zip_code' id="c_zip_code"></input></td>
-					<td><input type="text" name='c_e_zip_code' id="c_e_zip_code"></input></td>
+					<td><input type="text" name='c_zip_code' id="c_zip_code" value="{{$temp['orderbook']->c_zip_code}}"></input></td>
+					<td><input type="text" name='c_e_zip_code' id="c_e_zip_code" value="{{$temp['orderbook']->c_e_zip_code}}"></input></td>
 				</tr>
 				<tr>
 					<td>주소</td>
-					<td><input type="text" name='c_address' id="c_address"></input></td>
-					<td><input type="text" name='c_e_address' id="c_e_address"></input></td>
+					<td><input type="text" name='c_address' id="c_address" value="{{$temp['orderbook']->c_address}}"></input></td>
+					<td><input type="text" name='c_e_address' id="c_e_address" value="{{$temp['orderbook']->c_e_address}}"></input></td>
 				</tr>
 				<tr>
 					<td>담당자</td>
-					<td><input type="text" name='c_manager' id="c_manager"></input></td>
-					<td><input type="text" name='c_e_manager' id="c_e_manager"></input></td>
+					<td><input type="text" name='c_manager' id="c_manager" value="{{$temp['orderbook']->c_manager}}"></input></td>
+					<td><input type="text" name='c_e_manager' id="c_e_manager" value="{{$temp['orderbook']->c_e_manager}}"></input></td>
 				</tr>
 				<tr>
 					<td>전화번호</td>
-					<td><input type="tel" name='c_phone' id="c_phone"></input></td>
-					<td><input type="tel" name='c_e_phone' id="c_e_phone"></input></td>
+					<td><input type="tel" name='c_phone' id="c_phone" value="{{$temp['orderbook']->c_phone}}"></input></td>
+					<td><input type="tel" name='c_e_phone' id="c_e_phone" value="{{$temp['orderbook']->c_e_phone}}"></input></td>
 				</tr>
 				<tr>
 					<td>이메일주소</td>
-					<td><input type="email" name='c_mail' id="c_mail"></input></td>
-					<td><input type="email" name='e_mail' id="e_mail"></input></td>
-				</tr>
-				<tr>
-					<td>활성화날짜</td>
-					<td style="word-break: break-all; width: 40%;"></td>
-					<td style="word-break: break-all; width: 40%;"></td>
+					<td><input type="email" name='c_mail' id="c_mail" value="{{$temp['orderbook']->c_mail}}"></input></td>
+					<td><input type="email" name='e_mail' id="e_mail" value="{{$temp['orderbook']->e_mail}}"></input></td>
 				</tr>
 				<tr>
 					<td>사업자번호</td>
-					<td><input type="text" name='c_business_num' id="c_business_num"></input></td>
-					<td><input type="text" name='c_e_business-num' id="c_e_business-num"></input></td>
+					<td><input type="text" name='c_business_num' id="c_business_num" value="{{$temp['orderbook']->c_business_num}}"></input></td>
+					<td><input type="text" name='c_e_business_num' id="c_e_business_num" value="{{$temp['orderbook']->c_e_business_num}}"></input></td>
 				</tr>
 				<tr>
 					<td>계약기간</td>
-					<td><input type="date" name='contact_date' id="contact_date"></input></td>
-					<td><input type="date" name='e_contact_date' id="e_contact_date"></input></td>
+					<td><input type="text" name='contact_date' id="contact_date" value="{{$temp['orderbook']->contact_date}}"></input></td>
+					<td><input type="text" name='e_contact_date' id="e_contact_date" value="{{$temp['orderbook']->e_contact_date}}"></input></td>
 				</tr>
 		
 		</table>
 		@csrf
-		<input type="submit" value="작성">
+            <input type="submit" value="수정">
 		</form>
-		<button class="trigger"
-			style="width: 7%; float: right; margin-top: 10px;" value="aa"
-			onclick="javascript:clickTrEvent(this)">돌아가기</button>
-		<button class="trigger"
+	<form style="display:inline;" action="/OrderBook/{{$temp['orderbook']->contract_number}}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button>삭제</button>
+    </form>
+		<a href="/OrderBook"><button class="trigger"
 			style="width: 5%; float: right; margin-top: 10px; margin-right: 10px; margin-bottom: 30px;"
-			value="aa" onclick="javascript:clickTrEvent(this)">수정</button>
+			value="aa" >돌아가기</button>
+		
 	</div>
-</body>
-</html>
+@endsection
+
