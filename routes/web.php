@@ -8,24 +8,19 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ManagerManagementController;
 use App\Http\Controllers\CustomerManagementController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 // 채연 
 Route::get('/Estimate', [EstimateController::class, 'Viewer']);
 Route::get('/EstimateDetail', [EstimateController::class, 'Detail']);
-Route::get('/OrderBook', [OrderBookController::class, 'Viewer']);   // 수주 품위서 
-Route::get('/OrderBookRegister', [OrderBookController::class, 'Register']);
-Route::get('/OrderBookDetail', [OrderBookController::class, 'Detail']);
-Route::get('/OrderBookCorrection', [OrderBookController::class, 'Correction']);
+
+// 수주품의서
+Route::get('/OrderBook', [OrderBookController::class, 'index']); // 등록 
+Route::get('/OrderBook/create', [OrderBookController::class, 'create']);
+Route::POST('/OrderBook', [OrderBookController::class, 'store']);
+Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
+Route::post('/OrderBook/{orderbook}', [OrderBookController::class, 'update']);
+Route::delete('/OrderBook/{orderbook}', [BoardController::class, 'destroy']);  
+
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 
 // 기범

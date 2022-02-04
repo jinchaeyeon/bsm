@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<title>영업관리 시스템</title>
+@extends('layouts.orderbook')
 
-<!-- Fonts -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
-	rel="stylesheet">
+@section('title')
+    수주품의서 조회
+@endsection
 
-<!-- Styles -->
+@section('sytle')
 <style>
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -512,12 +505,6 @@ form {
 
 				location.href = link;
 			};
-			
-			function clickRegisterEvent(trObj) {
-				var link = "/OrderBookRegister";
-
-				location.href = link;
-			};
 
 			function clickSearchEvent(trObj) {
 				var link = "/OrderBook";
@@ -559,142 +546,44 @@ form {
 			}
 			}
 </script>
-</head>
-<body class="antialiased">
+@endsection
+
+@section('content')
+    <body class="antialiased">
 		@include('Layout.Sidebar')
 		<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
-			<table class="table_Estimate_List"
-				style="text-align: centger; border: 1px solid black; width: 100%;">
+			<table style="text-align: centger; border: 1px solid black; width: 100%;">
 				<caption>
 					<h2>수주품의서</h2>
 				</caption>
 				<thead>
 					<tr>
-						<th>번호</th>
+						<th>계약번호</th>
 						<th>거래처</th>
-						<th>사업장</th>
-						<th>작성자</th>
-						<th>수주번호</th>
-						<th>계약 시작 날짜</th>
-						<th>계약 종료 날짜</th>
-						<th>WinRate</th>
-						<th>진행상태</th>
+						<th>담당자</th>
+						<th>담당부서</th>
+						<th>작성일자</th>
 						<th>조회</th>
 					</tr>
 				</thead>
 				<tbody>
+                    @foreach($orderbook as $item)
 					<tr>
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-						<td>7</td>
-						<td>8</td>
-						<td>9</td>
-						<td><button id="firstRow" type="button" style="width: 100%"
-								value="aa" onclick="javascript:clickTrEvent(this)">조회</button></td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>11</td>
-						<td>12</td>
-						<td>13</td>
-						<td>14</td>
-						<td>15</td>
-						<td>16</td>
-						<td>17</td>
-						<td>18</td>
-						<td><button id="SecondRow" type="button" style="width: 100%"
-								value="aa" onclick="javascript:clickTrEvent(this)">조회</button></td>
-					</tr>
+						<td>{{$item->contract_number}}</td>
+						<td>{{$item->customer_name}}</td>
+						<td>{{$item->manager}}</td>
+						<td>{{$item->department}}</td>
+						<td>{{$item->created_at}}</td>
+						<td>
+							<a href="/OrderBook/{{$item->contract_number}}"><input id="firstRow" type="button" style="width: 100%" type="button" value="조회"></a>
+						</td>
+					</tr>	
+                    @endforeach			
 				</tbody>
 			</table>
 			<div style="width: 5%; display: inline-block;"></div>
-			<?php
 
-function pageing()
-{
-
-    // 한번에 출력할 data수
-    $view_article = 2;
-    // page초기값 패이징여부
-    if (isset($_GET['page']))
-        $page = $_GET['page'];
-    else
-        $page = 1;
-    // 데이터 시작 번호
-    $start = ($page - 1) * $view_article;
-
-    // 전체 칼럼 수
-    $total = 2;
-
-    // 전체 페이지
-    $total_page = ceil($total / $view_article);
-    // 시작페이지
-    if ($page % 10) {
-        $start_page = $page - $page % 10 + 1;
-    } else {
-        $start_page = $page - 9;
-    }
-    // 마지막 페이지
-    $end_page = $start_page + 10;
-
-    // 초기 페이지로이동
-    if ($page != 1) {
-        echo "<font><a href=\"Customer_List.php?page=1\"><<</a></font>&nbsp;&nbsp;";
-    } else {
-        echo "<font><<</font>&nbsp;&nbsp;";
-    }
-
-    // 중간페이지 출력
-    for ($i = $start_page; $i < $end_page; $i ++) {
-        if ($i > $total_page)
-            break;
-        if ($i == $page) {
-            echo "(<font>$i</a></font>)&nbsp;&nbsp;";
-        } else {
-            echo "<font><a href=\"Customer_List.php?page=$i\">$i</a></font>&nbsp;&nbsp;";
-        }
-    }
-
-    // 마지막 페이지로 이동
-    if ($page != $total_page) {
-        echo "<font><a href=\"Customer_List.php?page=$total_page\">>></a></font>&nbsp;&nbsp;";
-    } else {
-        echo "<font>>></a></font>&nbsp;&nbsp;";
-    }
-}
-
-pageing()?>
-<button class="trigger"
-				style="width: 5%; float: right; margin-top: 10px;" value="aa"
-				onclick="javascript:clickRegisterEvent(this)">등록</button>
-
-			<script type="text/javascript"> 
-         var modal = document.querySelector(".modal"); 
-         var trigger = document.querySelector(".trigger"); 
-         var closeButton = document.querySelector(".close-button"); 
-         var registerButton = document.querySelector("#register");
-
-        //console.log(modal);
-
-        function toggleModal() { 
-             modal.classList.toggle("show-modal"); 
-         }
-
-        function windowOnClick(event) { 
-             if (event.target === modal) { 
-                 toggleModal(); 
-             } 
-         }
-
-        trigger.addEventListener("click", toggleModal); 
-         closeButton.addEventListener("click", toggleModal); 
-         register.addEventListener("click", toggleModal); 
-         window.addEventListener("click", windowOnClick); 
-     </script>
+			<a href="/OrderBook/create"><input style="width: 5%; float: right; margin-top: 10px;" type="button" value="등록"></a>
 			<div style="margin-top: 10px;">
 				<label><input type="radio" name="chk_info" value="부서별"
 					onclick="javascript:checkRadio()">부서별 검색</label><label><input
@@ -729,4 +618,4 @@ pageing()?>
 
 		</div>
 </body>
-</html>
+@endsection
