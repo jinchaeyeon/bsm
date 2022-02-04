@@ -423,7 +423,7 @@ th {
 	<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
 		<h2 style="text-align: center;">수주 품의서</h2>
 
-		<form action="/OrderBook" method="POST">
+		<form action="/OrderBook/create" method="POST">
 
 		<table class="table_EstimateDetail_List3"
 			style="text-align: centger; border: 1px solid black; width: 21%; float: right; margin-left: 40px;">

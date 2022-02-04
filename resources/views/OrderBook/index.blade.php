@@ -500,20 +500,16 @@ form {
 </style>
 
 <script type="text/javascript">
-			function clickTrEvent(trObj) {
-				var link = "/OrderBookDetail";
-
-				location.href = link;
+			function clickSearchEvent() {
+				document.getElementById('search').submit();
 			};
 
-			function clickSearchEvent(trObj) {
-				var link = "/OrderBook";
-
-				location.href = link;
-			};
+			function click_go_back_event(){
+				var link = "http://127.0.0.1:8000/OrderBook";
+            	location.href = link;
+			}
 
 			function checkRadio()
-
 			{
 			var test = document.getElementsByName('chk_info');
 			if (test[0].checked == true )
@@ -522,6 +518,7 @@ form {
 			 document.getElementById('2').style.display="none";
 			 document.getElementById('3').style.display="none";
 			 document.getElementById('4').style.display="none";
+			 document.getElementById('5').style.display="none";
 			}
 			else if (test[1].checked == true )
 			{
@@ -529,6 +526,7 @@ form {
 				 document.getElementById('2').style.display="";
 				 document.getElementById('3').style.display="none";
 				 document.getElementById('4').style.display="none";
+				 document.getElementById('5').style.display="none";
 			}
 			else if (test[2].checked == true )
 			{
@@ -536,6 +534,7 @@ form {
 				 document.getElementById('2').style.display="none";
 				 document.getElementById('3').style.display="";
 				 document.getElementById('4').style.display="none";
+				 document.getElementById('5').style.display="none";
 			}
 			else if (test[3].checked == true )
 			{
@@ -543,12 +542,22 @@ form {
 				 document.getElementById('2').style.display="none";
 				 document.getElementById('3').style.display="none";
 				 document.getElementById('4').style.display="";
+				 document.getElementById('5').style.display="none";
+			}
+			else if (test[4].checked == true )
+			{
+				 document.getElementById('1').style.display="none";
+				 document.getElementById('2').style.display="none";
+				 document.getElementById('3').style.display="none";
+				 document.getElementById('4').style.display="none";
+				 document.getElementById('5').style.display="";
 			}
 			}
 </script>
 @endsection
 
 @section('content')
+
     <body class="antialiased">
 		@include('Layout.Sidebar')
 		<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
@@ -563,6 +572,7 @@ form {
 						<th>담당자</th>
 						<th>담당부서</th>
 						<th>작성일자</th>
+						<th>수정일자</th>
 						<th>조회</th>
 					</tr>
 				</thead>
@@ -574,48 +584,95 @@ form {
 						<td>{{$item->manager}}</td>
 						<td>{{$item->department}}</td>
 						<td>{{$item->created_at}}</td>
+						<td>{{$item->updated_at}}</td>
 						<td>
 							<a href="/OrderBook/{{$item->contract_number}}"><input id="firstRow" type="button" style="width: 100%" type="button" value="조회"></a>
 						</td>
 					</tr>	
-                    @endforeach			
+                    @endforeach	
 				</tbody>
 			</table>
+			
+			<div class="d-flex justify-content-center">
+				{{$orderbook->links()}}
+			</div>
+			
 			<div style="width: 5%; display: inline-block;"></div>
-
 			<a href="/OrderBook/create"><input style="width: 5%; float: right; margin-top: 10px;" type="button" value="등록"></a>
+
+			
 			<div style="margin-top: 10px;">
-				<label><input type="radio" name="chk_info" value="부서별"
-					onclick="javascript:checkRadio()">부서별 검색</label><label><input
-					type="radio" name="chk_info" value="기간별"
-					onclick="javascript:checkRadio()">기간별 검색</label> <label><input
-					type="radio" name="chk_info" value="담당자별"
-					onclick="javascript:checkRadio()">담당자별 검색</label> <label><input
-					type="radio" name="chk_info" value="거래처별"
-					onclick="javascript:checkRadio()">거래처별 검색</label>
-			</div>
-			<div id="1" style="display: none;">
-				부서 이름 :&nbsp; <input class="registerSearch" type="string"
-					name="string">&nbsp;&nbsp;<span style="color: grey"><i
-					class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
-			</div>
-			<div id="2" style="display: none;">
-				기간 :&nbsp; <input class="registerSearch" type="date" name="string">~<input
-					class="registerSearch" type="date" name="string">&nbsp;&nbsp;<span
-					style="color: grey"><i class="fas fa-search"
-					onclick="javascript:clickSearchEvent(this)"></i></span>
-			</div>
-			<div id="3" style="display: none;">
-				담당자 이름 :&nbsp; <input class="registerSearch" type="string"
-					name="string">&nbsp;&nbsp;<span style="color: grey"><i
-					class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
-			</div>
-			<div id="4" style="display: none;">
-				거래처 이름 :&nbsp; <input class="registerSearch" type="string"
-					name="string">&nbsp;&nbsp;<span style="color: grey"><i
-					class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+				<label>
+					<input type="radio" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
+					부서별 검색
+				</label>
+
+				<label>
+					<input type="radio" name="chk_info" value="기간별" onclick="javascript:checkRadio()">
+					작성일자별 검색
+				</label> 
+
+				<label>
+					<input type="radio" name="chk_info" value="담당자별" onclick="javascript:checkRadio()">
+					담당자별 검색
+				</label> 
+
+				<label>
+					<input type="radio" name="chk_info" value="거래처별" onclick="javascript:checkRadio()">
+					거래처별 검색
+				</label>
+
+				<label>
+					<input type="radio" name="chk_info" value="전체" onclick="javascript:click_go_back_event()">
+					전체 검색
+				</label>
+
 			</div>
 
+			<form id="search" style="display:inline" action="/OrderBook" method="POST">
+			@csrf
+
+			<div id="1" style="display: none;">
+				부서 이름 :&nbsp; 
+				<input class="registerSearch" type="string" name="department" >&nbsp;&nbsp;
+				<span style="color: grey">
+					<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
+				</span>
+			</div>
+
+			<div id="2" style="display: none;">
+				기간 :&nbsp; 
+				<input class="registerSearch" type="date" name="created_at1">~
+				<input class="registerSearch" type="date" name="created_at2">&nbsp;&nbsp;
+				<span style="color: grey">
+					<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
+				</span>
+			</div>
+
+			<div id="3" style="display: none;">
+				담당자 이름 :&nbsp; 
+				<input class="registerSearch" type="string" name="manager">&nbsp;&nbsp;
+				<span style="color: grey">
+					<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
+				</span>
+			</div>
+
+			<div id="4" style="display: none;">
+				거래처 이름 :&nbsp; 
+				<input class="registerSearch" type="string" name="customer_name">&nbsp;&nbsp;
+				<span style="color: grey">
+					<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
+				</span>
+			</div>
+
+			<div id="5" style="display: none;">
+				전체검색 :&nbsp; 
+				<input class="registerSearch" type="string" name="customer_name">&nbsp;&nbsp;
+				<span style="color: grey">
+					<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
+				</span>
+			</div>
+			</form>
 		</div>
 </body>
 @endsection
