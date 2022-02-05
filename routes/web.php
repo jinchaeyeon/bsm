@@ -15,11 +15,12 @@ Route::get('/EstimateDetail', [EstimateController::class, 'Detail']);
 
 // 수주품의서
 Route::get('/OrderBook', [OrderBookController::class, 'index']); // 등록 
+Route::POST('/OrderBook', [OrderBookController::class, 'search']);
 Route::get('/OrderBook/create', [OrderBookController::class, 'create']);
-Route::POST('/OrderBook', [OrderBookController::class, 'store']);
+Route::POST('/OrderBook/create', [OrderBookController::class, 'store']);
 Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 Route::post('/OrderBook/{orderbook}', [OrderBookController::class, 'update']);
-Route::delete('/OrderBook/{orderbook}', [BoardController::class, 'destroy']);  
+Route::delete('/OrderBook/{orderbook}', [OrderBookController::class, 'destroy']);  
 
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 

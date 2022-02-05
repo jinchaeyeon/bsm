@@ -420,6 +420,9 @@ th {
 @section('content')
 @include('Layout.Sidebar')
 	<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
+
+	<div id="print">
+
 		<h2 style="text-align: center;">수주 품의서</h2>
         
 		<form action="/OrderBook/{{$temp['orderbook']->contract_number}}" method="POST">
@@ -689,7 +692,9 @@ th {
 				</tr>
 		
 		</table>
-		@csrf
+
+		</div>
+
             <input type="submit" value="수정">
 		</form>
 	<form style="display:inline;" action="/OrderBook/{{$temp['orderbook']->contract_number}}" method="POST">
@@ -697,10 +702,34 @@ th {
         @method('DELETE')
         <button>삭제</button>
     </form>
-		<a href="/OrderBook"><button class="trigger"
+		<a href="/OrderBook">
+			<button class="trigger"
 			style="width: 5%; float: right; margin-top: 10px; margin-right: 10px; margin-bottom: 30px;"
 			value="aa" >돌아가기</button>
+		</a>
 		
+		<button onclick="return printPage();">프린트</button>
+
+		<script>
+			var initBodyHtml;
+
+			function printPage(){
+				window.print();
+			}
+
+			function beforePrint(){
+				initBodyHtml = document.body.innerHTML;
+				document.body.innerHTML = document.getElementById('print').innerHTML;
+			}
+
+			function afterPrint(){
+				document.body.innerHTML = initBodyHtml;
+			}
+
+			window.onbeforeprint = beforePrint;
+			window.onafterprint = afterPrint;
+
+		</script>
 	</div>
 @endsection
 

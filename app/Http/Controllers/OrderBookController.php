@@ -12,8 +12,48 @@ class OrderBookController extends Controller
 {
    
     public function index(){
-        $orderbook = OrderBook::all();
-        return view('OrderBook.index',compact('orderbook'));
+        $orderbook = DB::table('order_books')->paginate(10);
+        return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+    }
+
+    public function search(Request $request){   
+        if($request->input('department') != null){
+            $link = 'department';
+            $department = $request->input('department');    
+            $orderbook = DB::table('order_books')->where('department','=', $department)->paginate(10);
+            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+        }
+        else if($request->input('created_at1') != null && $request->input('created_at2') != null){
+            $link = 'created_at';
+            $created_at1 = $request->input('created_at1');
+            $created_at2 = $request->input('created_at2');
+            $orderbook = DB::table('order_books')->where('created_at', '>=', $created_at1)->where('created_at', '=<', $created_at2)->paginate(10);
+            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+        }
+        else if($request->input('created_at1') != null && $request->input('created_at2') == null){
+            $link = 'created_at';
+            $created_at1 = $request->input('created_at1');
+            $orderbook = DB::table('order_books')->where('created_at', '>=', $created_at1)->paginate(10);
+            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+        }
+        else if($request->input('created_at1') == null && $request->input('created_at2') != null){
+            $link = 'created_at';
+            $created_at2 = $request->input('created_at2');
+            $orderbook = DB::table('order_books')->where('created_at', '<=', $created_at2)->paginate(10);
+            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+        }
+        else if($request->input('manager')!= null){
+            $link = 'manager';
+            $manager = $request->input('manager');
+            $orderbook = DB::table('order_books')->where('manager','=', $manager)->paginate(10);
+            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+        }
+        else if($request->input('customer_name')!= null){
+            $link = 'customer_name';
+            $customer_name = $request->input('customer_name');
+            $orderbook = DB::table('order_books')->where('customer_name','=', $customer_name)->paginate(10);
+            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+        }
     }
 
     public function create(){
@@ -255,9 +295,11 @@ class OrderBookController extends Controller
         return redirect('/OrderBook');
     }
 
-    public function destroy($id){
-        $ordrebook = OrderBook::findOrFail($id);
-        $orderbook->delete();
+    public function destroy(OrderBook $orderbook){
+        $id = $orderbook->contract_number;
+        OrderBook::where('contract_number',$id)->delete();
+        OrderBook_sales::where('order_book_id', $id)->delete();
+        
         return redirect('/OrderBook');
     }
 }
