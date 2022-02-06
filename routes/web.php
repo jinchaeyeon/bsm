@@ -15,7 +15,7 @@ Route::get('/EstimateDetail', [EstimateController::class, 'Detail']);
 
 // 수주품의서
 Route::get('/OrderBook', [OrderBookController::class, 'index']); // 등록 
-Route::POST('/OrderBook', [OrderBookController::class, 'search']);
+Route::POST('/OrderBook', [OrderBookController::class, 'index']);
 Route::get('/OrderBook/create', [OrderBookController::class, 'create']);
 Route::POST('/OrderBook/create', [OrderBookController::class, 'store']);
 Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);

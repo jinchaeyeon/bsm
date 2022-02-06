@@ -494,6 +494,13 @@ form {
 	transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
+.title2{
+	margin : 0;
+	float: left;
+}
+.title1{
+	margin-bottom:0;
+}
 #1, #2, #3, #4 {
 	display: none;
 }
@@ -562,11 +569,12 @@ form {
 		@include('Layout.Sidebar')
 		<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
 			<table style="text-align: centger; border: 1px solid black; width: 100%;">
-				<caption>
-					<h2>수주품의서</h2>
-				</caption>
+				<div class="title">
+					<h2 class="title1">수주품의서</h2>
+					<p class="title2">total : {{$orderbook->total()}}</p>
+				</div>
 				<thead>
-					<tr>
+					<tr> 
 						<th>계약번호</th>
 						<th>거래처</th>
 						<th>담당자</th>
@@ -577,7 +585,7 @@ form {
 					</tr>
 				</thead>
 				<tbody>
-                    @foreach($orderbook as $item)
+                    @foreach($orderbook as $item)					
 					<tr>
 						<td>{{$item->contract_number}}</td>
 						<td>{{$item->customer_name}}</td>
@@ -592,14 +600,13 @@ form {
                     @endforeach	
 				</tbody>
 			</table>
-			
-			<div class="d-flex justify-content-center">
-				{{$orderbook->links()}}
+			<div style="text-align: center">
+				{{ $orderbook->links() }}
+				({{ $orderbook->currentPage() }})
 			</div>
-			
-			<div style="width: 5%; display: inline-block;"></div>
-			<a href="/OrderBook/create"><input style="width: 5%; float: right; margin-top: 10px;" type="button" value="등록"></a>
 
+			<a href="/OrderBook/create"><input style="width: 5%; float: right; margin-top: 10px;" type="button" value="등록"></a>
+			
 			
 			<div style="margin-top: 10px;">
 				<label>
@@ -667,7 +674,7 @@ form {
 
 			<div id="5" style="display: none;">
 				전체검색 :&nbsp; 
-				<input class="registerSearch" type="string" name="customer_name">&nbsp;&nbsp;
+				<input class="registerSearch" type="string" name="search_all">&nbsp;&nbsp;
 				<span style="color: grey">
 					<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
 				</span>
