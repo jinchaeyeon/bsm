@@ -508,19 +508,35 @@ form {
 
 <script type="text/javascript">
 			function clickTrEvent(trObj) {
-				var link = "/EstimateDetail";
-
-				location.href = link;
-			};
-			
-			function clickRegisterEvent(trObj) {
-				var link = "/Estimate";
+				var link = "/EstimateDetail/"+trObj.value;
 
 				location.href = link;
 			};
 
-			function clickSearchEvent(trObj) {
-				var link = "/Estimate";
+			function clickSearchEvent1(trObj) {
+				const name = document.getElementById('search1').value;
+				var link = "/EstimateSearch1/"+name;
+
+				location.href = link;
+			};
+
+			function clickSearchEvent2(start) {
+				const s = document.getElementById('start').value;
+				var link = "/EstimateSearch2/"+s;
+
+				location.href = link;
+			};
+
+			function clickSearchEvent3(trObj) {
+				const n = document.getElementById('name').value;
+				var link = "/EstimateSearch3/"+n;
+
+				location.href = link;
+			};
+
+			function clickSearchEvent4(trObj) {
+				const n = document.getElementById('name2').value;
+				var link = "/EstimateSearch4/"+n;
 
 				location.href = link;
 			};
@@ -583,32 +599,21 @@ form {
 				</tr>
 			</thead>
 			<tbody>
+				@foreach($Estimates as $Estimate)
 				<tr>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
-					<td>7</td>
-					<td>8</td>
-					<td>9</td>
-					<td><button id="firstRow" type="button" style="width: 100%"
-							value="aa" onclick="javascript:clickTrEvent(this)">조회</button></td>
+					<td>{{$Estimate->create_date}}</td>
+					<td>{{$Estimate->id}}</td>
+					<td>{{$Estimate->client}}</td>
+					<td>{{$Estimate->type}}</td>
+					<td>{{$Estimate->contact_id}}</td>
+					<td>{{$Estimate->amount}}</td>
+					<td>{{$Estimate->discount_rate}}</td>
+					<td>{{$Estimate->general}}</td>
+					<td>{{$Estimate->order_state}}</td>
+					<td><button id="{{$Estimate->id}}" type="button" style="width: 100%"
+							value="{{$Estimate->id}}" onclick="javascript:clickTrEvent(this)">조회</button></td>
 				</tr>
-				<tr>
-					<td>10</td>
-					<td>11</td>
-					<td>12</td>
-					<td>13</td>
-					<td>14</td>
-					<td>15</td>
-					<td>16</td>
-					<td>17</td>
-					<td>18</td>
-					<td><button id="SecondRow" type="button" style="width: 100%"
-							value="aa" onclick="javascript:clickTrEvent(this)">조회</button></td>
-				</tr>
+				@endforeach
 			</tbody>
 		</table>
 		<div style="width: 5%; display: inline-block;"></div>
@@ -679,24 +684,24 @@ pageing()?>
 				onclick="javascript:checkRadio()">거래처별 검색</label>
 		</div>
 		<div id="1" style="display: none;">
-			부서 이름 :&nbsp; <input class="registerSearch" type="string"
-				name="string">&nbsp;&nbsp;<span style="color: grey"><i
-				class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+			부서 이름 :&nbsp; <input id="search1" class="registerSearch" type="string"
+				name="string" value="">&nbsp;&nbsp;<span style="color: grey"><i
+				class="fas fa-search" onclick="javascript:clickSearchEvent1(search1)"></i></span>
 		</div>
 		<div id="2" style="display: none;">
-			기간 :&nbsp; <input class="registerSearch" type="date" name="string">~<input class="registerSearch" type="date" name="string">&nbsp;&nbsp;<span
+			기간 :&nbsp; <input id="start" class="registerSearch" type="date" name="string">&nbsp;이후&nbsp;&nbsp;<span
 				style="color: grey"><i class="fas fa-search"
-				onclick="javascript:clickSearchEvent(this)"></i></span>
+				onclick="javascript:clickSearchEvent2(start)"></i></span>
 		</div>
 		<div id="3" style="display: none;">
-			담당자 이름 :&nbsp; <input class="registerSearch" type="string"
+			담당자 이름 :&nbsp; <input id="name" class="registerSearch" type="string"
 				name="string">&nbsp;&nbsp;<span style="color: grey"><i
-				class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+				class="fas fa-search" onclick="javascript:clickSearchEvent3(name)"></i></span>
 		</div>
 		<div id="4" style="display: none;">
-			거래처 이름 :&nbsp; <input class="registerSearch" type="string"
+			거래처 번호 :&nbsp; <input id="name2" class="registerSearch" type="string"
 				name="string">&nbsp;&nbsp;<span style="color: grey"><i
-				class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+				class="fas fa-search" onclick="javascript:clickSearchEvent4(name2)"></i></span>
 		</div>
 	</div>
 </body>

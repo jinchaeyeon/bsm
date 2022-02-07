@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EstimateController extends Controller
 {
     public function Viewer()
     {
-        return view('Estimate.EstimateViewer');
-    }
-    
-    public function Detail()
-    {
-        return view('Estimate.EstimateDetail');
+		$Estimates = DB::table('estimates')->get(); 
+
+        return view('Estimate.EstimateViewer',['Estimates' => $Estimates]);
     }
 }

@@ -11,16 +11,38 @@ use App\Http\Controllers\CustomerManagementController;
 
 // 채연 
 Route::get('/Estimate', [EstimateController::class, 'Viewer']);
-Route::get('/EstimateDetail', [EstimateController::class, 'Detail']);
 
-// 수주품의서
-Route::get('/OrderBook', [OrderBookController::class, 'index']); // 등록 
-Route::POST('/OrderBook', [OrderBookController::class, 'index']);
-Route::get('/OrderBook/create', [OrderBookController::class, 'create']);
-Route::POST('/OrderBook/create', [OrderBookController::class, 'store']);
-Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
-Route::post('/OrderBook/{orderbook}', [OrderBookController::class, 'update']);
-Route::delete('/OrderBook/{orderbook}', [OrderBookController::class, 'destroy']);  
+Route::get('/EstimateSearch1/{search1}', function ($search1) {
+		$Estimates = DB::table("estimates")->where("department",$search1)->get();
+
+		return view('Estimate.EstimateViewer',['Estimates' => $Estimates]);
+});
+Route::get('/EstimateSearch2/{start}', function ($start) {
+	$Estimates = DB::select('select * from estimates where create_date > ?', [$start]);
+
+	return view('Estimate.EstimateViewer',['Estimates' => $Estimates]);
+});
+Route::get('/EstimateSearch3/{search3}', function ($search3) {
+	$Estimates = DB::table("estimates")->where("sales_person",$search3)->get();
+
+	return view('Estimate.EstimateViewer',['Estimates' => $Estimates]);
+});
+Route::get('/EstimateSearch4/{search4}', function ($search4) {
+	$Estimates = DB::table("estimates")->where("contact_id",$search4)->get();
+
+	return view('Estimate.EstimateViewer',['Estimates' => $Estimates]);
+});
+Route::get('/EstimateDetail/{SecondRow}', function ($SecondRow) {
+	$Estimates = DB::select('select users.email, users.contact, estimates.* from users,estimates where estimates.id = ? and users.manager_name = estimates.sales_person', [$SecondRow]);
+	$items = DB::select('SELECT items.name, items.explanation, estimate_items.quantity,items.standard_unit_price, estimate_items.suggested_unit_price, estimate_items.total_offer_price FROM estimate_items, items where estimate_id = ? and estimate_items.item_id = items.id', [$SecondRow]);
+	$total = DB::select('SELECT sum(estimate_items.total_offer_price) as total FROM estimate_items, items where estimate_id = ? and estimate_items.item_id = items.id', [$SecondRow]);
+	$tax_total = DB::select('SELECT sum(estimate_items.price_include_tax) as tax_total FROM estimate_items, items where estimate_id = ? and estimate_items.item_id = items.id', [$SecondRow]);
+	return view('Estimate.EstimateDetail',['Estimates' => $Estimates, 'items' => $items, 'total'=>$total, 'tax_total'=> $tax_total]);
+});
+Route::get('/OrderBook', [OrderBookController::class, 'Viewer']);   // 수주 품위서 
+Route::get('/OrderBookRegister', [OrderBookController::class, 'Register']);
+Route::get('/OrderBookDetail', [OrderBookController::class, 'Detail']);
+Route::get('/OrderBookCorrection', [OrderBookController::class, 'Correction']);
 
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 
