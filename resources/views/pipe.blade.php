@@ -21,46 +21,66 @@
         <tr>
             <td>1</td>
             <td>OTS사업본부_파이프라인</td>
-            <td><button class="edit-trigger">수정</button><button>삭제</button></td>
+            <td>
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
         </tr>
         <tr>
             <td>2</td>
             <td>스마트플랫폼사업본부_파이프라인</td>
-            <td><button class="edit-trigger">수정</button><button>삭제</button></td>
+            <td>
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
         </tr>
         <tr>
             <td>3</td>
             <td>중부지사_파이프라인</td>
-            <td><button class="edit-trigger">수정</button><button>삭제</button></td>
+            <td>
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
         </tr>
         <tr>
             <td>4</td>
             <td><a href="business">컨설팅사업본부_파이프라인</a></td>
-            <td><button class="edit-trigger">수정</button><button>삭제</button></td>
+            <td>
+                <button class="edit-trigger">수정</button>
+                <button>삭제</button>
+            </td>
         </tr>
         </tbody>
     </table>
 
     <button style="width: auto; float: right; width: 5%; margin-top: 5px" id="register-trigger">등록</button>
+
+    @foreach($td as $item)
+        ID : {{ $item->id }} <br>
+        VALUE : {{ $item->value }} <br>
+    @endforeach
+
 </div>
 <div style="visibility: hidden">
-    <div id="register-modal" class = "modal">
+    <div id="register-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h1 class="title">파이프 라인 등록</h1>
             <label>명칭</label>
             <input class="registerSearch" type="text" name="name">
-            <input class="registerSearch" type="button" id="register" value="등록" onclick="javascript:clickRegisterEvent(this)">
+            <input class="registerSearch" type="button" id="register" value="등록"
+                   onclick="javascript:clickRegisterEvent(this)">
         </div>
     </div>
 
-    <div id="edit-modal" class = "modal">
+    <div id="edit-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h1 class="title">파이프 라인 수정</h1>
             <label>명칭</label>
             <input class="registerSearch" type="text" name="name">
-            <input class="registerSearch" type="button" id="register" value="등록" onclick="javascript:clickRegisterEvent(this)">
+            <input class="registerSearch" type="button" id="register" value="등록"
+                   onclick="javascript:clickRegisterEvent(this)">
         </div>
     </div>
 </div>
@@ -78,8 +98,7 @@
         opacity: 0;
         visibility: hidden;
         transform: scale(1.1);
-        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform
-        0.25s;
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
     }
 
     a {
@@ -91,6 +110,7 @@
         width: 50%;
         border: 0 solid #e2e8f0;
     }
+
     table {
         width: 100%;
         border: 1px solid black
