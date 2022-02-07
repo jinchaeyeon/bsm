@@ -11,49 +11,44 @@ use App\Models\OrderBook_sales;
 class OrderBookController extends Controller
 {
    
-    public function index(){
-        $orderbook = DB::table('order_books')->paginate(10);
-        return view('OrderBook.index')->with(compact('orderbook'))->with('link');
-    }
+    public function index(Request $request){
 
-    public function search(Request $request){   
         if($request->input('department') != null){
-            $link = 'department';
             $department = $request->input('department');    
             $orderbook = DB::table('order_books')->where('department','=', $department)->paginate(10);
-            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+            $orderbook->appends(['department' =>$department]);
         }
         else if($request->input('created_at1') != null && $request->input('created_at2') != null){
-            $link = 'created_at';
             $created_at1 = $request->input('created_at1');
             $created_at2 = $request->input('created_at2');
-            $orderbook = DB::table('order_books')->where('created_at', '>=', $created_at1)->where('created_at', '=<', $created_at2)->paginate(10);
-            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+            $orderbook = DB::table('order_books')->where('created_at', '>=', $created_at1)->where('created_at', '<=', $created_at2)->paginate(10);
+            $orderbook->appends(['created_at1' =>$created_at1, 'created_at2' =>$created_at2]);
         }
         else if($request->input('created_at1') != null && $request->input('created_at2') == null){
-            $link = 'created_at';
             $created_at1 = $request->input('created_at1');
             $orderbook = DB::table('order_books')->where('created_at', '>=', $created_at1)->paginate(10);
-            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+            $orderbook->appends(['created_at1' =>$created_at1]);
         }
         else if($request->input('created_at1') == null && $request->input('created_at2') != null){
-            $link = 'created_at';
             $created_at2 = $request->input('created_at2');
             $orderbook = DB::table('order_books')->where('created_at', '<=', $created_at2)->paginate(10);
-            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+            $orderbook->appends(['created_at2' =>$created_at2]);
         }
         else if($request->input('manager')!= null){
-            $link = 'manager';
             $manager = $request->input('manager');
             $orderbook = DB::table('order_books')->where('manager','=', $manager)->paginate(10);
-            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+            $orderbook->appends(['manager' =>$manager]);
         }
         else if($request->input('customer_name')!= null){
-            $link = 'customer_name';
             $customer_name = $request->input('customer_name');
             $orderbook = DB::table('order_books')->where('customer_name','=', $customer_name)->paginate(10);
-            return view('OrderBook.index')->with(compact('orderbook'))->with('link');
+            $orderbook->appends(['customer_name' =>$customer_name]);
         }
+        else{
+            $orderbook = DB::table('order_books')->paginate(10);
+        }
+
+        return view('OrderBook.index', compact('orderbook'));
     }
 
     public function create(){
