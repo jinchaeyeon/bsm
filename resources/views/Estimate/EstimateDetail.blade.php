@@ -429,6 +429,7 @@ th {
 </head>
 <body class="antialiased">
 @include('Layout.Sidebar')
+@foreach($Estimates as $Estimate)
 	<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
 		<h2 style="text-align: center;">견적서</h2>
 		<table class="table_EstimateDetail_List1"
@@ -445,12 +446,12 @@ th {
 			</thead>
 			<tbody>
 				<tr>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
+					<td>{{$Estimate->id}}</td>
+					<td>{{$Estimate->client}}</td>
+					<td>{{$Estimate->end_user}}</td> 
+					<td>{{$Estimate->sales_person}}</td>
+					<td>{{$Estimate->contact}}</td>
+					<td>{{$Estimate->email}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -468,17 +469,17 @@ th {
 			</thead>
 			<tbody>
 				<tr>
-					<td>7</td>
-					<td>8</td>
-					<td>9</td>
-					<td>10</td>
-					<td>11</td>
-					<td>12</td>
+					<td>{{$Estimate->end_user}}</td>
+					<td>{{$Estimate->name}}</td>
+					<td>{{$Estimate->create_date}}</td>
+					<td>{{$Estimate->sales_person}}</td>
+					<td>{{$Estimate->contact}}</td>
+					<td>{{$Estimate->email}}</td>
 				</tr>
 			</tbody>
 		</table>
 		<div style="border: 1px solid black; padding-left: 5px;">
-			<h4>견적금액: 일금 ￦8,220,000 원정(VAT 별도)</h4>
+			<h4>견적금액: 일금 ￦{{$Estimate->amount}} 원정(VAT 별도)</h4>
 		</div>
 		<h6 style="float: right">(단위 : 월, 부가세 별도)</h6>
 		<table class="table_EstimateDetail_List3"
@@ -494,27 +495,32 @@ th {
 				</tr>
 			</thead>
 			<tbody>
+			@foreach($items as $item)
 				<tr height='200px'>
-					<td>RH00004</td>
-					<td style="word-break: break-all; width: 50%;">RED HAT
-						~~~~~~TGGGGGGDFDFDFDFdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</td>
-					<td>2</td>
-					<td>6,170,000</td>
-					<td>4,000,000</td>
-					<td>10,170,000</td>
+					<td>{{$item->name}}</td>
+					<td style="word-break: break-all; width: 50%;">{{$item->explanation}}</td>
+					<td>{{$item->quantity}}</td>
+					<td>{{$item->standard_unit_price}}</td>
+					<td>{{$item->suggested_unit_price}}</td>
+					<td>{{$item->total_offer_price}}</td>
 				</tr>
+				@endforeach
 				<tr>
 					<td>합계</td>
-					<td colspan="5">10,170,000</td>
+					@foreach($total as $totals)
+					<td colspan="5">{{$totals->total}}</td>
+					@endforeach
 				</tr>
 				<tr>
 					<td>부가세포함 가격</td>
-					<td colspan="5">11,000,000</td>
+					@foreach($tax_total as $t)
+					<td colspan="5">{{$t->tax_total}}</td>
+					@endforeach
 				</tr>
 				<tr height='100px'>
 					<td>비고</td>
 					<td style="word-break: break-all; width: 40%;" colspan="5">
-						~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</td>
+						{{$Estimate -> note}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -526,5 +532,6 @@ th {
 			<h4>사인 후 팩스 부탁드립니다.</h4>
 		</div>
 	</div>
+	@endforeach
 </body>
 </html>
