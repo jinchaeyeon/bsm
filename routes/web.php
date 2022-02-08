@@ -79,9 +79,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // 준재
-Route::get('/pipeline', function () {
-    return view('pipe');
-});
+Route::get('/pipeline', 'PipeController@index')->name('pipeline');
+Route::post('/pipeline', 'PipeController@store')->name('pipeline');
+Route::put('/pipeline', 'PipeController@update')->name('pipeline');
+Route::delete('/pipeline', 'PipeController@destroy')->name('pipeline');
 
 Route::get('/business', function () {
     return view('business');
@@ -90,7 +91,6 @@ Route::get('/business', function () {
 Route::get('/', function () {
     return view('main');
 });
-
 
 // 현준
 Route::get('/customer_management',[CustomerManagementController::class, 'Viewer']);

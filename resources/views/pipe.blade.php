@@ -7,7 +7,7 @@
 </head>
 <body>
 @include('Layout.Sidebar')
-<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;width: 77%;float:right">
+<div class="min-h-screen" style="zmargin-left: 5%; margin-right: 5%;width: 77%;float:right">
     <h1>
         파이프 라인
     </h1>
@@ -18,47 +18,25 @@
         <td></td>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>OTS사업본부_파이프라인</td>
-            <td>
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>스마트플랫폼사업본부_파이프라인</td>
-            <td>
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>중부지사_파이프라인</td>
-            <td>
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td><a href="business">컨설팅사업본부_파이프라인</a></td>
-            <td>
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
+        @foreach($td as $item)
+            <tr>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->name }}</td>
+                <td>
+                    <button class="edit-trigger" onclick="document.getElementById('edit_id').value = {{$item->id}}">수정</button>
+                    <form method="POST" action="{{ route('pipeline') }}">
+                        @method('DELETE')
+                        @csrf
+                        <input type="hidden" value="{{$item->id}}" name="id">
+                        <button type="submit">삭제</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 
     <button style="width: auto; float: right; width: 5%; margin-top: 5px" id="register-trigger">등록</button>
-
-    @foreach($td as $item)
-        ID : {{ $item->id }} <br>
-        VALUE : {{ $item->value }} <br>
-    @endforeach
 
 </div>
 <div style="visibility: hidden">
@@ -67,9 +45,11 @@
             <span class="close-button">&times;</span>
             <h1 class="title">파이프 라인 등록</h1>
             <label>명칭</label>
-            <input class="registerSearch" type="text" name="name">
-            <input class="registerSearch" type="button" id="register" value="등록"
-                   onclick="javascript:clickRegisterEvent(this)">
+            <form method="POST" action="{{ route('pipeline') }}">
+                @csrf
+                <input class="registerSearch" type="text" name="name">
+                <input class="registerSearch" type="submit" id="register" value="등록">
+            </form>
         </div>
     </div>
 
@@ -78,9 +58,13 @@
             <span class="close-button">&times;</span>
             <h1 class="title">파이프 라인 수정</h1>
             <label>명칭</label>
-            <input class="registerSearch" type="text" name="name">
-            <input class="registerSearch" type="button" id="register" value="등록"
-                   onclick="javascript:clickRegisterEvent(this)">
+            <form method="POST" action="{{ route('pipeline') }}">
+                @method('PUT')
+                @csrf
+                <input type="hidden" name="id" id="edit_id" value = -1>
+                <input class="registerSearch" type="text" name="name">
+                <input class="registerSearch" type="submit" id="register" value="등록">
+            </form>
         </div>
     </div>
 </div>
@@ -160,6 +144,9 @@
 
     const registerTrigger = document.querySelector("#register-trigger");
     const editTriggerList = document.querySelectorAll(".edit-trigger")
+
+    let selected_id = -1
+
     editTriggerList.forEach((trigger) => {
         trigger.addEventListener("click", showEditModal)
     })
