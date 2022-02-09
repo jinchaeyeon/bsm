@@ -6,7 +6,7 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <title>거래처 관리</title>
+    <title>고객 관리</title>
 
     <!-- Fonts -->
     <link
@@ -543,7 +543,7 @@
 <body class="antialiased">
 @include('Layout.Sidebar')
 <div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
-		<table class="table_Estimate_List"
+		<table class="table_customer_list"
 			style="text-align: centger; border: 1px solid black; width: 100%;">
 			<caption>
 				<h2>고객 관리</h2>
@@ -560,102 +560,52 @@
           </tr>
       </thead>
 			<tbody id="print_list">
-        <tr>
+        @foreach($customer as $item)	
+        <tr>				
           <td><input class="ch" type="checkbox" name="manager_check[]" value=""></input></td>
-          <td>금오</td>
-          <td>1234</td>
-          <td>010-1111-1111</td>
-          <td>대학로</td>
-          <td>가나다</td>
-          <td>기타</td>
+          <td>{{$item->company_name}}</td>
+          <td>{{$item->company_register_number}}</td>
+          <td>{{$item->phone}}</td>
+          <td>{{$item->address}}</td>
+          <td>{{$item->ceo_name}}</td>
+          <td>{{$item->note}}</td>
         </tr>
-				<tr>
-          <td><input class="ch" type="checkbox" name="manager_check[]" value=""></input></td>
-          <td>공대</td>
-          <td>986</td>
-          <td>010-2222-2222</td>
-          <td>거의동</td>
-          <td>라마바</td>
-          <td>기타</td>
-				</tr>
+        @endforeach
 			</tbody>
 		</table>
-		<div style="width: 5%; display: inline-block;"></div>
+        <div style="text-align: center">
+			{{ $customer->links() }}
+			({{ $customer->currentPage()}})
+		</div>
 
-    <?php
-    function pageing()
-    {
-
-        // 한번에 출력할 data수
-        $view_article = 2;
-        // page초기값 패이징여부
-        if (isset($_GET['page']))
-            $page = $_GET['page'];
-        else
-            $page = 1;
-        // 데이터 시작 번호
-        $start = ($page - 1) * $view_article;
-
-        // 전체 칼럼 수
-        $total = 2;
-
-        // 전체 페이지
-        $total_page = ceil($total / $view_article);
-        // 시작페이지
-        if ($page % 10) {
-            $start_page = $page - $page % 10 + 1;
-        } else {
-            $start_page = $page - 9;
-        }
-        // 마지막 페이지
-        $end_page = $start_page + 10;
-
-        // 초기 페이지로이동
-        if ($page != 1) {
-            echo "<font><a href=\"Customer_List.php?page=1\"><<</a></font>&nbsp;&nbsp;";
-        } else {
-            echo "<font><<</font>&nbsp;&nbsp;";
-        }
-
-        // 중간페이지 출력
-        for ($i = $start_page; $i < $end_page; $i ++) {
-            if ($i > $total_page)
-                break;
-            if ($i == $page) {
-                echo "(<font>$i</a></font>)&nbsp;&nbsp;";
-            } else {
-                echo "<font><a href=\"Customer_List.php?page=$i\">$i</a></font>&nbsp;&nbsp;";
-            }
-        }
-
-        // 마지막 페이지로 이동
-        if ($page != $total_page) {
-            echo "<font><a href=\"Customer_List.php?page=$total_page\">>></a></font>&nbsp;&nbsp;";
-        } else {
-            echo "<font>>></a></font>&nbsp;&nbsp;";
-        }
-    }
-
-    pageing()?>
 
 <button class="trigger" style="width: 5%; float: right; margin-top: 10px;" value="aa">등록</button>
-<button class="delete" style="width: 5%; float: right; margin-top: 10px;" >삭제</button>
+
+<form style="display:inline;" action="/OrderBook" method="POST">
+    @csrf
+    @method('DELETE')
+    <button class="delete" style="width: 5%; float: right; margin-top: 10px;" >삭제</button>
+ </form>
+
 		<div class="modal">
 			<div class="modal-content">
 				<span class="close-button">&times;</span>
                 <h1 class="title">고객 관리</h1>
-                    <form name="form1" action="create_customer_process.php" method="post">
-                        <div class="field_name">
-                        <label for="in">거래처명</label> <input class="registerSearch" id="in" type="text" name="customer_name" value=""/><br>
-                        <label for="in1">사업자번호</label><input class="registerSearch" id="in1" type="text" name="business_id" value=""/><br>
+
+                <form name="form1" action="/customer_management" method="post">
+                    @csrf
+                    <div class="field_name">
+                        <label for="in">거래처명</label> <input class="registerSearch" id="in" type="text" name="company_name" value=""/><br>
+                        <label for="in1">사업자번호</label><input class="registerSearch" id="in1" type="text" name="company_register_number" value=""/><br>
                         <label for="in2">전화번호</label><input class="registerSearch" id="in2" type="text" name="phone" value=""/><br>
                         <label for="in3">주소</label> <input class="registerSearch" id="in3" type="text" name="address" value=""/><br>
-                        <label for="in4">대표자</label><input class="registerSearch" id="in4" type="text" name="ceo" value=""/><br>
+                        <label for="in4">대표자</label><input class="registerSearch" id="in4" type="text" name="ceo_name" value=""/><br>
                         <label for="in5">비고</label><input class="registerSearch" id="in5" type="text" name="note" value=""/>
                     </div>
                     <p class="field_submit">
-                    <input class="registerSearch" type="button" id="register" value="등록" >
+                    <input class="registerSearch" name="buttom" type="submit" id="register" value="등록" >
                     </p>
+                </form>
 			</div>
 		</div>
 
@@ -663,8 +613,6 @@
                    var modal = document.querySelector(".modal");
                    var trigger = document.querySelector(".trigger");
                    var closeButton = document.querySelector(".close-button");
-
-                  //console.log(modal);
 
                   function toggleModal() {
                        modal.classList.toggle("show-modal");
@@ -691,18 +639,21 @@
 
                    function clear_input_values(){
                      var test = document.forms['form1'];
-                     var element1 = document.forms['form1']['customer_name'];
-                     var element2 = document.forms['form1']['business_id'];
+                     var button = document.querySelector('input[name="buttom"]');
+                     var element1 = document.forms['form1']['company_name'];
+                     var element2 = document.forms['form1']['company_register_number'];
                      var element3 = document.forms['form1']['phone'];
                      var element4 = document.forms['form1']['address'];
-                     var element5 = document.forms['form1']['ceo'];
+                     var element5 = document.forms['form1']['ceo_name'];
                      var element6 = document.forms['form1']['note'];
+                     var element7 = document.forms['form1']['name'];
                      element1.setAttribute('value',"");
                      element2.setAttribute('value',"");
                      element3.setAttribute('value',"");
                      element4.setAttribute('value',"");
                      element5.setAttribute('value',"");
                      element6.setAttribute('value',"");
+                     button.value = "등록";
                      test.setAttribute("action", 'create_customer_process.php')
                    }
 
@@ -713,13 +664,14 @@
                      var address = td.eq(4).text();
                      var ceo = td.eq(5).text();
                      var note = td.eq(6).text();
+                     var button = document.querySelector('input[name="buttom"]');
 
                      var test = document.forms['form1'];
-                     var element1 = document.forms['form1']['customer_name'];
-                     var element2 = document.forms['form1']['business_id'];
+                     var element1 = document.forms['form1']['company_name'];
+                     var element2 = document.forms['form1']['company_register_number'];
                      var element3 = document.forms['form1']['phone'];
                      var element4 = document.forms['form1']['address'];
-                     var element5 = document.forms['form1']['ceo'];
+                     var element5 = document.forms['form1']['ceo_name'];
                      var element6 = document.forms['form1']['note'];
                      element1.setAttribute('value',customer_name);
                      element2.setAttribute('value',business_id);
@@ -727,6 +679,7 @@
                      element4.setAttribute('value',address);
                      element5.setAttribute('value',ceo);
                      element6.setAttribute('value',note);
+                     button.value = "수정";
                      test.setAttribute("action", 'update_customer_process.php')
 
                    }
