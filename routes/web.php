@@ -84,9 +84,7 @@ Route::post('/pipeline', 'PipeController@store')->name('pipeline');
 Route::put('/pipeline', 'PipeController@update')->name('pipeline');
 Route::delete('/pipeline', 'PipeController@destroy')->name('pipeline');
 
-Route::get('/business', function () {
-    return view('business');
-});
+Route::get('/business', 'BusinessController@index')->name('business');
 
 Route::get('/', function () {
     return view('main');
