@@ -509,8 +509,8 @@
     </style>
 
 <script type="text/javascript">
-		
-			
+
+
 			function clickRegisterEvent(trObj) {
 				var link = "http://127.0.0.1:8000/manager_management";
 
@@ -536,7 +536,7 @@
 			    document.getElementById('1').style.display="none";
 				document.getElementById('2').style.display="";
 			}
-	
+
 		}
 </script>
 </head>
@@ -544,7 +544,7 @@
 @include('Layout.Sidebar')
 <div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
 		<table class="table_Estimate_List"
-			style="text-align: centger; border: 1px solid black; width: 100%;">
+			style="text-align: center; border: 1px solid black; width: 100%;">
 			<caption>
 				<h2>고객 관리</h2>
 			</caption>
@@ -656,6 +656,7 @@
                     <p class="field_submit">
                     <input class="registerSearch" type="button" id="register" value="등록" >
                     </p>
+                    </form>
 			</div>
 		</div>
 
@@ -758,13 +759,11 @@
 	<label>
         <input type="radio" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
             담당자명 검색
-        </input>
     </label>
- 
+
     <label>
         <input type="radio" name="chk_info" value="담당자별" onclick="javascript:checkRadio()">
             대표자명 검색
-        </input>
     </label>
     </div>
 
