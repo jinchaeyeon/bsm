@@ -607,7 +607,7 @@
         @endforeach
         </tbody>
     </table>
-    <div style="width: 5%; display: inline-block;"></div>
+    <div style="display: inline-block;">{{ $Users->links() }}</div>
 
     <button class="trigger"
             style="width: 5%; float: right; margin-top: 10px;" value="aa" onclick>등록</button>

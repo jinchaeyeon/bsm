@@ -9,7 +9,7 @@ class RepresentativeController extends Controller
 {
     public function Viewer()
     {
-        $Users = DB::table('users')->paginate(10);
+        $Users = DB::table('users')->paginate(15);
 
         return view('admin.representative',['Users' => $Users]);
     }

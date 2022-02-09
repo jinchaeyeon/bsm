@@ -9,7 +9,7 @@ class ItemController extends Controller
 {
     public function Viewer()
     {
-        $Items = DB::table('items')->paginate(10);
+        $Items = DB::table('items')->paginate(15);
 
         return view('admin.item',['Items' => $Items]);
     }

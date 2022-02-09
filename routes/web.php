@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EstimateController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RepresentativeController;
+use App\Http\Controllers\AuthorityController;
 use App\Http\Controllers\OrderBookController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\TestController;
@@ -57,10 +58,9 @@ Route::get('/representative', [RepresentativeController::class, 'Viewer']);
 
 Route::get('/item', [ItemController::class, 'Viewer']);
 
+Route::get('/authority', [AuthorityController::class, 'Viewer']);
 
-Route::get('/authority', function () {
-    return view('admin/authority');
-});
+
 
 // 준재
 Route::get('/pipeline', function () {
