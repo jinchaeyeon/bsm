@@ -10,4 +10,5 @@ class ManagerManagementController extends Controller
     {
         return view('manager_management.manager_list');
     }
+
 }

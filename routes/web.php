@@ -39,10 +39,14 @@ Route::get('/EstimateDetail/{SecondRow}', function ($SecondRow) {
 	$tax_total = DB::select('SELECT sum(estimate_items.price_include_tax) as tax_total FROM estimate_items, items where estimate_id = ? and estimate_items.item_id = items.id', [$SecondRow]);
 	return view('Estimate.EstimateDetail',['Estimates' => $Estimates, 'items' => $items, 'total'=>$total, 'tax_total'=> $tax_total]);
 });
-Route::get('/OrderBook', [OrderBookController::class, 'Viewer']);   // 수주 품위서 
-Route::get('/OrderBookRegister', [OrderBookController::class, 'Register']);
-Route::get('/OrderBookDetail', [OrderBookController::class, 'Detail']);
-Route::get('/OrderBookCorrection', [OrderBookController::class, 'Correction']);
+
+Route::get('/OrderBook', [OrderBookController::class, 'index']); // 등록 
+Route::POST('/OrderBook', [OrderBookController::class, 'index']);
+Route::get('/OrderBook/create', [OrderBookController::class, 'create']);
+Route::POST('/OrderBook/create', [OrderBookController::class, 'store']);
+Route::post('/OrderBook/{orderbook}', [OrderBookController::class, 'update']);
+Route::delete('/OrderBook/{orderbook}', [OrderBookController::class, 'destroy']);
+Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 
@@ -85,7 +89,14 @@ Route::get('/', function () {
 
 
 // 현준
-Route::get('/customer_management',[CustomerManagementController::class, 'Viewer']);
+
+// 고객관리
+Route::get('/customer_management',[CustomerManagementController::class, 'index']);
+Route::POST('/customer_management', [CustomerManagementController::class, 'store']);
+Route::post('/OrderBook/{orderbook}', [OrderBookController::class, 'update']);
+Route::delete('/OrderBook/{orderbook}', [OrderBookController::class, 'destroy']);
+
+//거래처 관리
 Route::get('/manager_management', [ManagerManagementController::class, 'Viewer']);
 
 
