@@ -6,7 +6,7 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <title>고객 관리</title>
+    <title>고객 조회</title>
 
     <!-- Fonts -->
     <link
@@ -17,7 +17,6 @@
     <style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
         html {
-            line-height: 1.15;
             -webkit-text-size-adjust: 100%
         }
 
@@ -34,9 +33,6 @@
         }
 
         html {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
-            Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-            Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
             line-height: 1.5
         }
 
@@ -274,7 +270,6 @@
 
         .antialiased {
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale
         }
 
         .w-5 {
@@ -290,7 +285,7 @@
         }
 
         .grid-cols-1 {
-            grid-template-columns: repeat(1, minmax(0, 1fr))
+            grid-customerlate-columns: repeat(1, minmax(0, 1fr))
         }
 
         @media ( min-width :640px) {
@@ -338,7 +333,7 @@
                 border-left-width: 1px
             }
             .md\:grid-cols-2 {
-                grid-template-columns: repeat(2, minmax(0, 1fr))
+                grid-customerlate-columns: repeat(2, minmax(0, 1fr))
             }
         }
 
@@ -381,28 +376,6 @@
     <style>
         body {
             font-family: 'Nunito', sans-serif;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            -ms-flex-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            -webkit-justify-content: center;
-            -ms-flex-pack: center;
-            justify-content: center;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            -ms-flex-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            -webkit-justify-content: center;
-            -ms-flex-pack: center;
         }
 
         th, th, td {
@@ -450,38 +423,6 @@
             cursor: pointer;
         }
 
-        #register:hover {
-            color: #fff;
-            background-color: #216282;
-            opacity: 0.9;
-        }
-
-        .modal {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(1.1);
-            transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform
-            0.25s;
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 1rem 1.5rem;
-            width: 500px;
-            height: 550px;
-            border-radius: 0.5rem;
-        }
-
         .close-button {
             float: right;
             width: 1.5rem;
@@ -492,193 +433,33 @@
             background-color: lightgray;
         }
 
-        .close-button:hover {
-            background-color: darkgray;
-        }
-
-        .show-modal {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1.0);
-            transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
-        }
-
-        #1, #2{
-            display: none;
-        }
     </style>
 
-<script type="text/javascript">
-			function clickSearchEvent() {
-				document.getElementById('search').submit();
-			};
-
-			function click_go_back_event(){
-				var link = "http://127.0.0.1:8000/customer_management";
-            	location.href = link;
-			}
-
-			function checkRadio()
-			{
-			var test = document.getElementsByName('chk_info');
-            if (test[0].checked == true )
-			{
-				 document.getElementById('1').style.display="";
-				 document.getElementById('2').style.display="none";
-				 document.getElementById('3').style.display="none";
-
-			}
-			else if (test[1].checked == true )
-			{
-				 document.getElementById('1').style.display="none";
-				 document.getElementById('2').style.display="";
-				 document.getElementById('3').style.display="none";
-
-			}
-			else if (test[2].checked == true )
-			{
-				 document.getElementById('1').style.display="none";
-				 document.getElementById('2').style.display="none";
-				 document.getElementById('3').style.display="";
-
-			}
-			}
-</script>
 </head>
 <body class="antialiased">
 @include('Layout.Sidebar')
+        <h1 class="title">고객 관리</h1>
+        <form name="form1" action="/customer_management/{{$customer->company_register_number}}" method="post" style="margin-left: 750px;" >
+            @csrf
+            <label for="in">거래처명</label> <input class="registerSearch" id="in" type="text" name="company_name" value="{{$customer->company_name}}"/><br>
+            <label for="in1">사업자번호</label><input class="registerSearch" id="in1" type="text" name="company_register_number" value="{{$customer->company_register_number}}"/><br>
 
-<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
-		<table class="table_customer_list"
-			style="text-align: centger; border: 1px solid black; width: 100%;">
-			<caption>
-				<h2>고객 관리</h2>
-			</caption>
-			<thead>
-          <tr>
-            <th>거래처명</th>
-            <th>사업자번호</th>
-            <th>전화번호</th>
-            <th>주소</th>
-            <th>대표자명</th>
-            <th>비고</th>
-            <th></th>
-          </tr>
-      </thead>
-			<tbody id="print_list">
-        @foreach($customer as $item)	
-        <tr>				
-          <td>{{$item->company_name}}</td>
-          <td>{{$item->company_register_number}}</td>
-          <td>{{$item->phone}}</td>
-          <td>{{$item->address}}</td>
-          <td>{{$item->ceo_name}}</td>
-          <td>{{$item->note}}</td>
-          <td>
-			<a href="/customer_management/{{$item->company_register_number}}"><input id="firstRow" type="button" style="width: 100%" type="button" value="조회"></a>
-		  </td>
-        </tr>
-        @endforeach
-			</tbody>
-		</table>
-        <div style="text-align: center">
-			{{ $customer->links() }}
-			({{ $customer->currentPage()}})
-		</div>
+            <label for="in2">전화번호</label><input class="registerSearch" id="in2" type="text" name="phone" value="{{$customer->phone}}"/><br>
+            <label for="in3">주소</label> <input class="registerSearch" id="in3" type="text" name="address" value="{{$customer->address}}"/><br>
+            <label for="in4">대표자</label><input class="registerSearch" id="in4" type="text" name="ceo_name" value="{{$customer->ceo_name}}"/><br>
+            <label for="in5">비고</label><input class="registerSearch" id="in5" type="text" name="note" value="{{$customer->note}}"/>
+
+            <input class="registerSearch" name="buttom" type="submit" id="register" value="수정" >
+            
+        </form>
+
+        <form style="display:inline;" action="/customer_management/{{$customer->company_register_number}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="registerSearch" id="register" >삭제</button>
+            <a href="/customer_management"><input id="register" type="button" type="button" value="돌아가기"></a>
+        </form>
 
 
-<button class="trigger" style="width: 5%; float: right; margin-top: 10px;" value="aa">등록</button>
-		<div class="modal">
-			<div class="modal-content">
-				<span class="close-button">&times;</span>
-                <h1 class="title">고객 관리</h1>
-
-                <form name="form1" action="/customer_management" method="post">
-                    @csrf
-                    <div class="field_name">
-                        <label for="in">거래처명</label> <input class="registerSearch" id="in" type="text" name="company_name" value=""/><br>
-                        <label for="in1">사업자번호</label><input class="registerSearch" id="in1" type="text" name="company_register_number" value=""/><br>
-                        <label for="in2">전화번호</label><input class="registerSearch" id="in2" type="text" name="phone" value=""/><br>
-                        <label for="in3">주소</label> <input class="registerSearch" id="in3" type="text" name="address" value=""/><br>
-                        <label for="in4">대표자</label><input class="registerSearch" id="in4" type="text" name="ceo_name" value=""/><br>
-                        <label for="in5">비고</label><input class="registerSearch" id="in5" type="text" name="note" value=""/>
-                    </div>
-                    <p class="field_submit">
-                        <input class="registerSearch" name="buttom" type="submit" id="register" value="등록" >
-                    </p>
-                </form>
-			</div>
-		</div>
-
-        <script type="text/javascript">
-                var modal = document.querySelector(".modal");
-                var trigger = document.querySelector(".trigger");
-                var closeButton = document.querySelector(".close-button");
-
-                function toggleModal() {
-                    modal.classList.toggle("show-modal");
-                }
-
-                function windowOnClick(event) {
-                    if (event.target === modal) {
-                        toggleModal();
-                    }
-                }
-
-                trigger.addEventListener("click", toggleModal);
-                closeButton.addEventListener("click", toggleModal);
-                modal.addEventListener("click", windowOnClick);
-
-                $(".ch").click(function(e){
-                    e.stopImmediatePropagation();
-                });
-
-        </script>
-
-    <div style="margin-top: 10px;">
-	<label>
-        <input type="radio" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
-            담당자명 검색
-        </input>
-    </label>
- 
-    <label>
-        <input type="radio" name="chk_info" value="담당자별" onclick="javascript:checkRadio()">
-            대표자명 검색
-        </input>
-    </label>
-
-    <label>
-		<input type="radio" name="chk_info" value="전체" onclick="javascript:click_go_back_event()">
-		전체 검색
-	</label>
-    </div>
-    
-    <form id="search" style="display:inline" action="/customer_management" method="POST">
-		@csrf
-        {{ method_field('PUT') }}
-    <div id="1" style="display: none;">
-        거래처명 :&nbsp; 
-		<input class="registerSearch" type="string" name="company_name" >&nbsp;&nbsp;
-		<span style="color: grey">
-			<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
-		</span>
-	</div>
-
-    <div id="2" style="display: none;">
-        대표자명 :&nbsp; 
-		<input class="registerSearch" type="string" name="ceo_name">&nbsp;&nbsp;
-		<span style="color: grey">
-			<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
-		</span>
-	</div>
-
-    <div id="3" style="display: none;">
-        전체검색 :&nbsp; 
-	</div>
-
-    </form>
-
-</div>
 </body>
 </html>
