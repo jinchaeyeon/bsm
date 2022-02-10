@@ -40,7 +40,8 @@ Route::get('/EstimateDetail/{SecondRow}', function ($SecondRow) {
 	return view('Estimate.EstimateDetail',['Estimates' => $Estimates, 'items' => $items, 'total'=>$total, 'tax_total'=> $tax_total]);
 });
 
-Route::get('/OrderBook', [OrderBookController::class, 'index']); // 등록 
+// 수주품의서
+Route::get('/OrderBook', [OrderBookController::class, 'index']);
 Route::POST('/OrderBook', [OrderBookController::class, 'index']);
 Route::get('/OrderBook/create', [OrderBookController::class, 'create']);
 Route::POST('/OrderBook/create', [OrderBookController::class, 'store']);
@@ -92,9 +93,12 @@ Route::get('/', function () {
 
 // 고객관리
 Route::get('/customer_management',[CustomerManagementController::class, 'index']);
+Route::put('/customer_management', [CustomerManagementController::class, 'index']);
 Route::POST('/customer_management', [CustomerManagementController::class, 'store']);
-Route::post('/OrderBook/{orderbook}', [OrderBookController::class, 'update']);
-Route::delete('/OrderBook/{orderbook}', [OrderBookController::class, 'destroy']);
+Route::get('/customer_management/{customer}', [CustomerManagementController::class, 'show']);
+Route::post('/customer_management/{customer}', [CustomerManagementController::class, 'update']);
+Route::delete('/customer_management/{customer}', [CustomerManagementController::class, 'destroy']);
+
 
 //거래처 관리
 Route::get('/manager_management', [ManagerManagementController::class, 'Viewer']);
