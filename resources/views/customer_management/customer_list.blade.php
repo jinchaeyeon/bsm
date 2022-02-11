@@ -483,8 +483,9 @@
           </tr>
       </thead>
 			<tbody id="print_list">
-        @foreach($customer as $item)	
-        <tr>				
+
+        @foreach($customer as $item)
+        <tr>
           <td>{{$item->company_name}}</td>
           <td>{{$item->company_register_number}}</td>
           <td>{{$item->phone}}</td>
@@ -496,6 +497,7 @@
 		  </td>
         </tr>
         @endforeach
+
 			</tbody>
 		</table>
         <div style="text-align: center">
@@ -534,6 +536,7 @@
                 function toggleModal() {
                     modal.classList.toggle("show-modal");
                 }
+
                 function windowOnClick(event) {
                     if (event.target === modal) {
                         toggleModal();
@@ -565,7 +568,6 @@
 		전체 검색
 	</label>
     </div>
-    
     <form id="search" style="display:inline" action="/customer_management" method="POST">
 		@csrf
         {{ method_field('PUT') }}
