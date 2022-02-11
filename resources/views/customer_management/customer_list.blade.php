@@ -6,7 +6,7 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <title>고객 관리</title>
+    <title>거래처 관리</title>
 
     <!-- Fonts -->
     <link
@@ -509,175 +509,274 @@
     </style>
 
 <script type="text/javascript">
-			function clickSearchEvent() {
-				document.getElementById('search').submit();
+
+
+			function clickRegisterEvent(trObj) {
+				var link = "http://127.0.0.1:8000/manager_management";
+
+				location.href = link;
 			};
 
-			function click_go_back_event(){
-				var link = "http://127.0.0.1:8000/customer_management";
-            	location.href = link;
-			}
+			function clickSearchEvent(trObj) {
+				var link = "http://127.0.0.1:8000/manager_management";
+
+				location.href = link;
+			};
 
 			function checkRadio()
 			{
 			var test = document.getElementsByName('chk_info');
-            if (test[0].checked == true )
+			if (test[0].checked == true )
 			{
-				 document.getElementById('1').style.display="";
-				 document.getElementById('2').style.display="none";
-				 document.getElementById('3').style.display="none";
-
+			    document.getElementById('1').style.display="";
+			    document.getElementById('2').style.display="none";
 			}
 			else if (test[1].checked == true )
 			{
-				 document.getElementById('1').style.display="none";
-				 document.getElementById('2').style.display="";
-				 document.getElementById('3').style.display="none";
+			    document.getElementById('1').style.display="none";
+				document.getElementById('2').style.display="";
+			}
 
-			}
-			else if (test[2].checked == true )
-			{
-				 document.getElementById('1').style.display="none";
-				 document.getElementById('2').style.display="none";
-				 document.getElementById('3').style.display="";
-
-			}
-			}
+		}
 </script>
 </head>
 <body class="antialiased">
 @include('Layout.Sidebar')
-
 <div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
-		<table class="table_customer_list"
-			style="text-align: centger; border: 1px solid black; width: 100%;">
+		<table class="table_Estimate_List"
+			style="text-align: center; border: 1px solid black; width: 100%;">
 			<caption>
 				<h2>고객 관리</h2>
 			</caption>
 			<thead>
           <tr>
+            <th>선택</th>
             <th>거래처명</th>
             <th>사업자번호</th>
             <th>전화번호</th>
             <th>주소</th>
             <th>대표자명</th>
             <th>비고</th>
-            <th></th>
           </tr>
       </thead>
 			<tbody id="print_list">
-        @foreach($customer as $item)	
-        <tr>				
-          <td>{{$item->company_name}}</td>
-          <td>{{$item->company_register_number}}</td>
-          <td>{{$item->phone}}</td>
-          <td>{{$item->address}}</td>
-          <td>{{$item->ceo_name}}</td>
-          <td>{{$item->note}}</td>
-          <td>
-			<a href="/customer_management/{{$item->company_register_number}}"><input id="firstRow" type="button" style="width: 100%" type="button" value="조회"></a>
-		  </td>
+        <tr>
+          <td><input class="ch" type="checkbox" name="manager_check[]" value=""></input></td>
+          <td>금오</td>
+          <td>1234</td>
+          <td>010-1111-1111</td>
+          <td>대학로</td>
+          <td>가나다</td>
+          <td>기타</td>
         </tr>
-        @endforeach
+				<tr>
+          <td><input class="ch" type="checkbox" name="manager_check[]" value=""></input></td>
+          <td>공대</td>
+          <td>986</td>
+          <td>010-2222-2222</td>
+          <td>거의동</td>
+          <td>라마바</td>
+          <td>기타</td>
+				</tr>
 			</tbody>
 		</table>
-        <div style="text-align: center">
-			{{ $customer->links() }}
-			({{ $customer->currentPage()}})
-		</div>
+		<div style="width: 5%; display: inline-block;"></div>
 
+    <?php
+    function pageing()
+    {
+
+        // 한번에 출력할 data수
+        $view_article = 2;
+        // page초기값 패이징여부
+        if (isset($_GET['page']))
+            $page = $_GET['page'];
+        else
+            $page = 1;
+        // 데이터 시작 번호
+        $start = ($page - 1) * $view_article;
+
+        // 전체 칼럼 수
+        $total = 2;
+
+        // 전체 페이지
+        $total_page = ceil($total / $view_article);
+        // 시작페이지
+        if ($page % 10) {
+            $start_page = $page - $page % 10 + 1;
+        } else {
+            $start_page = $page - 9;
+        }
+        // 마지막 페이지
+        $end_page = $start_page + 10;
+
+        // 초기 페이지로이동
+        if ($page != 1) {
+            echo "<font><a href=\"Customer_List.php?page=1\"><<</a></font>&nbsp;&nbsp;";
+        } else {
+            echo "<font><<</font>&nbsp;&nbsp;";
+        }
+
+        // 중간페이지 출력
+        for ($i = $start_page; $i < $end_page; $i ++) {
+            if ($i > $total_page)
+                break;
+            if ($i == $page) {
+                echo "(<font>$i</a></font>)&nbsp;&nbsp;";
+            } else {
+                echo "<font><a href=\"Customer_List.php?page=$i\">$i</a></font>&nbsp;&nbsp;";
+            }
+        }
+
+        // 마지막 페이지로 이동
+        if ($page != $total_page) {
+            echo "<font><a href=\"Customer_List.php?page=$total_page\">>></a></font>&nbsp;&nbsp;";
+        } else {
+            echo "<font>>></a></font>&nbsp;&nbsp;";
+        }
+    }
+
+    pageing()?>
 
 <button class="trigger" style="width: 5%; float: right; margin-top: 10px;" value="aa">등록</button>
+<button class="delete" style="width: 5%; float: right; margin-top: 10px;" >삭제</button>
 		<div class="modal">
 			<div class="modal-content">
 				<span class="close-button">&times;</span>
                 <h1 class="title">고객 관리</h1>
-
-                <form name="form1" action="/customer_management" method="post">
-                    @csrf
-                    <div class="field_name">
-                        <label for="in">거래처명</label> <input class="registerSearch" id="in" type="text" name="company_name" value=""/><br>
-                        <label for="in1">사업자번호</label><input class="registerSearch" id="in1" type="text" name="company_register_number" value=""/><br>
+                    <form name="form1" action="create_customer_process.php" method="post">
+                        <div class="field_name">
+                        <label for="in">거래처명</label> <input class="registerSearch" id="in" type="text" name="customer_name" value=""/><br>
+                        <label for="in1">사업자번호</label><input class="registerSearch" id="in1" type="text" name="business_id" value=""/><br>
                         <label for="in2">전화번호</label><input class="registerSearch" id="in2" type="text" name="phone" value=""/><br>
                         <label for="in3">주소</label> <input class="registerSearch" id="in3" type="text" name="address" value=""/><br>
-                        <label for="in4">대표자</label><input class="registerSearch" id="in4" type="text" name="ceo_name" value=""/><br>
+                        <label for="in4">대표자</label><input class="registerSearch" id="in4" type="text" name="ceo" value=""/><br>
                         <label for="in5">비고</label><input class="registerSearch" id="in5" type="text" name="note" value=""/>
                     </div>
                     <p class="field_submit">
-                        <input class="registerSearch" name="buttom" type="submit" id="register" value="등록" >
+                    <input class="registerSearch" type="button" id="register" value="등록" >
                     </p>
-                </form>
+                    </form>
 			</div>
 		</div>
 
         <script type="text/javascript">
-                var modal = document.querySelector(".modal");
-                var trigger = document.querySelector(".trigger");
-                var closeButton = document.querySelector(".close-button");
+                   var modal = document.querySelector(".modal");
+                   var trigger = document.querySelector(".trigger");
+                   var closeButton = document.querySelector(".close-button");
 
-                function toggleModal() {
-                    modal.classList.toggle("show-modal");
-                }
+                  //console.log(modal);
 
-                function windowOnClick(event) {
-                    if (event.target === modal) {
-                        toggleModal();
-                    }
-                }
+                  function toggleModal() {
+                       modal.classList.toggle("show-modal");
+                   }
 
-                trigger.addEventListener("click", toggleModal);
-                closeButton.addEventListener("click", toggleModal);
-                modal.addEventListener("click", windowOnClick);
+                  function windowOnClick(event) {
+                       if (event.target === modal) {
+                          toggleModal();
+                          clear_input_values();
+                       }
+                   }
 
-                $(".ch").click(function(e){
-                    e.stopImmediatePropagation();
-                });
+                   trigger.addEventListener("click", toggleModal);
+                   closeButton.addEventListener("click", toggleModal);
+                   modal.addEventListener("click", windowOnClick);
 
-        </script>
+                   $(".delete").click(function(){
+                     console.log("delete");
+                     var form = document.forms['form1'];
+                     form.setAttribute("action", 'delete_manager_process.php')
+                     var action = document.form1;
+                     action.submit();
+                   });
+
+                   function clear_input_values(){
+                     var test = document.forms['form1'];
+                     var element1 = document.forms['form1']['customer_name'];
+                     var element2 = document.forms['form1']['business_id'];
+                     var element3 = document.forms['form1']['phone'];
+                     var element4 = document.forms['form1']['address'];
+                     var element5 = document.forms['form1']['ceo'];
+                     var element6 = document.forms['form1']['note'];
+                     element1.setAttribute('value',"");
+                     element2.setAttribute('value',"");
+                     element3.setAttribute('value',"");
+                     element4.setAttribute('value',"");
+                     element5.setAttribute('value',"");
+                     element6.setAttribute('value',"");
+                     test.setAttribute("action", 'create_customer_process.php')
+                   }
+
+                   function set_input_values(td){
+                     var customer_name = td.eq(1).text();
+                     var business_id = td.eq(2).text();
+                     var phone = td.eq(3).text();
+                     var address = td.eq(4).text();
+                     var ceo = td.eq(5).text();
+                     var note = td.eq(6).text();
+
+                     var test = document.forms['form1'];
+                     var element1 = document.forms['form1']['customer_name'];
+                     var element2 = document.forms['form1']['business_id'];
+                     var element3 = document.forms['form1']['phone'];
+                     var element4 = document.forms['form1']['address'];
+                     var element5 = document.forms['form1']['ceo'];
+                     var element6 = document.forms['form1']['note'];
+                     element1.setAttribute('value',customer_name);
+                     element2.setAttribute('value',business_id);
+                     element3.setAttribute('value',phone);
+                     element4.setAttribute('value',address);
+                     element5.setAttribute('value',ceo);
+                     element6.setAttribute('value',note);
+                     test.setAttribute("action", 'update_customer_process.php')
+
+                   }
+
+                   $("#print_list tr").click(function(e) {
+                     // 현재 클릭된 Row(<tr>)
+                     var tr = $(this);
+                     var td = tr.children();
+
+                     set_input_values(td)
+                     toggleModal();
+
+                     e.stopImmediatePropagation();
+
+                   });
+
+                   $(".ch").click(function(e){
+                     e.stopImmediatePropagation();
+                   });
+
+
+                   function action_delete(){
+                    document.process.action="delete_customer_process.php";
+                    document.process.submit();
+                   }
+                </script>
 
     <div style="margin-top: 10px;">
 	<label>
         <input type="radio" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
             담당자명 검색
-        </input>
     </label>
- 
+
     <label>
         <input type="radio" name="chk_info" value="담당자별" onclick="javascript:checkRadio()">
             대표자명 검색
-        </input>
     </label>
-
-    <label>
-		<input type="radio" name="chk_info" value="전체" onclick="javascript:click_go_back_event()">
-		전체 검색
-	</label>
     </div>
-    
-    <form id="search" style="display:inline" action="/customer_management" method="POST">
-		@csrf
-        {{ method_field('PUT') }}
+
     <div id="1" style="display: none;">
-        거래처명 :&nbsp; 
-		<input class="registerSearch" type="string" name="company_name" >&nbsp;&nbsp;
-		<span style="color: grey">
-			<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
-		</span>
+        담당자명 :&nbsp; <input class="registerSearch" type="string"
+			name="string">&nbsp;&nbsp;<span style="color: grey">
+        <i class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
 	</div>
-
-    <div id="2" style="display: none;">
-        대표자명 :&nbsp; 
-		<input class="registerSearch" type="string" name="ceo_name">&nbsp;&nbsp;
-		<span style="color: grey">
-			<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
-		</span>
+	<div id="2" style="display: none;">
+        대표자명 :&nbsp; <input class="registerSearch" type="string"
+			name="string">&nbsp;&nbsp;<span style="color: grey">
+        <i class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
 	</div>
-
-    <div id="3" style="display: none;">
-        전체검색 :&nbsp; 
-	</div>
-
-    </form>
 
 </div>
 </body>

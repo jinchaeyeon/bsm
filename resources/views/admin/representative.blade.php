@@ -507,42 +507,26 @@
     </style>
 
     <script type="text/javascript">
-            function clickTrEvent(trObj) {
-            var link = "/ItemDetail/"+trObj.value;
+        function clickTrEvent(trObj) {
+            var link = "http://127.0.0.1:8000/representativeDetail";
 
             location.href = link;
         };
 
-            function clickSearchEvent1(trObj) {
-            const name = document.getElementById('search1').value;
-            var link = "/ItemSearch1/"+name;
+        function clickRegisterEvent(trObj) {
+            var link = "http://127.0.0.1:8000/representative";
 
             location.href = link;
         };
 
-            function clickSearchEvent2(start) {
-            const s = document.getElementById('start').value;
-            var link = "/ItemSearch2/"+s;
+        function clickSearchEvent(trObj) {
+            var link = "http://127.0.0.1:8000/representative";
 
             location.href = link;
         };
-
-            function clickSearchEvent3(trObj) {
-            const n = document.getElementById('name').value;
-            var link = "/ItemSearch3/"+n;
-
-            location.href = link;
-        };
-
-            function clickSearchEvent4(trObj) {
-            const n = document.getElementById('name2').value;
-            var link = "/ItemSearch4/"+n;
-
-            location.href = link;
-        };
-
 
         function checkRadio()
+
         {
             var test = document.getElementsByName('chk_info');
             if (test[0].checked == true )
@@ -595,20 +579,97 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($Users as $User)
-            <tr>
-                <td>{{$User->contact_id}}</td>
-                <td>{{$User->manager_name}}</td>
-                <td>{{$User->rank}}</td>
-                <td>{{$User->division}}</td>
-                <td>{{$User->contact}}</td>
-                <td>{{$User->email}}</td>
-            </tr>
-        @endforeach
+        <tr>
+            <td>0001</td>
+            <td>진채연</td>
+            <td>부장</td>
+            <td>인공지능연구실</td>
+            <td>010-1111-1111</td>
+            <td>jincheyeon@kumoh.ac.kr</td>
+        </tr>
+        <tr>
+            <td>0002</td>
+            <td>이준재</td>
+            <td>차장</td>
+            <td>인공지능연구실</td>
+            <td>010-2222-2222</td>
+            <td>leejunjea@kumoh.ac.kr</td>
+        </tr>
+        <tr>
+            <td>0003</td>
+            <td>최기범</td>
+            <td>과장</td>
+            <td>인공지능연구실</td>
+            <td>010-3333-3333</td>
+            <td>choigibeom@kumoh.ac.kr</td>
+        </tr>
+        <tr>
+            <td>0004</td>
+            <td>김현준</td>
+            <td>사원</td>
+            <td>인공지능연구실</td>
+            <td>010-4444-4444</td>
+            <td>kimhyunjoon@kumoh.ac.kr</td>
+        </tr>
         </tbody>
     </table>
-    <div style="display: inline-block;">{{ $Users->links() }}</div>
+    <div style="width: 5%; display: inline-block;"></div>
+    <?php
 
+    function pageing()
+    {
+
+        // 한번에 출력할 data수
+        $view_article = 2;
+        // page초기값 패이징여부
+        if (isset($_GET['page']))
+            $page = $_GET['page'];
+        else
+            $page = 1;
+        // 데이터 시작 번호
+        $start = ($page - 1) * $view_article;
+
+        // 전체 칼럼 수
+        $total = 2;
+
+        // 전체 페이지
+        $total_page = ceil($total / $view_article);
+        // 시작페이지
+        if ($page % 10) {
+            $start_page = $page - $page % 10 + 1;
+        } else {
+            $start_page = $page - 9;
+        }
+        // 마지막 페이지
+        $end_page = $start_page + 10;
+
+        // 초기 페이지로이동
+        if ($page != 1) {
+            echo "<font><a href=\"Customer_List.php?page=1\"><<</a></font>&nbsp;&nbsp;";
+        } else {
+            echo "<font><<</font>&nbsp;&nbsp;";
+        }
+
+        // 중간페이지 출력
+        for ($i = $start_page; $i < $end_page; $i ++) {
+            if ($i > $total_page)
+                break;
+            if ($i == $page) {
+                echo "(<font>$i</a></font>)&nbsp;&nbsp;";
+            } else {
+                echo "<font><a href=\"Customer_List.php?page=$i\">$i</a></font>&nbsp;&nbsp;";
+            }
+        }
+
+        // 마지막 페이지로 이동
+        if ($page != $total_page) {
+            echo "<font><a href=\"Customer_List.php?page=$total_page\">>></a></font>&nbsp;&nbsp;";
+        } else {
+            echo "<font>>></a></font>&nbsp;&nbsp;";
+        }
+    }
+
+    pageing()?>
     <button class="trigger"
             style="width: 5%; float: right; margin-top: 10px;" value="aa" onclick>등록</button>
     <div class="modal">
