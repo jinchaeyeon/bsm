@@ -483,12 +483,12 @@ th {
 
 		</table>
 		<table class="table_EstimateDetail_List2"
-			style="text-align: centger; border: 1px solid black; width: 30%; float: left; margin-top: 40px; margin-right: 30px;">
+			style="text-align: centger; border: 1px solid black; width: 30%; float: left; margin-top: 10px; margin-right: 30px;">
 			<thead>
 				<tr>
 					<th>거래처명</th>
 					<th>거래처분류</th>
-					<th>세금계산서 발행 예정일</th>
+					<th>세금계산서 발행예정일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -500,7 +500,7 @@ th {
 			</tbody>
 		</table>
 		<table class="table_EstimateDetail_List2"
-			style="text-align: centger; border: 1px solid black; width: 33%; float: left; margin-top: 40px;">
+			style="text-align: centger; border: 1px solid black; width: 33%; float: left; margin-top: 10px;">
 			<thead>
 				<tr>
 					<th>담당자</th>
@@ -518,7 +518,7 @@ th {
 		</table>
 		</table>
 		<table class="table_EstimateDetail_List2"
-			style="text-align: centger; border: 1px solid black; width: 33%; float: left; margin-top: 13px; margin-bottom: 30px;">
+			style="text-align: centger; border: 1px solid black; width: 33%; float: right; margin-top: 10px; margin-bottom: 30px;">
 			<thead>
 				<tr>
 					<th>연락처</th>
@@ -551,7 +551,7 @@ th {
 				</tr>
 			</thead>
 			<tbody>
-				<tr >
+				<tr>
 					<td >1</td>
 					<td style="word-break: break-all; ">
 						<input type="text" name='item1' id="item1" value="{{$temp['orderbook_sales'][0]->item}}">
@@ -618,18 +618,14 @@ th {
 					<td>12%</td>
 				</tr>
 				<tr>
-					<td height="10">담당엔지니어</td>
-					<td></td>
+					<td height="10" colspan="3">담당엔지니어</td>
 					<td >기술자원료</td>
-					<td colspan="2"></td>
-					<td>실영업이익</td>
 					<td></td>
-					<td><input type="text" name='real_time_profit' id="real_time_profit" value="{{$temp['orderbook_sales'][0]->real_time_profit}}"></td>
-					<td></td>
-					<td></td>
+					<td colspan="2">실영업이익</td>
+					<td colspan="3"><input type="text" name='real_time_profit' id="real_time_profit" value="{{$temp['orderbook_sales'][0]->real_time_profit}}"></td>
 				</tr>
 				<tr>
-					<td height="30" >참고내용</td>
+					<td colspan="2" height="30" >참고내용</td>
 					<td style="word-break: break-all; width: 40%;" colspan="9">
 					<input type="textarea" name='information' id="information" value="{{$temp['orderbook_sales'][0]->information}}"></td>
 				</tr>
