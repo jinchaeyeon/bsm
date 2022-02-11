@@ -8,6 +8,9 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ManagerManagementController;
 use App\Http\Controllers\CustomerManagementController;
 
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\RepresentativeController;
+use App\Http\Controllers\AuthorityController;
 
 // 채연 
 Route::get('/Estimate', [EstimateController::class, 'Viewer']);
@@ -52,17 +55,12 @@ Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 
 // 기범
-Route::get('/representative', function () {
-    return view('admin/representative');
-});
+Route::get('/representative', [RepresentativeController::class, 'Viewer']);
 
-Route::get('/item', function () {
-    return view('admin/item');
-});
+Route::get('/item', [ItemController::class, 'Viewer']);
 
-Route::get('/authority', function () {
-    return view('admin/authority');
-});
+Route::get('/authority', [AuthorityController::class, 'Viewer']);
+
 
 Auth::routes();
 
