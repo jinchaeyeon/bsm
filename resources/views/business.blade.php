@@ -17,7 +17,7 @@
     <h2>2022년 8월</h2>
     <div style="margin-top: 10px;">
         <label>
-            <input type="radio" name="chk_info" value="부서별" onclick="javascript:checkRadio()">부서별 검색
+            <input type="hidden" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
         </label>
         <label>
             <input type="radio" name="chk_info" value="기간별" onclick="javascript:checkRadio()">기간별 검색
@@ -72,7 +72,7 @@
         @foreach($datas as $item)
             <tr>
                 <td>{{ $item->id }}</td>
-                <td>{{ $item->contact_id }}</td>
+                <td>{{ $item->contact->company_name }}</td>
                 <td>{{ $item->client }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->expected_sales }}</td>
