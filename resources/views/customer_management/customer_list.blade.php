@@ -560,24 +560,17 @@
           </tr>
       </thead>
 			<tbody id="print_list">
+        @foreach($customer as $item)
         <tr>
-          <td><input class="ch" type="checkbox" name="manager_check[]" value=""></input></td>
-          <td>금오</td>
-          <td>1234</td>
-          <td>010-1111-1111</td>
-          <td>대학로</td>
-          <td>가나다</td>
-          <td>기타</td>
-        </tr>
-				<tr>
-          <td><input class="ch" type="checkbox" name="manager_check[]" value=""></input></td>
-          <td>공대</td>
-          <td>986</td>
-          <td>010-2222-2222</td>
-          <td>거의동</td>
-          <td>라마바</td>
-          <td>기타</td>
-				</tr>
+          <td>{{$item->company_name}}</td>
+          <td>{{$item->company_register_number}}</td>
+          <td>{{$item->phone}}</td>
+          <td>{{$item->address}}</td>
+          <td>{{$item->ceo_name}}</td>
+          <td>{{$item->note}}</td>
+          <td>
+			<a href="/customer_management/{{$item->company_register_number}}"><input id="firstRow" type="button" style="width: 100%" type="button" value="조회"></a>
+		  </td>
 			</tbody>
 		</table>
 		<div style="width: 5%; display: inline-block;"></div>
@@ -661,99 +654,30 @@
 		</div>
 
         <script type="text/javascript">
-                   var modal = document.querySelector(".modal");
-                   var trigger = document.querySelector(".trigger");
-                   var closeButton = document.querySelector(".close-button");
+                var modal = document.querySelector(".modal");
+                var trigger = document.querySelector(".trigger");
+                var closeButton = document.querySelector(".close-button");
 
-                  //console.log(modal);
+                function toggleModal() {
+                    modal.classList.toggle("show-modal");
+                }
 
-                  function toggleModal() {
-                       modal.classList.toggle("show-modal");
-                   }
-
-                  function windowOnClick(event) {
-                       if (event.target === modal) {
-                          toggleModal();
-                          clear_input_values();
-                       }
-                   }
-
-                   trigger.addEventListener("click", toggleModal);
-                   closeButton.addEventListener("click", toggleModal);
-                   modal.addEventListener("click", windowOnClick);
-
-                   $(".delete").click(function(){
-                     console.log("delete");
-                     var form = document.forms['form1'];
-                     form.setAttribute("action", 'delete_manager_process.php')
-                     var action = document.form1;
-                     action.submit();
-                   });
-
-                   function clear_input_values(){
-                     var test = document.forms['form1'];
-                     var element1 = document.forms['form1']['customer_name'];
-                     var element2 = document.forms['form1']['business_id'];
-                     var element3 = document.forms['form1']['phone'];
-                     var element4 = document.forms['form1']['address'];
-                     var element5 = document.forms['form1']['ceo'];
-                     var element6 = document.forms['form1']['note'];
-                     element1.setAttribute('value',"");
-                     element2.setAttribute('value',"");
-                     element3.setAttribute('value',"");
-                     element4.setAttribute('value',"");
-                     element5.setAttribute('value',"");
-                     element6.setAttribute('value',"");
-                     test.setAttribute("action", 'create_customer_process.php')
-                   }
-
-                   function set_input_values(td){
-                     var customer_name = td.eq(1).text();
-                     var business_id = td.eq(2).text();
-                     var phone = td.eq(3).text();
-                     var address = td.eq(4).text();
-                     var ceo = td.eq(5).text();
-                     var note = td.eq(6).text();
-
-                     var test = document.forms['form1'];
-                     var element1 = document.forms['form1']['customer_name'];
-                     var element2 = document.forms['form1']['business_id'];
-                     var element3 = document.forms['form1']['phone'];
-                     var element4 = document.forms['form1']['address'];
-                     var element5 = document.forms['form1']['ceo'];
-                     var element6 = document.forms['form1']['note'];
-                     element1.setAttribute('value',customer_name);
-                     element2.setAttribute('value',business_id);
-                     element3.setAttribute('value',phone);
-                     element4.setAttribute('value',address);
-                     element5.setAttribute('value',ceo);
-                     element6.setAttribute('value',note);
-                     test.setAttribute("action", 'update_customer_process.php')
-
-                   }
-
-                   $("#print_list tr").click(function(e) {
-                     // 현재 클릭된 Row(<tr>)
-                     var tr = $(this);
-                     var td = tr.children();
-
-                     set_input_values(td)
-                     toggleModal();
-
-                     e.stopImmediatePropagation();
-
-                   });
-
-                   $(".ch").click(function(e){
-                     e.stopImmediatePropagation();
-                   });
+                function windowOnClick(event) {
+                    if (event.target === modal) {
+                        toggleModal();
+                    }
+                }
 
 
-                   function action_delete(){
-                    document.process.action="delete_customer_process.php";
-                    document.process.submit();
-                   }
-                </script>
+                trigger.addEventListener("click", toggleModal);
+                closeButton.addEventListener("click", toggleModal);
+                modal.addEventListener("click", windowOnClick);
+
+                $(".ch").click(function(e){
+                    e.stopImmediatePropagation();
+                });
+
+        </script>
 
     <div style="margin-top: 10px;">
 	<label>
@@ -767,15 +691,27 @@
     </label>
     </div>
 
+    <form id="search" style="display:inline" action="/customer_management" method="POST">
+		@csrf
+        {{ method_field('PUT') }}
     <div id="1" style="display: none;">
-        담당자명 :&nbsp; <input class="registerSearch" type="string"
-			name="string">&nbsp;&nbsp;<span style="color: grey">
-        <i class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+        거래처명 :&nbsp;
+		<input class="registerSearch" type="string" name="company_name" >&nbsp;&nbsp;
+		<span style="color: grey">
+			<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
+		</span>
 	</div>
-	<div id="2" style="display: none;">
-        대표자명 :&nbsp; <input class="registerSearch" type="string"
-			name="string">&nbsp;&nbsp;<span style="color: grey">
-        <i class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+
+    <div id="2" style="display: none;">
+        대표자명 :&nbsp;
+		<input class="registerSearch" type="string" name="ceo_name">&nbsp;&nbsp;
+		<span style="color: grey">
+			<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
+		</span>
+	</div>
+
+    <div id="3" style="display: none;">
+        전체검색 :&nbsp;
 	</div>
 
 </div>
