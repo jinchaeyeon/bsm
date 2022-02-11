@@ -1,6 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="kor">
 <head>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Document</title>
 </head>
@@ -25,8 +27,7 @@
 
     <div>
         <div id="1" style="display: none;">
-            부서 이름 :&nbsp; <input class="registerSearch" type="string"
-                                 name="string">&nbsp;&nbsp;<span style="color: grey"><i
+            부서 이름 :&nbsp; <input class="registerSearch" type="string" name="string">&nbsp;&nbsp;<span style="color: grey"><i
                     class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
         </div>
         <div id="2" style="display: none;">
@@ -64,150 +65,26 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>LG</td>
-            <td>AIC</td>
-            <td>유지보수</td>
-            <td>9000</td>
-            <td>1700</td>
-            <td>7260</td>
-            <td>Q3</td>
-            <td>5월 3일</td>
-            <td>80%</td>
-            <td>홍길동</td>
-            <td></td>
-            <td class="buttonColumn">
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>LG</td>
-            <td>AIC</td>
-            <td>유지보수</td>
-            <td>9000</td>
-            <td>1700</td>
-            <td>7260</td>
-            <td>Q3</td>
-            <td>5월 3일</td>
-            <td>80%</td>
-            <td>홍길동</td>
-            <td></td>
-            <td class="buttonColumn">
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>LG</td>
-            <td>AIC</td>
-            <td>유지보수</td>
-            <td>9000</td>
-            <td>1700</td>
-            <td>7260</td>
-            <td>Q3</td>
-            <td>5월 3일</td>
-            <td>80%</td>
-            <td>홍길동</td>
-            <td></td>
-            <td class="buttonColumn">
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>LG</td>
-            <td>AIC</td>
-            <td>유지보수</td>
-            <td>9000</td>
-            <td>1700</td>
-            <td>7260</td>
-            <td>Q3</td>
-            <td>5월 3일</td>
-            <td>80%</td>
-            <td>홍길동</td>
-            <td></td>
-            <td class="buttonColumn">
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>LG</td>
-            <td>AIC</td>
-            <td>유지보수</td>
-            <td>9000</td>
-            <td>1700</td>
-            <td>7260</td>
-            <td>Q3</td>
-            <td>5월 3일</td>
-            <td>80%</td>
-            <td>홍길동</td>
-            <td></td>
-            <td class="buttonColumn">
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>LG</td>
-            <td>AIC</td>
-            <td>유지보수</td>
-            <td>9000</td>
-            <td>1700</td>
-            <td>7260</td>
-            <td>Q3</td>
-            <td>5월 3일</td>
-            <td>80%</td>
-            <td>홍길동</td>
-            <td></td>
-            <td class="buttonColumn">
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>LG</td>
-            <td>AIC</td>
-            <td>유지보수</td>
-            <td>9000</td>
-            <td>1700</td>
-            <td>7260</td>
-            <td>Q3</td>
-            <td>5월 3일</td>
-            <td>80%</td>
-            <td>홍길동</td>
-            <td></td>
-            <td class="buttonColumn">
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>LG</td>
-            <td>AIC</td>
-            <td>유지보수</td>
-            <td>9000</td>
-            <td>1700</td>
-            <td>7260</td>
-            <td>Q3</td>
-            <td>5월 3일</td>
-            <td>80%</td>
-            <td>홍길동</td>
-            <td></td>
-            <td class="buttonColumn">
-                <button class="edit-trigger">수정</button>
-                <button>삭제</button>
-            </td>
-        </tr>
+        @foreach($datas as $item)
+            <tr>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->contact_id }}</td>
+                <td>{{ $item->client }}</td>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->expected_sales }}</td>
+                <td>{{ $item->expected_purchase }}</td>
+                <td>{{ $item->expected_sales_profit }}</td>
+                <td>{{ $item->expected_issue_month }}</td>
+                <td>{{ $item->final_contact }}</td>
+                <td>{{ $item->progress_rate }}</td>
+                <td>{{ $item->sales_person }}</td>
+                <td>{{ $item->progress }}</td>
+                <td class="buttonColumn">
+                    <button class="edit-trigger">수정</button>
+                    <button>삭제</button>
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 
@@ -220,88 +97,89 @@
     </div>
 </div>
 
-
-<div id="register-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h1 class="title">사업 등록</h1>
-        <label>거래처</label>
-        <input type="text" name="name">
-        <br>
-        <label>고객사</label>
-        <input type="text" name="name">
-        <br>
-        <label>건명</label>
-        <input type="text" name="name">
-        <br>
-        <label>예상매출</label>
-        <input type="text" name="name">
-        <br>
-        <label>예상매입</label>
-        <input type="text" name="name">
-        <br>
-        <label>예상매출이익</label>
-        <input type="text" name="name">
-        <br>
-        <label>발행시기</label>
-        <input type="text" name="name">
-        <br>
-        <label>최종컨택일</label>
-        <input type="text" name="name">
-        <br>
-        <label>진행률</label>
-        <input type="text" name="name">
-        <br>
-        <label>담당자</label>
-        <input type="text" name="name">
-        <br>
-        <label>진행사항</label>
-        <input type="text" name="name">
-        <br>
-        <input type="button" id="register" value="등록"
-               onclick="javascript:clickRegisterEvent(this)">
+<div style="visibility: hidden">
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h1 class="title">사업 등록</h1>
+            <label>거래처</label>
+            <input type="text" name="name">
+            <br>
+            <label>고객사</label>
+            <input type="text" name="name">
+            <br>
+            <label>건명</label>
+            <input type="text" name="name">
+            <br>
+            <label>예상매출</label>
+            <input type="text" name="name">
+            <br>
+            <label>예상매입</label>
+            <input type="text" name="name">
+            <br>
+            <label>예상매출이익</label>
+            <input type="text" name="name">
+            <br>
+            <label>발행시기</label>
+            <input type="text" name="name">
+            <br>
+            <label>최종컨택일</label>
+            <input type="text" name="name">
+            <br>
+            <label>진행률</label>
+            <input type="text" name="name">
+            <br>
+            <label>담당자</label>
+            <input type="text" name="name">
+            <br>
+            <label>진행사항</label>
+            <input type="text" name="name">
+            <br>
+            <input type="button" id="register" value="등록"
+                   onclick="javascript:clickRegisterEvent(this)">
+        </div>
     </div>
-</div>
 
-<div id="edit-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h1 class="title">사업 수정</h1>
-        <label>거래처</label>
-        <input type="text" name="name">
-        <br>
-        <label>고객사</label>
-        <input type="text" name="name">
-        <br>
-        <label>건명</label>
-        <input type="text" name="name">
-        <br>
-        <label>예상매출</label>
-        <input type="text" name="name">
-        <br>
-        <label>예상매입</label>
-        <input type="text" name="name">
-        <br>
-        <label>예상매출이익</label>
-        <input type="text" name="name">
-        <br>
-        <label>발행시기</label>
-        <input type="text" name="name">
-        <br>
-        <label>최종컨택일</label>
-        <input type="text" name="name">
-        <br>
-        <label>진행률</label>
-        <input type="text" name="name">
-        <br>
-        <label>담당자</label>
-        <input type="text" name="name">
-        <br>
-        <label>진행사항</label>
-        <input type="text" name="name">
-        <br>
-        <input type="button" id="register" value="등록"
-               onclick="javascript:clickRegisterEvent(this)">
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h1 class="title">사업 수정</h1>
+            <label>거래처</label>
+            <input type="text" name="name">
+            <br>
+            <label>고객사</label>
+            <input type="text" name="name">
+            <br>
+            <label>건명</label>
+            <input type="text" name="name">
+            <br>
+            <label>예상매출</label>
+            <input type="text" name="name">
+            <br>
+            <label>예상매입</label>
+            <input type="text" name="name">
+            <br>
+            <label>예상매출이익</label>
+            <input type="text" name="name">
+            <br>
+            <label>발행시기</label>
+            <input type="text" name="name">
+            <br>
+            <label>최종컨택일</label>
+            <input type="text" name="name">
+            <br>
+            <label>진행률</label>
+            <input type="text" name="name">
+            <br>
+            <label>담당자</label>
+            <input type="text" name="name">
+            <br>
+            <label>진행사항</label>
+            <input type="text" name="name">
+            <br>
+            <input type="button" id="register" value="등록"
+                   onclick="javascript:clickRegisterEvent(this)">
+        </div>
     </div>
 </div>
 </body>
@@ -454,9 +332,7 @@
         }
     }
 
-    function checkRadio()
-
-    {
+    function checkRadio() {
         var test = document.getElementsByName('chk_info');
         if (test[0].checked == true )
         {
@@ -490,6 +366,12 @@
 
     function clickRegisterEvent(trObj) {
         var link = "http://127.0.0.1:8000/Estimate";
+
+        location.href = link;
+    };
+
+    function clickSearchEvent(trObj) {
+        var link = "http://127.0.0.1:8000/manager_management";
 
         location.href = link;
     };

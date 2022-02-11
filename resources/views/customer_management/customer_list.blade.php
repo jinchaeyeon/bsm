@@ -6,7 +6,7 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <title>고객 관리</title>
+    <title>거래처 관리</title>
 
     <!-- Fonts -->
     <link
@@ -509,60 +509,54 @@
     </style>
 
 <script type="text/javascript">
-			function clickSearchEvent() {
-				document.getElementById('search').submit();
+
+
+			function clickRegisterEvent(trObj) {
+				var link = "http://127.0.0.1:8000/manager_management";
+
+				location.href = link;
 			};
 
-			function click_go_back_event(){
-				var link = "http://127.0.0.1:8000/customer_management";
-            	location.href = link;
-			}
+			function clickSearchEvent(trObj) {
+				var link = "http://127.0.0.1:8000/manager_management";
+
+				location.href = link;
+			};
 
 			function checkRadio()
 			{
 			var test = document.getElementsByName('chk_info');
-            if (test[0].checked == true )
+			if (test[0].checked == true )
 			{
-				 document.getElementById('1').style.display="";
-				 document.getElementById('2').style.display="none";
-				 document.getElementById('3').style.display="none";
-
+			    document.getElementById('1').style.display="";
+			    document.getElementById('2').style.display="none";
 			}
 			else if (test[1].checked == true )
 			{
-				 document.getElementById('1').style.display="none";
-				 document.getElementById('2').style.display="";
-				 document.getElementById('3').style.display="none";
+			    document.getElementById('1').style.display="none";
+				document.getElementById('2').style.display="";
+			}
 
-			}
-			else if (test[2].checked == true )
-			{
-				 document.getElementById('1').style.display="none";
-				 document.getElementById('2').style.display="none";
-				 document.getElementById('3').style.display="";
-
-			}
-			}
+		}
 </script>
 </head>
 <body class="antialiased">
 @include('Layout.Sidebar')
-
 <div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
-		<table class="table_customer_list"
-			style="text-align: centger; border: 1px solid black; width: 100%;">
+		<table class="table_Estimate_List"
+			style="text-align: center; border: 1px solid black; width: 100%;">
 			<caption>
 				<h2>고객 관리</h2>
 			</caption>
 			<thead>
           <tr>
+            <th>선택</th>
             <th>거래처명</th>
             <th>사업자번호</th>
             <th>전화번호</th>
             <th>주소</th>
             <th>대표자명</th>
             <th>비고</th>
-            <th></th>
           </tr>
       </thead>
 			<tbody id="print_list">
@@ -577,36 +571,85 @@
           <td>
 			<a href="/customer_management/{{$item->company_register_number}}"><input id="firstRow" type="button" style="width: 100%" type="button" value="조회"></a>
 		  </td>
-        </tr>
-        @endforeach
 			</tbody>
 		</table>
-        <div style="text-align: center">
-			{{ $customer->links() }}
-			({{ $customer->currentPage()}})
-		</div>
+		<div style="width: 5%; display: inline-block;"></div>
 
+    <?php
+    function pageing()
+    {
+
+        // 한번에 출력할 data수
+        $view_article = 2;
+        // page초기값 패이징여부
+        if (isset($_GET['page']))
+            $page = $_GET['page'];
+        else
+            $page = 1;
+        // 데이터 시작 번호
+        $start = ($page - 1) * $view_article;
+
+        // 전체 칼럼 수
+        $total = 2;
+
+        // 전체 페이지
+        $total_page = ceil($total / $view_article);
+        // 시작페이지
+        if ($page % 10) {
+            $start_page = $page - $page % 10 + 1;
+        } else {
+            $start_page = $page - 9;
+        }
+        // 마지막 페이지
+        $end_page = $start_page + 10;
+
+        // 초기 페이지로이동
+        if ($page != 1) {
+            echo "<font><a href=\"Customer_List.php?page=1\"><<</a></font>&nbsp;&nbsp;";
+        } else {
+            echo "<font><<</font>&nbsp;&nbsp;";
+        }
+
+        // 중간페이지 출력
+        for ($i = $start_page; $i < $end_page; $i ++) {
+            if ($i > $total_page)
+                break;
+            if ($i == $page) {
+                echo "(<font>$i</a></font>)&nbsp;&nbsp;";
+            } else {
+                echo "<font><a href=\"Customer_List.php?page=$i\">$i</a></font>&nbsp;&nbsp;";
+            }
+        }
+
+        // 마지막 페이지로 이동
+        if ($page != $total_page) {
+            echo "<font><a href=\"Customer_List.php?page=$total_page\">>></a></font>&nbsp;&nbsp;";
+        } else {
+            echo "<font>>></a></font>&nbsp;&nbsp;";
+        }
+    }
+
+    pageing()?>
 
 <button class="trigger" style="width: 5%; float: right; margin-top: 10px;" value="aa">등록</button>
+<button class="delete" style="width: 5%; float: right; margin-top: 10px;" >삭제</button>
 		<div class="modal">
 			<div class="modal-content">
 				<span class="close-button">&times;</span>
                 <h1 class="title">고객 관리</h1>
-
-                <form name="form1" action="/customer_management" method="post">
-                    @csrf
-                    <div class="field_name">
-                        <label for="in">거래처명</label> <input class="registerSearch" id="in" type="text" name="company_name" value=""/><br>
-                        <label for="in1">사업자번호</label><input class="registerSearch" id="in1" type="text" name="company_register_number" value=""/><br>
+                    <form name="form1" action="create_customer_process.php" method="post">
+                        <div class="field_name">
+                        <label for="in">거래처명</label> <input class="registerSearch" id="in" type="text" name="customer_name" value=""/><br>
+                        <label for="in1">사업자번호</label><input class="registerSearch" id="in1" type="text" name="business_id" value=""/><br>
                         <label for="in2">전화번호</label><input class="registerSearch" id="in2" type="text" name="phone" value=""/><br>
                         <label for="in3">주소</label> <input class="registerSearch" id="in3" type="text" name="address" value=""/><br>
-                        <label for="in4">대표자</label><input class="registerSearch" id="in4" type="text" name="ceo_name" value=""/><br>
+                        <label for="in4">대표자</label><input class="registerSearch" id="in4" type="text" name="ceo" value=""/><br>
                         <label for="in5">비고</label><input class="registerSearch" id="in5" type="text" name="note" value=""/>
                     </div>
                     <p class="field_submit">
-                        <input class="registerSearch" name="buttom" type="submit" id="register" value="등록" >
+                    <input class="registerSearch" type="button" id="register" value="등록" >
                     </p>
-                </form>
+                    </form>
 			</div>
 		</div>
 
@@ -640,19 +683,12 @@
 	<label>
         <input type="radio" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
             담당자명 검색
-        </input>
     </label>
 
     <label>
         <input type="radio" name="chk_info" value="담당자별" onclick="javascript:checkRadio()">
             대표자명 검색
-        </input>
     </label>
-
-    <label>
-		<input type="radio" name="chk_info" value="전체" onclick="javascript:click_go_back_event()">
-		전체 검색
-	</label>
     </div>
 
     <form id="search" style="display:inline" action="/customer_management" method="POST">
@@ -677,8 +713,6 @@
     <div id="3" style="display: none;">
         전체검색 :&nbsp;
 	</div>
-
-    </form>
 
 </div>
 </body>
