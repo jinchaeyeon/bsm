@@ -16,14 +16,18 @@
     <h2>컨설팅사업본부_파이프라인</h2>
     <h2>2022년 8월</h2>
     <div style="margin-top: 10px;">
-        <label><input type="radio" name="chk_info" value="부서별"
-                      onclick="javascript:checkRadio()">부서별 검색</label><label><input
-                type="radio" name="chk_info" value="기간별"
-                onclick="javascript:checkRadio()">기간별 검색</label> <label><input
-                type="radio" name="chk_info" value="담당자별"
-                onclick="javascript:checkRadio()">담당자별 검색</label> <label><input
-                type="radio" name="chk_info" value="거래처별"
-                onclick="javascript:checkRadio()">거래처별 검색</label>
+        <label>
+            <input type="radio" name="chk_info" value="부서별" onclick="javascript:checkRadio()">부서별 검색
+        </label>
+        <label>
+            <input type="radio" name="chk_info" value="기간별" onclick="javascript:checkRadio()">기간별 검색
+        </label>
+        <label>
+            <input type="radio" name="chk_info" value="담당자별" onclick="javascript:checkRadio()">담당자별 검색
+        </label>
+        <label>
+            <input type="radio" name="chk_info" value="거래처별" onclick="javascript:checkRadio()">거래처별 검색
+        </label>
     </div>
 
     <div>
