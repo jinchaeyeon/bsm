@@ -566,8 +566,8 @@
           </tr>
       </thead>
 			<tbody id="print_list">
-        @foreach($customer as $item)	
-        <tr>				
+        @foreach($customer as $item)
+        <tr>
           <td>{{$item->company_name}}</td>
           <td>{{$item->company_register_number}}</td>
           <td>{{$item->phone}}</td>
@@ -625,6 +625,7 @@
                     }
                 }
 
+
                 trigger.addEventListener("click", toggleModal);
                 closeButton.addEventListener("click", toggleModal);
                 modal.addEventListener("click", windowOnClick);
@@ -641,7 +642,7 @@
             담당자명 검색
         </input>
     </label>
- 
+
     <label>
         <input type="radio" name="chk_info" value="담당자별" onclick="javascript:checkRadio()">
             대표자명 검색
@@ -653,12 +654,12 @@
 		전체 검색
 	</label>
     </div>
-    
+
     <form id="search" style="display:inline" action="/customer_management" method="POST">
 		@csrf
         {{ method_field('PUT') }}
     <div id="1" style="display: none;">
-        거래처명 :&nbsp; 
+        거래처명 :&nbsp;
 		<input class="registerSearch" type="string" name="company_name" >&nbsp;&nbsp;
 		<span style="color: grey">
 			<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
@@ -666,7 +667,7 @@
 	</div>
 
     <div id="2" style="display: none;">
-        대표자명 :&nbsp; 
+        대표자명 :&nbsp;
 		<input class="registerSearch" type="string" name="ceo_name">&nbsp;&nbsp;
 		<span style="color: grey">
 			<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
@@ -674,7 +675,7 @@
 	</div>
 
     <div id="3" style="display: none;">
-        전체검색 :&nbsp; 
+        전체검색 :&nbsp;
 	</div>
 
     </form>
