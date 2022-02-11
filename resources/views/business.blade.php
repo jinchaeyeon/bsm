@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Document</title>
+{{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">--}}
 </head>
 <body>
 @include('Layout.Sidebar')
@@ -49,14 +50,13 @@
     <table>
         <thead>
         <tr>
-            <th>번호</th>
+            <th>아이디</th>
             <th>거래처</th>
             <th>고객사</th>
             <th>건명</th>
             <th>예상 매출</th>
             <th>예상 매입</th>
             <th>예상 매출이익</th>
-            <th>발행시기</th>
             <th>최종컨택일</th>
             <th>진행률</th>
             <th>담당자</th>
@@ -75,9 +75,8 @@
                 <td>{{ $item->expected_purchase }}</td>
                 <td>{{ $item->expected_sales_profit }}</td>
                 <td>{{ $item->expected_issue_month }}</td>
-                <td>{{ $item->final_contact }}</td>
                 <td>{{ $item->progress_rate }}</td>
-                <td>{{ $item->sales_person }}</td>
+                <td></td>
                 <td>{{ $item->progress }}</td>
                 <td class="buttonColumn">
                     <button class="edit-trigger">수정</button>
@@ -87,14 +86,11 @@
         @endforeach
         </tbody>
     </table>
-
-    <div style="margin-top: 5px">
-        <span>
-        <button>이전달</button>
-        <button>다음달</button>
-    </span>
-        <button id="register-trigger" style="float: right">등록</button>
+    <div style="height: 10px">
+        {{ $datas->links() }}
     </div>
+
+    <button id="register-trigger" style="float: right">등록</button>
 </div>
 
 <div style="visibility: hidden">
