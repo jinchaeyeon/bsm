@@ -12,7 +12,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RepresentativeController;
 use App\Http\Controllers\AuthorityController;
 
-// 채연 
+// 채연
 Route::get('/Estimate', [EstimateController::class, 'Viewer']);
 
 Route::get('/EstimateSearch1/{search1}', function ($search1) {
@@ -73,18 +73,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// 준재 
-Route::get('/pipeline', function () {
-    return view('pipe');
-});
+// 준재
+Route::get('/pipeline', 'PipeController@index')->name('pipeline');
+Route::post('/pipeline', 'PipeController@store')->name('pipeline');
+Route::put('/pipeline', 'PipeController@update')->name('pipeline');
+Route::delete('/pipeline', 'PipeController@destroy')->name('pipeline');
 
-Route::get('/business', function () {
-    return view('business');
-});
-
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/business', 'BusinessController@index')->name('business');
 
 
 // 현준
