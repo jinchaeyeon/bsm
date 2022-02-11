@@ -17,7 +17,7 @@ class CreateEstimateItemsTable extends Migration
             $table->primary('id');
             $table->integer('id');
             $table->integer('estimate_id');
-            $table->string('item_id');
+            $table->integer('item_id');
             $table->integer('quantity')->nullable();
             $table->integer('suggested_unit_price')->nullable();
             $table->integer('total_offer_price')->nullable();

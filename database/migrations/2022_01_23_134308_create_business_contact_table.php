@@ -19,9 +19,7 @@ class CreateBusinessContactTable extends Migration
             $table->string('company_name', 45)->nullable();
             $table->string('ceo_name', 45)->nullable();
             $table->string('address', 45)->nullable();
-            $table->string('phone', 45)->nullable();
-            $table->string('note', 45)->nullable();
-            $table->timestamps();
+            $table->string('note', 80)->nullable();
         });
     }
 
