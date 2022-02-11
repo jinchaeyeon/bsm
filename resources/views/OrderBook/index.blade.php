@@ -679,6 +679,7 @@ form {
 					<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
 				</span>
 			</div>
+			
 			</form>
 		</div>
 </body>
