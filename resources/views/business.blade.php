@@ -14,7 +14,6 @@
         사업
     </h1>
     <h2>컨설팅사업본부_파이프라인</h2>
-    <h2>2022년 8월</h2>
     <div style="margin-top: 10px;">
         <label>
             <input type="hidden" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
@@ -32,23 +31,29 @@
 
     <div>
         <div id="1" style="display: none;">
-            부서 이름 :&nbsp; <input class="registerSearch" type="string" name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                    class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+            부서 이름 :&nbsp;
+            <input class="registerSearch" type="string" name="string">&nbsp;&nbsp;
+            <span style="color: grey">
+                <i class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i>
+            </span>
         </div>
         <div id="2" style="display: none;">
-            기간 :&nbsp; <input class="registerSearch" type="date" name="string">~<input class="registerSearch" type="date" name="string">&nbsp;&nbsp;<span
-                style="color: grey"><i class="fas fa-search"
-                                       onclick="javascript:clickSearchEvent(this)"></i></span>
+            <form>
+                기간 :&nbsp; <input class="registerSearch" type="date" name="start">~<input class="registerSearch" type="date" name="end">&nbsp;&nbsp;
+                <button><i class="fas fa-search"></i></button>
+            </form>
         </div>
         <div id="3" style="display: none;">
-            담당자 이름 :&nbsp; <input class="registerSearch" type="string"
-                                  name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                    class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+            <form>
+                담당자 이름 :&nbsp; <input class="registerSearch" type="string"
+                                      name="name">&nbsp;&nbsp;
+                <button><i class="fas fa-search"></i></button>
+            </form>
         </div>
         <div id="4" style="display: none;">
             거래처 이름 :&nbsp; <input class="registerSearch" type="string"
                                   name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                    class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                    class="fas fa-search"></i></span>
         </div>
     </div>
     <table>

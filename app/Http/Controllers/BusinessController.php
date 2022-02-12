@@ -9,10 +9,20 @@ use PhpParser\Builder;
 
 class BusinessController extends Controller
 {
-    public function index() {
-        $data = Business::where('pipeline_id','=','2')->orderBy('id','desc')->simplePaginate(10);
-        return view('business', ['datas' => $data]);
+    public function index(Request $request) {
+        $start = $request->input('start');
+        $end = $request->input('end');
+        $sales_person = $request->input('name');
 
+        if ($start != null && $end != null) {
+            $data = Business::where('pipeline_id','=','2')->where('created_at', '>=', $start)->where('created_at', '<=', $end)->orderBy('id','desc')->simplePaginate(10);
+        } else if ($sales_person != null) {
+            $data = Business::where('pipeline_id','=','2')->where('sales_person', 'like', '%'.$sales_person.'%')->orderBy('id','desc')->simplePaginate(10);
+        } else {
+            $data = Business::where('pipeline_id','=','2')->orderBy('id','desc')->simplePaginate(10);
+        }
+
+        return view('business', ['datas' => $data]);
     }
 
     public function store(Request $request)
