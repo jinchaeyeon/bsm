@@ -83,7 +83,7 @@
                 <td>{{ $item->sales_person }}</td>
                 <td>{{ $item->progress }}</td>
                 <td class="buttonColumn">
-                    <button class="edit-trigger" onclick="javascript:clickEdit({{$item->id}})">수정</button>
+                    <button class="edit-trigger" onclick="javascript:clickEdit({{$item->id}}, {{$item}})">수정</button>
                     <form action="/business/{{ $item->id }}" method="POST">
                         @method('delete')
                         @csrf
@@ -381,9 +381,9 @@
         location.href = link;
     };
 
-    function clickEdit(id) {
-        // document.getElementById('edit_id').action = "/business/" + id
-        document.getElementById('edit_id').value = id
+    function clickEdit(id, item) {
+        document.getElementById('edit_id').value = id;
+        // 여기서 form 태그 내부의 값을 넣어둠
     };
 
 </script>

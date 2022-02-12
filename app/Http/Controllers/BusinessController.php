@@ -37,17 +37,17 @@ class BusinessController extends Controller
     public function update(Request $request) {
         $id = $request->input('id');
 
-        $business = Business::find($id)->update([
-            'name' => $request->input('name'),
-            'client' => $request->input('client'),
-            'expected_sales' => $request->input('expected_sales'),
-            'expected_purchase' => $request->input('expected_purchase'),
-            'expected_sales_profit' => $request->input('expected_sales_profit'),
-            'expected_issue_month' => $request->input('expected_issue_month'),
-            'progress_rate' => $request->input('progress_rate'),
-            'progress' => $request->input('progress'),
-            'sales_person' => $request->input('sales_person')
-        ]);
+        $business = Business::find($id);
+        $business->client = $request->client;
+        $business->name = $request->name;
+        $business->expected_sales = $request->expected_sales;
+        $business->expected_purchase = $request->expected_purchase;
+        $business->expected_sales_profit = $request->expected_sales_profit;
+        $business->expected_issue_month = $request->expected_issue_month;
+        $business->progress_rate = $request->progress_rate;
+        $business->progress = $request->progress;
+        $business->sales_person = $request->sales_person;
+        $business->save();
 
         return redirect()->route('business');
     }
