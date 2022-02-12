@@ -154,31 +154,31 @@
                 @csrf
                 <input type="hidden" name="id" id="edit_id" value = -1>
                 <label>고객사</label>
-                <input type="text" name="client">
+                <input type="text" name="client" id="edit_client">
                 <br>
                 <label>건명</label>
-                <input type="text" name="name">
+                <input type="text" name="name" id = "edit_name">
                 <br>
                 <label>예상매출</label>
-                <input type="text" name="expected_sales">
+                <input type="text" name="expected_sales" id = "edit_e_sales">
                 <br>
                 <label>예상매입</label>
-                <input type="text" name="expected_purchase">
+                <input type="text" name="expected_purchase" id = "edit_e_purchase">
                 <br>
                 <label>예상매출이익</label>
-                <input type="text" name="expected_sales_profit">
+                <input type="text" name="expected_sales_profit" id = "edit_e_profit">
                 <br>
                 <label>최종컨택일</label>
-                <input type="text" name="expected_issue_month">
+                <input type="text" name="expected_issue_month" id = "edit_e_issue">
                 <br>
                 <label>진행률</label>
-                <input type="text" name="progress_rate">
+                <input type="text" name="progress_rate" id = "edit_progress_rate">
                 <br>
                 <label>담당자</label>
-                <input type="text" name="sales_person">
+                <input type="text" name="sales_person" id = "edit_sales_person">
                 <br>
                 <label>진행사항</label>
-                <input type="text" name="progress">
+                <input type="text" name="progress" id = "edit_progress">
                 <br>
                 <input type="submit" id="register" value="등록">
             </form>
@@ -288,8 +288,6 @@
 </style>
 
 <script type="text/javascript">
-    let selected_id = -1
-
     const registerModal = document.querySelector("#register-modal");
     const editModal = document.querySelector("#edit-modal");
 
@@ -383,7 +381,15 @@
 
     function clickEdit(id, item) {
         document.getElementById('edit_id').value = id;
-        // 여기서 form 태그 내부의 값을 넣어둠
+        document.getElementById('edit_sales_person').value = item.sales_person;
+        document.getElementById('edit_progress').value = item.progress;
+        document.getElementById('edit_progress_rate').value = item.progress_rate;
+        document.getElementById('edit_e_issue').value = item.expected_issue_month;
+        document.getElementById('edit_e_sales').value = item.expected_sales;
+        document.getElementById('edit_e_profit').value = item.expected_sales_profit;
+        document.getElementById('edit_e_purchase').value = item.expected_purchase;
+        document.getElementById('edit_name').value = item.name;
+        document.getElementById('edit_client').value = item.client;
     };
 
 </script>
