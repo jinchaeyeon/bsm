@@ -54,6 +54,8 @@ Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 
+
+
 // 기범
 Route::get('/representative', [RepresentativeController::class, 'Viewer']);
 
@@ -80,7 +82,17 @@ Route::put('/pipeline', 'PipeController@update')->name('pipeline');
 Route::delete('/pipeline', 'PipeController@destroy')->name('pipeline');
 
 Route::get('/business', 'BusinessController@index')->name('business');
+Route::post('/business', 'BusinessController@store');
+Route::put('/business', 'BusinessController@update');
+Route::delete('/business/{business}', 'BusinessController@destroy');
 
+Route::get('/', function () {
+    return view('main');
+});
+
+Route::get('/main', function () {
+    return view('main');
+});
 
 // 현준
 

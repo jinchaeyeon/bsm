@@ -80,11 +80,15 @@
                 <td>{{ $item->expected_sales_profit }}</td>
                 <td>{{ $item->expected_issue_month }}</td>
                 <td>{{ $item->progress_rate }}</td>
-                <td></td>
+                <td>{{ $item->sales_person }}</td>
                 <td>{{ $item->progress }}</td>
                 <td class="buttonColumn">
-                    <button class="edit-trigger">수정</button>
-                    <button>삭제</button>
+                    <button class="edit-trigger" onclick="javascript:clickEdit({{$item->id}})">수정</button>
+                    <form action="/business/{{ $item->id }}" method="POST">
+                        @method('delete')
+                        @csrf
+                        <button>삭제</button>
+                    </form>
                 </td>
             </tr>
         @endforeach
@@ -102,41 +106,42 @@
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h1 class="title">사업 등록</h1>
-            <label>거래처</label>
-            <input type="text" name="name">
-            <br>
-            <label>고객사</label>
-            <input type="text" name="name">
-            <br>
-            <label>건명</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매출</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매입</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매출이익</label>
-            <input type="text" name="name">
-            <br>
-            <label>발행시기</label>
-            <input type="text" name="name">
-            <br>
-            <label>최종컨택일</label>
-            <input type="text" name="name">
-            <br>
-            <label>진행률</label>
-            <input type="text" name="name">
-            <br>
-            <label>담당자</label>
-            <input type="text" name="name">
-            <br>
-            <label>진행사항</label>
-            <input type="text" name="name">
-            <br>
-            <input type="button" id="register" value="등록"
-                   onclick="javascript:clickRegisterEvent(this)">
+            <form method="Post" action="{{route('business')}}">
+                @csrf
+                <input type="hidden" name="pipeline_id" value="2">
+
+                <label>거래처 사업자 번호</label>
+                <input type="number" name="contact_id">
+                <br>
+                <label>고객사</label>
+                <input type="text" name="client">
+                <br>
+                <label>건명</label>
+                <input type="text" name="name">
+                <br>
+                <label>예상매출</label>
+                <input type="text" name="expected_sales">
+                <br>
+                <label>예상매입</label>
+                <input type="text" name="expected_purchase">
+                <br>
+                <label>예상매출이익</label>
+                <input type="text" name="expected_sales_profit">
+                <br>
+                <label>최종 컨택일</label>
+                <input type="text" name="expected_issue_month">
+                <br>
+                <label>진행률</label>
+                <input type="text" name="progress_rate">
+                <br>
+                <label>담당자</label>
+                <input type="text" name="sales_person">
+                <br>
+                <label>진행사항</label>
+                <input type="text" name="progress">
+                <br>
+                <input type="submit" id="register" value="등록">
+            </form>
         </div>
     </div>
 
@@ -144,41 +149,39 @@
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h1 class="title">사업 수정</h1>
-            <label>거래처</label>
-            <input type="text" name="name">
-            <br>
-            <label>고객사</label>
-            <input type="text" name="name">
-            <br>
-            <label>건명</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매출</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매입</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매출이익</label>
-            <input type="text" name="name">
-            <br>
-            <label>발행시기</label>
-            <input type="text" name="name">
-            <br>
-            <label>최종컨택일</label>
-            <input type="text" name="name">
-            <br>
-            <label>진행률</label>
-            <input type="text" name="name">
-            <br>
-            <label>담당자</label>
-            <input type="text" name="name">
-            <br>
-            <label>진행사항</label>
-            <input type="text" name="name">
-            <br>
-            <input type="button" id="register" value="등록"
-                   onclick="javascript:clickRegisterEvent(this)">
+            <form action="/business" method="POST">
+                @method('put')
+                @csrf
+                <input type="hidden" name="id" id="edit_id" value = -1>
+                <label>고객사</label>
+                <input type="text" name="client">
+                <br>
+                <label>건명</label>
+                <input type="text" name="name">
+                <br>
+                <label>예상매출</label>
+                <input type="text" name="expected_sales">
+                <br>
+                <label>예상매입</label>
+                <input type="text" name="expected_purchase">
+                <br>
+                <label>예상매출이익</label>
+                <input type="text" name="expected_sales_profit">
+                <br>
+                <label>최종컨택일</label>
+                <input type="text" name="expected_issue_month">
+                <br>
+                <label>진행률</label>
+                <input type="text" name="progress_rate">
+                <br>
+                <label>담당자</label>
+                <input type="text" name="sales_person">
+                <br>
+                <label>진행사항</label>
+                <input type="text" name="progress">
+                <br>
+                <input type="submit" id="register" value="등록">
+            </form>
         </div>
     </div>
 </div>
@@ -285,6 +288,8 @@
 </style>
 
 <script type="text/javascript">
+    let selected_id = -1
+
     const registerModal = document.querySelector("#register-modal");
     const editModal = document.querySelector("#edit-modal");
 
@@ -375,5 +380,11 @@
 
         location.href = link;
     };
+
+    function clickEdit(id) {
+        // document.getElementById('edit_id').action = "/business/" + id
+        document.getElementById('edit_id').value = id
+    };
+
 </script>
 
