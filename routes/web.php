@@ -97,19 +97,11 @@ Route::get('/ItemSearch3/{search3}', function ($search3) {
 
     return view('admin.item',['Items' => $Items]);
 });
+
+Route::POST('/item/create', [ItemController::class, 'store']);
+
 Route::get('/authority', [AuthorityController::class, 'Viewer']);
 
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // 준재
 Route::get('/pipeline', 'PipeController@index')->name('pipeline');

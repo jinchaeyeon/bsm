@@ -591,18 +591,20 @@
         </tbody>
     </table>
     <div style="display: inline-block;"> {{ $Items->links() }}</div>
-
     <button class="trigger"
             style="width: 5%; float: right; margin-top: 10px;" value="aa" onclick>등록</button>
     <div class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h1 class="title">품목 등록</h1>
-            <label>품목코드</label> <input class="registerSearch" type="number" name="number">
-            <label>품목명</label> <input class="registerSearch" type="number" name="number">
-            <label>표준단가</label> <input class="registerSearch" type="number" name="number">
-            <label>비고</label> <input class="registerSearch" type="number" name="number">
-            <input class="registerSearch" type="button" id="register" value="등록" onclick="javascript:clickRegisterEvent(this)">
+            <form action="/item/create" method="POST">
+                <label>품목코드</label> <input class="registerSearch" type="text" name="id">
+                <label>품목명</label> <input class="registerSearch" type="text" name="name">
+                <label>표준단가</label> <input class="registerSearch" type="text" name="standard_unit_price">
+                <label>비고</label> <input class="registerSearch" type="text" name="note">
+                @csrf
+                <input type="submit" value="등록" >
+            </form>
         </div>
     </div>
 
