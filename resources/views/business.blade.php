@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Document</title>
+{{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">--}}
 </head>
 <body>
 @include('Layout.Sidebar')
@@ -13,50 +14,58 @@
         사업
     </h1>
     <h2>컨설팅사업본부_파이프라인</h2>
-    <h2>2022년 8월</h2>
     <div style="margin-top: 10px;">
-        <label><input type="radio" name="chk_info" value="부서별"
-                      onclick="javascript:checkRadio()">부서별 검색</label><label><input
-                type="radio" name="chk_info" value="기간별"
-                onclick="javascript:checkRadio()">기간별 검색</label> <label><input
-                type="radio" name="chk_info" value="담당자별"
-                onclick="javascript:checkRadio()">담당자별 검색</label> <label><input
-                type="radio" name="chk_info" value="거래처별"
-                onclick="javascript:checkRadio()">거래처별 검색</label>
+        <label>
+            <input type="hidden" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
+        </label>
+        <label>
+            <input type="radio" name="chk_info" value="기간별" onclick="javascript:checkRadio()">기간별 검색
+        </label>
+        <label>
+            <input type="radio" name="chk_info" value="담당자별" onclick="javascript:checkRadio()">담당자별 검색
+        </label>
+        <label>
+            <input type="radio" name="chk_info" value="거래처별" onclick="javascript:checkRadio()">거래처별 검색
+        </label>
     </div>
 
     <div>
         <div id="1" style="display: none;">
-            부서 이름 :&nbsp; <input class="registerSearch" type="string" name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                    class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+            부서 이름 :&nbsp;
+            <input class="registerSearch" type="string" name="string">&nbsp;&nbsp;
+            <span style="color: grey">
+                <i class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i>
+            </span>
         </div>
         <div id="2" style="display: none;">
-            기간 :&nbsp; <input class="registerSearch" type="date" name="string">~<input class="registerSearch" type="date" name="string">&nbsp;&nbsp;<span
-                style="color: grey"><i class="fas fa-search"
-                                       onclick="javascript:clickSearchEvent(this)"></i></span>
+            <form>
+                기간 :&nbsp; <input class="registerSearch" type="date" name="start">~<input class="registerSearch" type="date" name="end">&nbsp;&nbsp;
+                <button><i class="fas fa-search"></i></button>
+            </form>
         </div>
         <div id="3" style="display: none;">
-            담당자 이름 :&nbsp; <input class="registerSearch" type="string"
-                                  name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                    class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+            <form>
+                담당자 이름 :&nbsp; <input class="registerSearch" type="string"
+                                      name="name">&nbsp;&nbsp;
+                <button><i class="fas fa-search"></i></button>
+            </form>
         </div>
         <div id="4" style="display: none;">
             거래처 이름 :&nbsp; <input class="registerSearch" type="string"
                                   name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                    class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                    class="fas fa-search"></i></span>
         </div>
     </div>
     <table>
         <thead>
         <tr>
-            <th>번호</th>
+            <th>아이디</th>
             <th>거래처</th>
             <th>고객사</th>
             <th>건명</th>
             <th>예상 매출</th>
             <th>예상 매입</th>
             <th>예상 매출이익</th>
-            <th>발행시기</th>
             <th>최종컨택일</th>
             <th>진행률</th>
             <th>담당자</th>
@@ -68,33 +77,33 @@
         @foreach($datas as $item)
             <tr>
                 <td>{{ $item->id }}</td>
-                <td>{{ $item->contact_id }}</td>
+                <td>{{ $item->contact->company_name }}</td>
                 <td>{{ $item->client }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->expected_sales }}</td>
                 <td>{{ $item->expected_purchase }}</td>
                 <td>{{ $item->expected_sales_profit }}</td>
                 <td>{{ $item->expected_issue_month }}</td>
-                <td>{{ $item->final_contact }}</td>
                 <td>{{ $item->progress_rate }}</td>
                 <td>{{ $item->sales_person }}</td>
                 <td>{{ $item->progress }}</td>
                 <td class="buttonColumn">
-                    <button class="edit-trigger">수정</button>
-                    <button>삭제</button>
+                    <button class="edit-trigger" onclick="javascript:clickEdit({{$item->id}}, {{$item}})">수정</button>
+                    <form action="/business/{{ $item->id }}" method="POST">
+                        @method('delete')
+                        @csrf
+                        <button>삭제</button>
+                    </form>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-
-    <div style="margin-top: 5px">
-        <span>
-        <button>이전달</button>
-        <button>다음달</button>
-    </span>
-        <button id="register-trigger" style="float: right">등록</button>
+    <div style="height: 10px">
+        {{ $datas->links() }}
     </div>
+
+    <button id="register-trigger" style="float: right">등록</button>
 </div>
 
 <div style="visibility: hidden">
@@ -102,41 +111,42 @@
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h1 class="title">사업 등록</h1>
-            <label>거래처</label>
-            <input type="text" name="name">
-            <br>
-            <label>고객사</label>
-            <input type="text" name="name">
-            <br>
-            <label>건명</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매출</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매입</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매출이익</label>
-            <input type="text" name="name">
-            <br>
-            <label>발행시기</label>
-            <input type="text" name="name">
-            <br>
-            <label>최종컨택일</label>
-            <input type="text" name="name">
-            <br>
-            <label>진행률</label>
-            <input type="text" name="name">
-            <br>
-            <label>담당자</label>
-            <input type="text" name="name">
-            <br>
-            <label>진행사항</label>
-            <input type="text" name="name">
-            <br>
-            <input type="button" id="register" value="등록"
-                   onclick="javascript:clickRegisterEvent(this)">
+            <form method="Post" action="{{route('business')}}">
+                @csrf
+                <input type="hidden" name="pipeline_id" value="2">
+
+                <label>거래처 사업자 번호</label>
+                <input type="number" name="contact_id">
+                <br>
+                <label>고객사</label>
+                <input type="text" name="client">
+                <br>
+                <label>건명</label>
+                <input type="text" name="name">
+                <br>
+                <label>예상매출</label>
+                <input type="text" name="expected_sales">
+                <br>
+                <label>예상매입</label>
+                <input type="text" name="expected_purchase">
+                <br>
+                <label>예상매출이익</label>
+                <input type="text" name="expected_sales_profit">
+                <br>
+                <label>최종 컨택일</label>
+                <input type="text" name="expected_issue_month">
+                <br>
+                <label>진행률</label>
+                <input type="text" name="progress_rate">
+                <br>
+                <label>담당자</label>
+                <input type="text" name="sales_person">
+                <br>
+                <label>진행사항</label>
+                <input type="text" name="progress">
+                <br>
+                <input type="submit" id="register" value="등록">
+            </form>
         </div>
     </div>
 
@@ -144,41 +154,39 @@
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h1 class="title">사업 수정</h1>
-            <label>거래처</label>
-            <input type="text" name="name">
-            <br>
-            <label>고객사</label>
-            <input type="text" name="name">
-            <br>
-            <label>건명</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매출</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매입</label>
-            <input type="text" name="name">
-            <br>
-            <label>예상매출이익</label>
-            <input type="text" name="name">
-            <br>
-            <label>발행시기</label>
-            <input type="text" name="name">
-            <br>
-            <label>최종컨택일</label>
-            <input type="text" name="name">
-            <br>
-            <label>진행률</label>
-            <input type="text" name="name">
-            <br>
-            <label>담당자</label>
-            <input type="text" name="name">
-            <br>
-            <label>진행사항</label>
-            <input type="text" name="name">
-            <br>
-            <input type="button" id="register" value="등록"
-                   onclick="javascript:clickRegisterEvent(this)">
+            <form action="/business" method="POST">
+                @method('put')
+                @csrf
+                <input type="hidden" name="id" id="edit_id" value = -1>
+                <label>고객사</label>
+                <input type="text" name="client" id="edit_client">
+                <br>
+                <label>건명</label>
+                <input type="text" name="name" id = "edit_name">
+                <br>
+                <label>예상매출</label>
+                <input type="text" name="expected_sales" id = "edit_e_sales">
+                <br>
+                <label>예상매입</label>
+                <input type="text" name="expected_purchase" id = "edit_e_purchase">
+                <br>
+                <label>예상매출이익</label>
+                <input type="text" name="expected_sales_profit" id = "edit_e_profit">
+                <br>
+                <label>최종컨택일</label>
+                <input type="text" name="expected_issue_month" id = "edit_e_issue">
+                <br>
+                <label>진행률</label>
+                <input type="text" name="progress_rate" id = "edit_progress_rate">
+                <br>
+                <label>담당자</label>
+                <input type="text" name="sales_person" id = "edit_sales_person">
+                <br>
+                <label>진행사항</label>
+                <input type="text" name="progress" id = "edit_progress">
+                <br>
+                <input type="submit" id="register" value="등록">
+            </form>
         </div>
     </div>
 </div>
@@ -375,5 +383,19 @@
 
         location.href = link;
     };
+
+    function clickEdit(id, item) {
+        document.getElementById('edit_id').value = id;
+        document.getElementById('edit_sales_person').value = item.sales_person;
+        document.getElementById('edit_progress').value = item.progress;
+        document.getElementById('edit_progress_rate').value = item.progress_rate;
+        document.getElementById('edit_e_issue').value = item.expected_issue_month;
+        document.getElementById('edit_e_sales').value = item.expected_sales;
+        document.getElementById('edit_e_profit').value = item.expected_sales_profit;
+        document.getElementById('edit_e_purchase').value = item.expected_purchase;
+        document.getElementById('edit_name').value = item.name;
+        document.getElementById('edit_client').value = item.client;
+    };
+
 </script>
 

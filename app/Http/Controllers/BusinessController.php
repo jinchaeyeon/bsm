@@ -3,40 +3,68 @@
 namespace App\Http\Controllers;
 
 use App\Models\Business;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use PhpParser\Builder;
 
 class BusinessController extends Controller
 {
-    public function index() {
-        $data = Business::all();
+    public function index(Request $request) {
+        $start = $request->input('start');
+        $end = $request->input('end');
+        $sales_person = $request->input('name');
+
+        if ($start != null && $end != null) {
+            $data = Business::where('pipeline_id','=','2')->where('created_at', '>=', $start)->where('created_at', '<=', $end)->orderBy('id','desc')->simplePaginate(10);
+        } else if ($sales_person != null) {
+            $data = Business::where('pipeline_id','=','2')->where('sales_person', 'like', '%'.$sales_person.'%')->orderBy('id','desc')->simplePaginate(10);
+        } else {
+            $data = Business::where('pipeline_id','=','2')->orderBy('id','desc')->simplePaginate(10);
+        }
+
         return view('business', ['datas' => $data]);
     }
 
     public function store(Request $request)
     {
-        $pipeline = new Pipeline;
-        $pipeline->name = $request->name;
-        $pipeline->save();
+        $business = new Business;
+        $business->contact_id = $request->contact_id;
+        $business->pipeline_id = $request->pipeline_id;
+        $business->client = $request->client;
+        $business->name = $request->name;
+        $business->expected_sales = $request->expected_sales;
+        $business->expected_purchase = $request->expected_purchase;
+        $business->expected_sales_profit = $request->expected_sales_profit;
+        $business->expected_issue_month = $request->expected_issue_month;
+        $business->progress_rate = $request->progress_rate;
+        $business->progress = $request->progress;
+        $business->sales_person = $request->sales_person;
+        $business->save();
 
-        return redirect()->route('pipeline');
+        return redirect()->route('business');
     }
 
     public function update(Request $request) {
-
-        $name = $request->input('name');
         $id = $request->input('id');
 
-        $pipeLineData = Pipeline::find($id);
-        $pipeLineData->update(['name' => $name]);
+        $business = Business::find($id);
+        $business->client = $request->client;
+        $business->name = $request->name;
+        $business->expected_sales = $request->expected_sales;
+        $business->expected_purchase = $request->expected_purchase;
+        $business->expected_sales_profit = $request->expected_sales_profit;
+        $business->expected_issue_month = $request->expected_issue_month;
+        $business->progress_rate = $request->progress_rate;
+        $business->progress = $request->progress;
+        $business->sales_person = $request->sales_person;
+        $business->save();
 
-        return redirect()->route('pipeline');
+        return redirect()->route('business');
     }
 
-    public function destroy(Request $request) {
-        $id = $request->input('id');
+    public function destroy(Business $business) {
+        $business->delete();
 
-        Pipeline::find($id)->delete();
-
-        return redirect()->route('pipeline');
+        return redirect()->route('business');
     }
 }

@@ -12,7 +12,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RepresentativeController;
 use App\Http\Controllers\AuthorityController;
 
-// 채연 
+// 채연
 Route::get('/Estimate', [EstimateController::class, 'Viewer']);
 
 Route::get('/EstimateSearch1/{search1}', function ($search1) {
@@ -54,6 +54,8 @@ Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 
+
+
 // 기범
 Route::get('/representative', [RepresentativeController::class, 'Viewer']);
 
@@ -73,19 +75,24 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// 준재 
-Route::get('/pipeline', function () {
-    return view('pipe');
-});
+// 준재
+Route::get('/pipeline', 'PipeController@index')->name('pipeline');
+Route::post('/pipeline', 'PipeController@store')->name('pipeline');
+Route::put('/pipeline', 'PipeController@update')->name('pipeline');
+Route::delete('/pipeline', 'PipeController@destroy')->name('pipeline');
 
-Route::get('/business', function () {
-    return view('business');
-});
+Route::get('/business', 'BusinessController@index')->name('business');
+Route::post('/business', 'BusinessController@store');
+Route::put('/business', 'BusinessController@update');
+Route::delete('/business/{business}', 'BusinessController@destroy');
 
 Route::get('/', function () {
     return view('main');
 });
 
+Route::get('/main', function () {
+    return view('main');
+});
 
 // 현준
 
