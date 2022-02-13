@@ -13,7 +13,7 @@
     <h1>
         사업
     </h1>
-    <h2>컨설팅사업본부_파이프라인</h2>
+    <h2>{{$pipe->first()->name}} 파이프 라인</h2>
     <div style="margin-top: 10px;">
         <label>
             <input type="hidden" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
@@ -51,9 +51,11 @@
             </form>
         </div>
         <div id="4" style="display: none;">
-            거래처 이름 :&nbsp; <input class="registerSearch" type="string"
-                                  name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                    class="fas fa-search"></i></span>
+            <form>
+                거래처 사업자 번호 :&nbsp; <input class="registerSearch" type="string"
+                                      name="contact">&nbsp;&nbsp;
+                <button><i class="fas fa-search"></i></button>
+            </form>
         </div>
     </div>
     <table>
@@ -113,7 +115,7 @@
             <h1 class="title">사업 등록</h1>
             <form method="Post" action="{{route('business')}}">
                 @csrf
-                <input type="hidden" name="pipeline_id" value="2">
+                <input type="hidden" name="pipeline_id" value={{$pipe->first()->id}}>
 
                 <label>거래처 사업자 번호</label>
                 <input type="number" name="contact_id">

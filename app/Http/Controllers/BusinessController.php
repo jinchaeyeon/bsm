@@ -3,26 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\Business;
+use App\Models\pipeline;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use PhpParser\Builder;
 
 class BusinessController extends Controller
 {
-    public function index(Request $request) {
+    public function main(Request $request) {
+        $td = Pipeline::all();
+        return view('businessMain', ['td' => $td]);
+    }
+
+    public function index(Request $request, $id) {
         $start = $request->input('start');
         $end = $request->input('end');
         $sales_person = $request->input('name');
+        $contact = $request->input('contact');
 
         if ($start != null && $end != null) {
-            $data = Business::where('pipeline_id','=','2')->where('created_at', '>=', $start)->where('created_at', '<=', $end)->orderBy('id','desc')->simplePaginate(10);
+            $data = Business::where('pipeline_id','=', $id)->where('created_at', '>=', $start)->where('created_at', '<=', $end)->orderBy('id','desc')->simplePaginate(10);
         } else if ($sales_person != null) {
-            $data = Business::where('pipeline_id','=','2')->where('sales_person', 'like', '%'.$sales_person.'%')->orderBy('id','desc')->simplePaginate(10);
+            $data = Business::where('pipeline_id','=', $id)->where('sales_person', 'like', '%'.$sales_person.'%')->orderBy('id','desc')->simplePaginate(10);
+        } else if ($contact != null) {
+            $data = Business::where('pipeline_id','=', $id)->where('contact_id', '=', $contact)->orderBy('id','desc')->simplePaginate(10);
         } else {
-            $data = Business::where('pipeline_id','=','2')->orderBy('id','desc')->simplePaginate(10);
+            $data = Business::where('pipeline_id','=', $id)->orderBy('id','desc')->simplePaginate(10);
         }
 
-        return view('business', ['datas' => $data]);
+        $title = pipeline::where('id', '=', $id)->get();
+        return view('business', ['datas' => $data, 'pipe' => $title]);
     }
 
     public function store(Request $request)
@@ -41,7 +51,7 @@ class BusinessController extends Controller
         $business->sales_person = $request->sales_person;
         $business->save();
 
-        return redirect()->route('business');
+        return redirect()->route('business2', ['id' => 2]);
     }
 
     public function update(Request $request) {
@@ -59,12 +69,12 @@ class BusinessController extends Controller
         $business->sales_person = $request->sales_person;
         $business->save();
 
-        return redirect()->route('business');
+        return redirect()->route('business2', ['id' => 2]);
     }
 
     public function destroy(Business $business) {
         $business->delete();
 
-        return redirect()->route('business');
+        return redirect()->route('business2', ['id' => 2]);
     }
 }
