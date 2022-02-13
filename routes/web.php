@@ -52,10 +52,6 @@ Route::post('/OrderBook/{orderbook}', [OrderBookController::class, 'update']);
 Route::delete('/OrderBook/{orderbook}', [OrderBookController::class, 'destroy']);
 Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 
-Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
-
-
-
 // 기범
 Route::get('/representative', [RepresentativeController::class, 'Viewer']);
 
