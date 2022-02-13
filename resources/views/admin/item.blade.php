@@ -604,7 +604,7 @@
         @endforeach
         </tbody>
     </table>
-    <div style="display: inline-block;">{{ $Items->links() }}</div>
+    <div style="display: inline-block;"> {{ $Items->links() }}</div>
 
     <button class="trigger"
             style="width: 5%; float: right; margin-top: 10px;" value="aa" onclick>등록</button>
