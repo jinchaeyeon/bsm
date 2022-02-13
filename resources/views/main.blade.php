@@ -33,30 +33,21 @@
         </thead>
         <tbody>
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td><button id="firstRow" type="button" style="width: 100%"
-                        value="aa" onclick="javascript:clickTrEvent(this)">조회</button></td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>11</td>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
-            <td>17</td>
-            <td>18</td>
-            <td><button id="SecondRow" type="button" style="width: 100%"
-                        value="aa" onclick="javascript:clickTrEvent(this)">조회</button></td>
+        @foreach($Estimates as $Estimate)
+            <tr>
+                <td>{{$Estimate->create_date}}</td>
+                <td>{{$Estimate->id}}</td>
+                <td>{{$Estimate->client}}</td>
+                <td>{{$Estimate->type}}</td>
+                <td>{{$Estimate->contact_id}}</td>
+                <td>{{$Estimate->amount}}</td>
+                <td>{{$Estimate->discount_rate}}</td>
+                <td>{{$Estimate->general}}</td>
+                <td>{{$Estimate->order_state}}</td>
+                <td><button id="{{$Estimate->id}}" type="button" style="width: 100%"
+                            value="{{$Estimate->id}}" onclick="javascript:clickTrEvent(this)">조회</button></td>
+            </tr>
+            @endforeach
         </tr>
         </tbody>
     </table>
@@ -81,34 +72,22 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>LG</td>
-            <td>AIC</td>
-            <td>유지보수</td>
-            <td>9000</td>
-            <td>1700</td>
-            <td>7260</td>
-            <td>Q3</td>
-            <td>5월 3일</td>
-            <td>80%</td>
-            <td>홍길동</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>LG</td>
-            <td>AIC</td>
-            <td>유지보수</td>
-            <td>9000</td>
-            <td>1700</td>
-            <td>7260</td>
-            <td>Q3</td>
-            <td>5월 3일</td>
-            <td>80%</td>
-            <td>홍길동</td>
-            <td></td>
-        </tr>
+        @foreach($business as $item)
+            <tr>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->contact->company_name }}</td>
+                <td>{{ $item->client }}</td>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->expected_sales }}</td>
+                <td>{{ $item->expected_purchase }}</td>
+                <td>{{ $item->expected_sales_profit }}</td>
+                <td>{{ $item->expected_issue_month }}</td>
+                <td>{{ $item->progress_rate }}</td>
+                <td>{{ $item->sales_person }}</td>
+                <td>{{ $item->progress }}</td>
+                <td></td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
     <h3>
@@ -117,45 +96,29 @@
     <table>
         <thead>
         <tr>
-            <th>번호</th>
+            <th>계약번호</th>
             <th>거래처</th>
-            <th>사업장</th>
-            <th>작성자</th>
-            <th>수주번호</th>
-            <th>계약 시작 날짜</th>
-            <th>계약 종료 날짜</th>
-            <th>WinRate</th>
-            <th>진행상태</th>
+            <th>담당자</th>
+            <th>담당부서</th>
+            <th>작성일자</th>
+            <th>수정일자</th>
             <th>조회</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td><button id="firstRow" type="button" style="width: 100%"
-                        value="aa" onclick="javascript:clickTrEvent(this)">조회</button></td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>11</td>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
-            <td>17</td>
-            <td>18</td>
-            <td><button id="SecondRow" type="button" style="width: 100%"
-                        value="aa" onclick="javascript:clickTrEvent(this)">조회</button></td>
-        </tr>
+        @foreach($order as $item)
+            <tr>
+                <td>{{$item->contract_number}}</td>
+                <td>{{$item->customer_name}}</td>
+                <td>{{$item->manager}}</td>
+                <td>{{$item->department}}</td>
+                <td>{{$item->created_at}}</td>
+                <td>{{$item->updated_at}}</td>
+                <td>
+                    <a href="/OrderBook/{{$item->contract_number}}"><input id="firstRow" type="button" style="width: 100%" type="button" value="조회"></a>
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 </div>

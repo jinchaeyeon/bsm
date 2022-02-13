@@ -52,10 +52,6 @@ Route::post('/OrderBook/{orderbook}', [OrderBookController::class, 'update']);
 Route::delete('/OrderBook/{orderbook}', [OrderBookController::class, 'destroy']);
 Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 
-Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
-
-
-
 // 기범
 Route::get('/representative', [RepresentativeController::class, 'Viewer'])->name('representative');
 
@@ -138,13 +134,7 @@ Route::post('/business', 'BusinessController@store');
 Route::put('/business', 'BusinessController@update');
 Route::delete('/business/{business}', 'BusinessController@destroy');
 
-Route::get('/', function () {
-    return view('main');
-});
-
-Route::get('/main', function () {
-    return view('main');
-});
+Route::get('/main', 'MainController@index')->name('main');
 
 // 현준
 
