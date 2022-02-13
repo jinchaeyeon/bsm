@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    use HasFactory;
-    protected $table ='Items';
-    protected $fillable =['content'];
+    protected $table ='items';
+    protected $fillable =['id','name','standard_unit_price','explanation','note'];
 }
