@@ -553,7 +553,7 @@
     <div style="margin-top: 10px;">
 	<label>
         <input type="radio" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
-            담당자명 검색
+            거래처명 검색
         </input>
     </label>
  
