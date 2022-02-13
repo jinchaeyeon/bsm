@@ -520,23 +520,16 @@
             location.href = link;
         };
 
-        function clickSearchEvent2(start) {
-            const s = document.getElementById('start').value;
+        function clickSearchEvent2(trObj) {
+            const s = document.getElementById('search2').value;
             var link = "/ItemSearch2/"+s;
 
             location.href = link;
         };
 
         function clickSearchEvent3(trObj) {
-            const n = document.getElementById('name').value;
+            const n = document.getElementById('search3').value;
             var link = "/ItemSearch3/"+n;
-
-            location.href = link;
-        };
-
-        function clickSearchEvent4(trObj) {
-            const n = document.getElementById('name2').value;
-            var link = "/ItemSearch4/"+n;
 
             location.href = link;
         };
@@ -565,13 +558,6 @@
                 document.getElementById('2').style.display="none";
                 document.getElementById('3').style.display="";
                 document.getElementById('4').style.display="none";
-            }
-            else if (test[3].checked == true )
-            {
-                document.getElementById('1').style.display="none";
-                document.getElementById('2').style.display="none";
-                document.getElementById('3').style.display="none";
-                document.getElementById('4').style.display="";
             }
         }
     </script>
@@ -655,19 +641,19 @@
                 onclick="javascript:checkRadio()">비고</label>
     </div>
     <div id="1" style="display: none;">
-        품목코드 :&nbsp; <input class="registerSearch" type="string"
+        품목코드 :&nbsp; <input id="search1" class="registerSearch" type="string"
                               name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent1(this)"></i></span>
     </div>
     <div id="2" style="display: none;">
-        품목명 :&nbsp; <input class="registerSearch" type="string"
+        품목명 :&nbsp; <input id="search2" class="registerSearch" type="string"
                              name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent2(this)"></i></span>
     </div>
     <div id="3" style="display: none;">
-        비고 :&nbsp; <input class="registerSearch" type="string"
+        비고 :&nbsp; <input id="search3" class="registerSearch" type="string"
                           name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent3(this)"></i></span>
     </div>
 </div>
 </body>
