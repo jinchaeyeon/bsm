@@ -508,35 +508,35 @@
 
     <script type="text/javascript">
             function clickTrEvent(trObj) {
-            var link = "/ItemDetail/"+trObj.value;
+            var link = "/RepresentativeDetail/"+trObj.value;
 
             location.href = link;
         };
 
             function clickSearchEvent1(trObj) {
             const name = document.getElementById('search1').value;
-            var link = "/ItemSearch1/"+name;
+            var link = "/RepresentativeSearch1/"+name;
 
             location.href = link;
         };
 
-            function clickSearchEvent2(start) {
-            const s = document.getElementById('start').value;
-            var link = "/ItemSearch2/"+s;
+            function clickSearchEvent2(trObj) {
+            const s = document.getElementById('search2').value;
+            var link = "/RepresentativeSearch2/"+s;
 
             location.href = link;
         };
 
             function clickSearchEvent3(trObj) {
-            const n = document.getElementById('name').value;
-            var link = "/ItemSearch3/"+n;
+            const n = document.getElementById('search3').value;
+            var link = "/RepresentativeSearch3/"+n;
 
             location.href = link;
         };
 
             function clickSearchEvent4(trObj) {
-            const n = document.getElementById('name2').value;
-            var link = "/ItemSearch4/"+n;
+            const n = document.getElementById('search4').value;
+            var link = "/RepresentativeSearch4/"+n;
 
             location.href = link;
         };
@@ -659,24 +659,24 @@
                 onclick="javascript:checkRadio()">소속본부</label>
     </div>
     <div id="1" style="display: none;">
-        담당자번호 :&nbsp; <input class="registerSearch" type="string"
+        담당자번호 :&nbsp; <input id="search1" class="registerSearch" type="string"
                              name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent1(search1)"></i></span>
     </div>
     <div id="2" style="display: none;">
-        담당자명 :&nbsp; <input class="registerSearch" type="string"
+        담당자명 :&nbsp; <input id="search2" class="registerSearch" type="string"
                               name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent2(search2)"></i></span>
     </div>
     <div id="3" style="display: none;">
-        직급 :&nbsp; <input class="registerSearch" type="string"
+        직급 :&nbsp; <input id="search3" class="registerSearch" type="string"
                               name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent3(search3)"></i></span>
     </div>
     <div id="4" style="display: none;">
-        소속본부 :&nbsp; <input class="registerSearch" type="string"
+        소속본부 :&nbsp; <input id="search4" class="registerSearch" type="string"
                               name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent4(search4)"></i></span>
     </div>
 </div>
 </body>
