@@ -614,17 +614,20 @@
     <div class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
-            <h1 class="title">영업 담당자 등록</h1>
-            <label>담당자번호</label> <input class="registerSearch" type="number" name="number">
-            <label>담당자명</label> <input class="registerSearch" type="number" name="number">
-            <label>직급</label> <input class="registerSearch" type="number" name="number">
-            <label>소속본부</label> <input class="registerSearch" type="number" name="number">
-            <label>연락처</label> <input class="registerSearch" type="number" name="number">
-            <label>이메일</label> <input class="registerSearch" type="number" name="number">
-            <input class="registerSearch" type="button" id="register" value="등록" onclick="javascript:clickRegisterEvent(this)">
+            <h1 class="title">품목 등록</h1>
+            <form action="/representative/create" method="POST">
+                <label>계정</label> <input class="registerSearch" type="text" name="id">
+                <label>담당자번호</label> <input class="registerSearch" type="text" name="contact_id">
+                <label>담당자명</label> <input class="registerSearch" type="text" name="manager_name">
+                <label>직급</label> <input class="registerSearch" type="text" name="rank">
+                <label>소속본부</label> <input class="registerSearch" type="text" name="division">
+                <label>연락처</label> <input class="registerSearch" type="text" name="contact">
+                <label>이메일</label> <input class="registerSearch" type="text" name="email">
+                @csrf
+                <input type="submit" value="등록" >
+            </form>
         </div>
     </div>
-
     <script type="text/javascript">
         var modal = document.querySelector(".modal");
         var trigger = document.querySelector(".trigger");

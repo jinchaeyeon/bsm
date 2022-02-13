@@ -508,25 +508,41 @@
 
     <script type="text/javascript">
         function clickTrEvent(trObj) {
-            var link = "http://127.0.0.1:8000/authorityDetail";
+            var link = "/AuthorityDetail/"+trObj.value;
 
             location.href = link;
         };
 
-        function clickRegisterEvent(trObj) {
-            var link = "http://127.0.0.1:8000/authority";
+        function clickSearchEvent1(trObj) {
+            const name = document.getElementById('search1').value;
+            var link = "/AuthoritySearch1/"+name;
 
             location.href = link;
         };
 
-        function clickSearchEvent(trObj) {
-            var link = "http://127.0.0.1:8000/authority";
+        function clickSearchEvent2(trObj) {
+            const s = document.getElementById('search2').value;
+            var link = "/AuthoritySearch2/"+s;
 
             location.href = link;
         };
+
+        function clickSearchEvent3(trObj) {
+            const n = document.getElementById('search3').value;
+            var link = "/AuthoritySearch3/"+n;
+
+            location.href = link;
+        };
+
+        function clickSearchEvent4(trObj) {
+            const n = document.getElementById('search4').value;
+            var link = "/AuthoritySearch4/"+n;
+
+            location.href = link;
+        };
+
 
         function checkRadio()
-
         {
             var test = document.getElementsByName('chk_info');
             if (test[0].checked == true )
@@ -563,6 +579,7 @@
 <body class="antialiased">
 @include('Layout.Sidebar')
 <div class="min-h-screen" style="margin-left: 5%; margin-right: 5%;width: 77%;float:right">
+
     <table class="table_Representative_List"
            style="text-align: center; border: 1px solid black; width: 100%;">
         <caption>
@@ -577,25 +594,45 @@
             <th>수정/삭제</th>
             <th>견적서 다운로드</th>
             <th>수주품의서 다운로드</th>
+            <th>Submit</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($Authoritys as $Authority)
+        @foreach($Users as $User)
+            <form action="/authority/checked" method="POST">
+                @csrf
             <tr>
-                <td>{{$Authority->contact_id}}</td>
-                <td>{{$Authority->manager_name}}</td>
-                <td>{{$Authority->rank}}</td>
-                <td>{{$Authority->division}}</td>
-                <td><input type="checkbox" name="update" value="ROW_3"></td>
-                <td><input type="checkbox" name="estimate" value="ROW_3"></td>
-                <td><input type="checkbox" name="orders" value="ROW_3"></td>
+                <input type="hidden" name="id" value = {{$User->id}}>
+                <td>{{$User->contact_id}}</td>
+                <td>{{$User->manager_name}}</td>
+                <td>{{$User->rank}}</td>
+                <td>{{$User->division}}</td>
+
+                @if ($User->authority_update == '1')
+                    <td><input type="checkbox" name="authoritys[]" value="update" checked ></td>
+                @else
+                    <td><input type="checkbox" name="authoritys[]" value="update"  ></td>
+                @endif
+
+                @if ($User->authority_estimate == '1')
+                    <td><input type="checkbox" name="authoritys[]" value="estimate" checked ></td>
+                @else
+                    <td><input type="checkbox" name="authoritys[]" value="estimate" ></td>
+                @endif
+
+                @if ($User->authority_order == '1')
+                    <td><input type="checkbox" name="authoritys[]" value="order" checked ></td>
+                @else
+                    <td><input type="checkbox" name="authoritys[]" value="order"  ></td>
+                @endif
+
+                <td><button type="submit">Submit</button></td>
             </tr>
+            </form>
         @endforeach
         </tbody>
     </table>
-    <div style="display: inline-block;"> {{ $Authoritys->links() }}</div>
-
-
+    <div style="display: inline-block;"> {{ $Users->links() }}</div>
     <script type="text/javascript">
         var modal = document.querySelector(".modal");
         var trigger = document.querySelector(".trigger");
@@ -620,34 +657,34 @@
         window.addEventListener("click", windowOnClick);
     </script>
     <div style="margin-top: 10px;">
-        <label><input type="radio" name="chk_info" value="사용자코드"
-                      onclick="javascript:checkRadio()">사용자코드</label><label><input
-                type="radio" name="chk_info" value="사용자명"
-                onclick="javascript:checkRadio()">사용자명</label> <label><input
+        <label><input type="radio" name="chk_info" value="담당자번호"
+                      onclick="javascript:checkRadio()">담당자번호</label><label><input
+                type="radio" name="chk_info" value="담당자명"
+                onclick="javascript:checkRadio()">담당자명</label> <label><input
                 type="radio" name="chk_info" value="직급"
                 onclick="javascript:checkRadio()">직급</label> <label><input
                 type="radio" name="chk_info" value="소속본부"
                 onclick="javascript:checkRadio()">소속본부</label>
     </div>
     <div id="1" style="display: none;">
-        사용자코드 :&nbsp; <input class="registerSearch" type="string"
+        담당자번호 :&nbsp; <input id="search1" class="registerSearch" type="string"
                              name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent1(search1)"></i></span>
     </div>
     <div id="2" style="display: none;">
-        사용자명 :&nbsp; <input class="registerSearch" type="string"
+        담당자명 :&nbsp; <input id="search2" class="registerSearch" type="string"
                             name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent2(search2)"></i></span>
     </div>
     <div id="3" style="display: none;">
-        직급 :&nbsp; <input class="registerSearch" type="string"
+        직급 :&nbsp; <input id="search3" class="registerSearch" type="string"
                           name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent3(search3)"></i></span>
     </div>
     <div id="4" style="display: none;">
-        소속본부 :&nbsp; <input class="registerSearch" type="string"
+        소속본부 :&nbsp; <input id="search4" class="registerSearch" type="string"
                             name="string">&nbsp;&nbsp;<span style="color: grey"><i
-                class="fas fa-search" onclick="javascript:clickSearchEvent(this)"></i></span>
+                class="fas fa-search" onclick="javascript:clickSearchEvent4(search4)"></i></span>
     </div>
 </div>
 </body>
