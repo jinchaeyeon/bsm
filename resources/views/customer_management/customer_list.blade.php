@@ -20,279 +20,218 @@
             line-height: 1.15;
             -webkit-text-size-adjust: 100%
         }
-
         body {
             margin: 0
         }
-
         a {
             background-color: transparent
         }
-
         [hidden] {
             display: none
         }
-
         html {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
             Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
             Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
             line-height: 1.5
         }
-
         *, :after, :before {
             box-sizing: border-box;
             border: 0 solid #e2e8f0
         }
-
         a {
             color: inherit;
             text-decoration: inherit
         }
-
         svg, video {
             display: block;
             vertical-align: middle
         }
-
         video {
             max-width: 100%;
             height: auto
         }
-
         .bg-white { -
         -bg-opacity: 1;
             background-color: #fff;
             background-color: rgba(255, 255, 255, var(- -bg-opacity))
         }
-
         .bg-gray-100 { -
         -bg-opacity: 1;
             background-color: #f7fafc;
             background-color: rgba(247, 250, 252, var(- -bg-opacity))
         }
-
         .border-gray-200 { -
         -border-opacity: 1;
             border-color: #edf2f7;
             border-color: rgba(237, 242, 247, var(- -border-opacity))
         }
-
         .border-t {
             border-top-width: 1px
         }
-
         .flex {
             display: flex
         }
-
         .grid {
             display: grid
         }
-
         .hidden {
             display: none
         }
-
         .items-center {
             align-items: center
         }
-
         .justify-center {
             justify-content: center
         }
-
         .font-semibold {
             font-weight: 600
         }
-
         .h-5 {
             height: 1.25rem
         }
-
         .h-8 {
             height: 2rem
         }
-
         .h-16 {
             height: 4rem
         }
-
         .text-sm {
             font-size: .875rem
         }
-
         .text-lg {
             font-size: 1.125rem
         }
-
         .leading-7 {
             line-height: 1.75rem
         }
-
         .mx-auto {
             margin-left: auto;
             margin-right: auto
         }
-
         .ml-1 {
             margin-left: .25rem
         }
-
         .mt-2 {
             margin-top: .5rem
         }
-
         .mr-2 {
             margin-right: .5rem
         }
-
         .ml-2 {
             margin-left: .5rem
         }
-
         .mt-4 {
             margin-top: 1rem
         }
-
         .ml-4 {
             margin-left: 1rem
         }
-
         .mt-8 {
             margin-top: 2rem
         }
-
         .ml-12 {
             margin-left: 3rem
         }
-
         .-mt-px {
             margin-top: -1px
         }
-
         .max-w-6xl {
             max-width: 72rem
         }
-
         .min-h-screen {
             min-height: 100vh
         }
-
         .overflow-hidden {
             overflow: hidden
         }
-
         .p-6 {
             padding: 1.5rem
         }
-
         .py-4 {
             padding-top: 1rem;
             padding-bottom: 1rem
         }
-
         .px-6 {
             padding-left: 1.5rem;
             padding-right: 1.5rem
         }
-
         .pt-8 {
             padding-top: 2rem
         }
-
         .fixed {
             position: fixed
         }
-
         .relative {
             position: relative
         }
-
         .top-0 {
             top: 0
         }
-
         .right-0 {
             right: 0
         }
-
         .shadow {
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0
             rgba(0, 0, 0, .06)
         }
-
         .text-center {
             text-align: center
         }
-
         .text-gray-200 { -
         -text-opacity: 1;
             color: #edf2f7;
             color: rgba(237, 242, 247, var(- -text-opacity))
         }
-
         .text-gray-300 { -
         -text-opacity: 1;
             color: #e2e8f0;
             color: rgba(226, 232, 240, var(- -text-opacity))
         }
-
         .text-gray-400 { -
         -text-opacity: 1;
             color: #cbd5e0;
             color: rgba(203, 213, 224, var(- -text-opacity))
         }
-
         .text-gray-500 { -
         -text-opacity: 1;
             color: #a0aec0;
             color: rgba(160, 174, 192, var(- -text-opacity))
         }
-
         .text-gray-600 { -
         -text-opacity: 1;
             color: #718096;
             color: rgba(113, 128, 150, var(- -text-opacity))
         }
-
         .text-gray-700 { -
         -text-opacity: 1;
             color: #4a5568;
             color: rgba(74, 85, 104, var(- -text-opacity))
         }
-
         .text-gray-900 { -
         -text-opacity: 1;
             color: #1a202c;
             color: rgba(26, 32, 44, var(- -text-opacity))
         }
-
         .underline {
             text-decoration: underline
         }
-
         .antialiased {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale
         }
-
         .w-5 {
             width: 1.25rem
         }
-
         .w-8 {
             width: 2rem
         }
-
         .w-auto {
             width: auto
         }
-
         .grid-cols-1 {
             grid-template-columns: repeat(1, minmax(0, 1fr))
         }
-
         @media ( min-width :640px) {
             .sm\:rounded-lg {
                 border-radius: .5rem
@@ -329,7 +268,6 @@
                 text-align: right
             }
         }
-
         @media ( min-width :768px) {
             .md\:border-t-0 {
                 border-top-width: 0
@@ -341,14 +279,12 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr))
             }
         }
-
         @media ( min-width :1024px) {
             .lg\:px-8 {
                 padding-left: 2rem;
                 padding-right: 2rem
             }
         }
-
         @media ( prefers-color-scheme :dark) {
             .dark\:bg-gray-800 { -
             -bg-opacity: 1;
@@ -404,27 +340,22 @@
             -webkit-justify-content: center;
             -ms-flex-pack: center;
         }
-
         th, th, td {
             text-align: center;
         }
-
         th {
             background-color: #eeeeee;
         }
-
         body {
             text-align: center;
             display: block;
             margin: 0 auto;
             font-size: 16px;
         }
-
         form {
             margin: 0 auto;
             width: 459px;
         }
-
         .registerSearch, textarea {
             width: 439px;
             height: 27px;
@@ -436,11 +367,9 @@
             font-size: 0.9em;
             color: #3a3a3a;
         }
-
         .registerSearch:focus, textarea:focus {
             border: 1px solid #97d6eb;
         }
-
         #register {
             width: 127px;
             height: 48px;
@@ -449,13 +378,11 @@
             margin-top: 20px;
             cursor: pointer;
         }
-
         #register:hover {
             color: #fff;
             background-color: #216282;
             opacity: 0.9;
         }
-
         .modal {
             position: fixed;
             left: 0;
@@ -469,7 +396,6 @@
             transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform
             0.25s;
         }
-
         .modal-content {
             position: absolute;
             top: 50%;
@@ -481,7 +407,6 @@
             height: 550px;
             border-radius: 0.5rem;
         }
-
         .close-button {
             float: right;
             width: 1.5rem;
@@ -491,18 +416,15 @@
             border-radius: 0.25rem;
             background-color: lightgray;
         }
-
         .close-button:hover {
             background-color: darkgray;
         }
-
         .show-modal {
             opacity: 1;
             visibility: visible;
             transform: scale(1.0);
             transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
         }
-
         #1, #2{
             display: none;
         }
@@ -512,12 +434,10 @@
 			function clickSearchEvent() {
 				document.getElementById('search').submit();
 			};
-
 			function click_go_back_event(){
 				var link = "http://127.0.0.1:8000/customer_management";
             	location.href = link;
 			}
-
 			function checkRadio()
 			{
 			var test = document.getElementsByName('chk_info');
@@ -526,21 +446,18 @@
 				 document.getElementById('1').style.display="";
 				 document.getElementById('2').style.display="none";
 				 document.getElementById('3').style.display="none";
-
 			}
 			else if (test[1].checked == true )
 			{
 				 document.getElementById('1').style.display="none";
 				 document.getElementById('2').style.display="";
 				 document.getElementById('3').style.display="none";
-
 			}
 			else if (test[2].checked == true )
 			{
 				 document.getElementById('1').style.display="none";
 				 document.getElementById('2').style.display="none";
 				 document.getElementById('3').style.display="";
-
 			}
 			}
 </script>
@@ -566,8 +483,9 @@
           </tr>
       </thead>
 			<tbody id="print_list">
-        @foreach($customer as $item)	
-        <tr>				
+
+        @foreach($customer as $item)
+        <tr>
           <td>{{$item->company_name}}</td>
           <td>{{$item->company_register_number}}</td>
           <td>{{$item->phone}}</td>
@@ -579,6 +497,7 @@
 		  </td>
         </tr>
         @endforeach
+
 			</tbody>
 		</table>
         <div style="text-align: center">
@@ -614,7 +533,6 @@
                 var modal = document.querySelector(".modal");
                 var trigger = document.querySelector(".trigger");
                 var closeButton = document.querySelector(".close-button");
-
                 function toggleModal() {
                     modal.classList.toggle("show-modal");
                 }
@@ -624,15 +542,12 @@
                         toggleModal();
                     }
                 }
-
                 trigger.addEventListener("click", toggleModal);
                 closeButton.addEventListener("click", toggleModal);
                 modal.addEventListener("click", windowOnClick);
-
                 $(".ch").click(function(e){
                     e.stopImmediatePropagation();
                 });
-
         </script>
 
     <div style="margin-top: 10px;">
@@ -653,7 +568,6 @@
 		전체 검색
 	</label>
     </div>
-    
     <form id="search" style="display:inline" action="/customer_management" method="POST">
 		@csrf
         {{ method_field('PUT') }}
