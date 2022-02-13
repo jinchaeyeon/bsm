@@ -59,8 +59,44 @@ Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 // 기범
 Route::get('/representative', [RepresentativeController::class, 'Viewer']);
 
+Route::get('/RepresentativeSearch1/{search1}', function ($search1) {
+    $Users = DB::table("users")->where("contact_id",$search1)->paginate(15);
+
+    return view('admin.representative',['Users' => $Users]);
+});
+Route::get('/RepresentativeSearch2/{search2}', function ($search2) {
+    $Users = DB::table("users")->where("manager_name",$search2)->paginate(15);
+
+    return view('admin.representative',['Users' => $Users]);
+});
+Route::get('/RepresentativeSearch3/{search3}', function ($search3) {
+    $Users = DB::table("users")->where("rank",$search3)->paginate(15);
+
+    return view('admin.representative',['Users' => $Users]);
+});
+Route::get('/RepresentativeSearch4/{search4}', function ($search4) {
+    $Users = DB::table("users")->where("division",$search4)->paginate(15);
+
+    return view('admin.representative',['Users' => $Users]);
+});
+
 Route::get('/item', [ItemController::class, 'Viewer']);
 
+Route::get('/ItemSearch1/{search1}', function ($search1) {
+    $Items = DB::table("items")->where("id",$search1)->paginate(15);
+
+    return view('admin.item',['Items' => $Items]);
+});
+Route::get('/ItemSearch2/{search2}', function ($search2) {
+    $Items = DB::table("items")->where("name",$search2)->paginate(15);
+
+    return view('admin.item',['Items' => $Items]);
+});
+Route::get('/ItemSearch3/{search3}', function ($search3) {
+    $Items = DB::table("items")->where("note",$search3)->paginate(15);
+
+    return view('admin.item',['Items' => $Items]);
+});
 Route::get('/authority', [AuthorityController::class, 'Viewer']);
 
 
