@@ -53,7 +53,7 @@ Route::delete('/OrderBook/{orderbook}', [OrderBookController::class, 'destroy'])
 Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 
 // 기범
-Route::get('/representative', [RepresentativeController::class, 'Viewer']);
+Route::get('/representative', [RepresentativeController::class, 'Viewer'])->name('representative');
 
 Route::get('/RepresentativeSearch1/{search1}', function ($search1) {
     $Users = DB::table("users")->where("contact_id",$search1)->paginate(15);
@@ -76,7 +76,9 @@ Route::get('/RepresentativeSearch4/{search4}', function ($search4) {
     return view('admin.representative',['Users' => $Users]);
 });
 
-Route::get('/item', [ItemController::class, 'Viewer']);
+Route::POST('/representative/create', [RepresentativeController::class, 'store']);
+
+Route::get('/item', [ItemController::class, 'Viewer'])->name('item');
 
 Route::get('/ItemSearch1/{search1}', function ($search1) {
     $Items = DB::table("items")->where("id",$search1)->paginate(15);
@@ -96,8 +98,29 @@ Route::get('/ItemSearch3/{search3}', function ($search3) {
 
 Route::POST('/item/create', [ItemController::class, 'store']);
 
-Route::get('/authority', [AuthorityController::class, 'Viewer']);
+Route::get('/authority', [AuthorityController::class, 'Viewer'])->name('authority');
 
+Route::get('/AuthoritySearch1/{search1}', function ($search1) {
+    $Users = DB::table("users")->where("contact_id",$search1)->paginate(15);
+
+    return view('admin.authority',['Users' => $Users]);
+});
+Route::get('/AuthoritySearch2/{search2}', function ($search2) {
+    $Users = DB::table("users")->where("manager_name",$search2)->paginate(15);
+
+    return view('admin.authority',['Users' => $Users]);
+});
+Route::get('/AuthoritySearch3/{search3}', function ($search3) {
+    $Users = DB::table("users")->where("rank",$search3)->paginate(15);
+
+    return view('admin.authority',['Users' => $Users]);
+});
+Route::get('/AuthoritySearch4/{search4}', function ($search4) {
+    $Users = DB::table("users")->where("division",$search4)->paginate(15);
+
+    return view('admin.authority',['Users' => $Users]);
+});
+Route::POST('/authority/checked', [AuthorityController::class, 'store']);
 
 // 준재
 Route::get('/pipeline', 'PipeController@index')->name('pipeline');
