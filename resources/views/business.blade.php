@@ -13,7 +13,7 @@
     <h1>
         사업
     </h1>
-    <h2>{{$pipe->first()->name}} 파이프 라인</h2>
+    <h2>{{$pipe->first()->name}} 파이프라인</h2>
     <div style="margin-top: 10px;">
         <label>
             <input type="hidden" name="chk_info" value="부서별" onclick="javascript:checkRadio()">
