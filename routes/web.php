@@ -8,8 +8,11 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ManagerManagementController;
 use App\Http\Controllers\CustomerManagementController;
 
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\RepresentativeController;
+use App\Http\Controllers\AuthorityController;
 
-// 채연
+// 채연 
 Route::get('/Estimate', [EstimateController::class, 'Viewer']);
 
 Route::get('/EstimateSearch1/{search1}', function ($search1) {
@@ -39,33 +42,25 @@ Route::get('/EstimateDetail/{SecondRow}', function ($SecondRow) {
 	$tax_total = DB::select('SELECT sum(estimate_items.price_include_tax) as tax_total FROM estimate_items, items where estimate_id = ? and estimate_items.item_id = items.id', [$SecondRow]);
 	return view('Estimate.EstimateDetail',['Estimates' => $Estimates, 'items' => $items, 'total'=>$total, 'tax_total'=> $tax_total]);
 });
-Route::get('/OrderBook', [OrderBookController::class, 'Viewer']);   // 수주 품위서
-Route::get('/OrderBookRegister', [OrderBookController::class, 'Register']);
-Route::get('/OrderBookDetail', [OrderBookController::class, 'Detail']);
-Route::get('/OrderBookCorrection', [OrderBookController::class, 'Correction']);
+
 // 수주품의서
-Route::get('/OrderBook', [OrderBookController::class, 'index']); // 등록
+Route::get('/OrderBook', [OrderBookController::class, 'index']);
 Route::POST('/OrderBook', [OrderBookController::class, 'index']);
 Route::get('/OrderBook/create', [OrderBookController::class, 'create']);
 Route::POST('/OrderBook/create', [OrderBookController::class, 'store']);
-Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 Route::post('/OrderBook/{orderbook}', [OrderBookController::class, 'update']);
 Route::delete('/OrderBook/{orderbook}', [OrderBookController::class, 'destroy']);
+Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 
 // 기범
-Route::get('/representative', function () {
-    return view('admin/representative');
-});
+Route::get('/representative', [RepresentativeController::class, 'Viewer']);
 
-Route::get('/item', function () {
-    return view('admin/item');
-});
+Route::get('/item', [ItemController::class, 'Viewer']);
 
-Route::get('/authority', function () {
-    return view('admin/authority');
-});
+Route::get('/authority', [AuthorityController::class, 'Viewer']);
+
 
 Auth::routes();
 
@@ -78,20 +73,31 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// 준재
-Route::get('/pipeline', 'PipeController@index')->name('pipeline');
-Route::post('/pipeline', 'PipeController@store')->name('pipeline');
-Route::put('/pipeline', 'PipeController@update')->name('pipeline');
-Route::delete('/pipeline', 'PipeController@destroy')->name('pipeline');
+// 준재 
+Route::get('/pipeline', function () {
+    return view('pipe');
+});
 
-Route::get('/business', 'BusinessController@index')->name('business');
+Route::get('/business', function () {
+    return view('business');
+});
 
 Route::get('/', function () {
     return view('main');
 });
 
-// 현준
-Route::get('/customer_management',[CustomerManagementController::class, 'Viewer']);
-Route::get('/manager_management', [ManagerManagementController::class, 'Viewer']);
 
+// 현준
+
+// 고객관리
+Route::get('/customer_management',[CustomerManagementController::class, 'index']);
+Route::put('/customer_management', [CustomerManagementController::class, 'index']);
+Route::POST('/customer_management', [CustomerManagementController::class, 'store']);
+Route::get('/customer_management/{customer}', [CustomerManagementController::class, 'show']);
+Route::post('/customer_management/{customer}', [CustomerManagementController::class, 'update']);
+Route::delete('/customer_management/{customer}', [CustomerManagementController::class, 'destroy']);
+
+
+//거래처 관리
+Route::get('/manager_management', [ManagerManagementController::class, 'Viewer']);
 
