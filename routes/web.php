@@ -115,13 +115,7 @@ Route::post('/business', 'BusinessController@store');
 Route::put('/business', 'BusinessController@update');
 Route::delete('/business/{business}', 'BusinessController@destroy');
 
-Route::get('/', function () {
-    return view('main');
-});
-
-Route::get('/main', function () {
-    return view('main');
-});
+Route::get('/main', 'MainController@index')->name('main');
 
 // 현준
 
