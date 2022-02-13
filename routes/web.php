@@ -12,7 +12,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RepresentativeController;
 use App\Http\Controllers\AuthorityController;
 
-// 채연 
+// 채연
 Route::get('/Estimate', [EstimateController::class, 'Viewer']);
 
 Route::get('/EstimateSearch1/{search1}', function ($search1) {
@@ -54,38 +54,74 @@ Route::get('/OrderBook/{orderbook}', [OrderBookController::class, 'show']);
 
 Route::get('/Statistics', [StatisticsController::class, 'Viewer']);
 
+
+
 // 기범
 Route::get('/representative', [RepresentativeController::class, 'Viewer']);
 
+Route::get('/RepresentativeSearch1/{search1}', function ($search1) {
+    $Users = DB::table("users")->where("contact_id",$search1)->paginate(15);
+
+    return view('admin.representative',['Users' => $Users]);
+});
+Route::get('/RepresentativeSearch2/{search2}', function ($search2) {
+    $Users = DB::table("users")->where("manager_name",$search2)->paginate(15);
+
+    return view('admin.representative',['Users' => $Users]);
+});
+Route::get('/RepresentativeSearch3/{search3}', function ($search3) {
+    $Users = DB::table("users")->where("rank",$search3)->paginate(15);
+
+    return view('admin.representative',['Users' => $Users]);
+});
+Route::get('/RepresentativeSearch4/{search4}', function ($search4) {
+    $Users = DB::table("users")->where("division",$search4)->paginate(15);
+
+    return view('admin.representative',['Users' => $Users]);
+});
+
 Route::get('/item', [ItemController::class, 'Viewer']);
+
+Route::get('/ItemSearch1/{search1}', function ($search1) {
+    $Items = DB::table("items")->where("id",$search1)->paginate(15);
+
+    return view('admin.item',['Items' => $Items]);
+});
+Route::get('/ItemSearch2/{search2}', function ($search2) {
+    $Items = DB::table("items")->where("name",$search2)->paginate(15);
+
+    return view('admin.item',['Items' => $Items]);
+});
+Route::get('/ItemSearch3/{search3}', function ($search3) {
+    $Items = DB::table("items")->where("note",$search3)->paginate(15);
+
+    return view('admin.item',['Items' => $Items]);
+});
+
+Route::POST('/item/create', [ItemController::class, 'store']);
 
 Route::get('/authority', [AuthorityController::class, 'Viewer']);
 
 
-Auth::routes();
+// 준재
+Route::get('/pipeline', 'PipeController@index')->name('pipeline');
+Route::post('/pipeline', 'PipeController@store')->name('pipeline');
+Route::put('/pipeline', 'PipeController@update')->name('pipeline');
+Route::delete('/pipeline', 'PipeController@destroy')->name('pipeline');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// 준재 
-Route::get('/pipeline', function () {
-    return view('pipe');
-});
-
-Route::get('/business', function () {
-    return view('business');
-});
+Route::get('/business', 'BusinessController@main')->name('business');
+Route::get('/business/{id}', 'BusinessController@index')->name('business2');
+Route::post('/business', 'BusinessController@store');
+Route::put('/business', 'BusinessController@update');
+Route::delete('/business/{business}', 'BusinessController@destroy');
 
 Route::get('/', function () {
     return view('main');
 });
 
+Route::get('/main', function () {
+    return view('main');
+});
 
 // 현준
 

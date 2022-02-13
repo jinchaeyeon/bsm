@@ -574,107 +574,27 @@
             <th>사용자명</th>
             <th>직급</th>
             <th>소속본부</th>
-            <th>수정/삭제 권한</th>
+            <th>수정/삭제</th>
             <th>견적서 다운로드</th>
             <th>수주품의서 다운로드</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>0001</td>
-            <td>진채연</td>
-            <td>부장</td>
-            <td>인공지능연구실</td>
-            <td><input type="checkbox" name="update" value="ROW_3"></td>
-            <td><input type="checkbox" name="estimate" value="ROW_3"></td>
-            <td><input type="checkbox" name="_selected_" value="ROW_3"></td>
-        </tr>
-        <tr>
-            <td>0002</td>
-            <td>이준재</td>
-            <td>차장</td>
-            <td>인공지능연구실</td>
-            <td><input type="checkbox" name="update" value="ROW_3"></td>
-            <td><input type="checkbox" name="estimate" value="ROW_3"></td>
-            <td><input type="checkbox" name="orders" value="ROW_3"></td>
-        </tr>
-        <tr>
-            <td>0003</td>
-            <td>최기범</td>
-            <td>과장</td>
-            <td>인공지능연구실</td>
-            <td><input type="checkbox" name="update" value="ROW_3"></td>
-            <td><input type="checkbox" name="estimate" value="ROW_3"></td>
-            <td><input type="checkbox" name="orders" value="ROW_3"></td>
-        </tr>
-        <tr>
-            <td>0004</td>
-            <td>김현준</td>
-            <td>사원</td>
-            <td>인공지능연구실</td>
-            <td><input type="checkbox" name="update" value="ROW_3"></td>
-            <td><input type="checkbox" name="estimate" value="ROW_3"></td>
-            <td><input type="checkbox" name="orders" value="ROW_3"></td>
-        </tr>
+        @foreach($Authoritys as $Authority)
+            <tr>
+                <td>{{$Authority->contact_id}}</td>
+                <td>{{$Authority->manager_name}}</td>
+                <td>{{$Authority->rank}}</td>
+                <td>{{$Authority->division}}</td>
+                <td><input type="checkbox" name="update" value="ROW_3"></td>
+                <td><input type="checkbox" name="estimate" value="ROW_3"></td>
+                <td><input type="checkbox" name="orders" value="ROW_3"></td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
-    <div style="width: 5%; display: inline-block;"></div>
-    <?php
+    <div style="display: inline-block;"> {{ $Authoritys->links() }}</div>
 
-    function pageing()
-    {
-
-        // 한번에 출력할 data수
-        $view_article = 2;
-        // page초기값 패이징여부
-        if (isset($_GET['page']))
-            $page = $_GET['page'];
-        else
-            $page = 1;
-        // 데이터 시작 번호
-        $start = ($page - 1) * $view_article;
-
-        // 전체 칼럼 수
-        $total = 2;
-
-        // 전체 페이지
-        $total_page = ceil($total / $view_article);
-        // 시작페이지
-        if ($page % 10) {
-            $start_page = $page - $page % 10 + 1;
-        } else {
-            $start_page = $page - 9;
-        }
-        // 마지막 페이지
-        $end_page = $start_page + 10;
-
-        // 초기 페이지로이동
-        if ($page != 1) {
-            echo "<font><a href=\"Customer_List.php?page=1\"><<</a></font>&nbsp;&nbsp;";
-        } else {
-            echo "<font><<</font>&nbsp;&nbsp;";
-        }
-
-        // 중간페이지 출력
-        for ($i = $start_page; $i < $end_page; $i ++) {
-            if ($i > $total_page)
-                break;
-            if ($i == $page) {
-                echo "(<font>$i</a></font>)&nbsp;&nbsp;";
-            } else {
-                echo "<font><a href=\"Customer_List.php?page=$i\">$i</a></font>&nbsp;&nbsp;";
-            }
-        }
-
-        // 마지막 페이지로 이동
-        if ($page != $total_page) {
-            echo "<font><a href=\"Customer_List.php?page=$total_page\">>></a></font>&nbsp;&nbsp;";
-        } else {
-            echo "<font>>></a></font>&nbsp;&nbsp;";
-        }
-    }
-
-    pageing()?>
 
     <script type="text/javascript">
         var modal = document.querySelector(".modal");

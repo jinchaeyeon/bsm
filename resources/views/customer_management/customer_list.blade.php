@@ -556,7 +556,7 @@
             거래처명 검색
         </input>
     </label>
- 
+
     <label>
         <input type="radio" name="chk_info" value="담당자별" onclick="javascript:checkRadio()">
             대표자명 검색
@@ -572,7 +572,7 @@
 		@csrf
         {{ method_field('PUT') }}
     <div id="1" style="display: none;">
-        거래처명 :&nbsp; 
+        거래처명 :&nbsp;
 		<input class="registerSearch" type="string" name="company_name" >&nbsp;&nbsp;
 		<span style="color: grey">
 			<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
@@ -580,7 +580,7 @@
 	</div>
 
     <div id="2" style="display: none;">
-        대표자명 :&nbsp; 
+        대표자명 :&nbsp;
 		<input class="registerSearch" type="string" name="ceo_name">&nbsp;&nbsp;
 		<span style="color: grey">
 			<i class="fas fa-search" onclick="javascript:clickSearchEvent()"></i>
@@ -588,7 +588,7 @@
 	</div>
 
     <div id="3" style="display: none;">
-        전체검색 :&nbsp; 
+        전체검색 :&nbsp;
 	</div>
 
     </form>
