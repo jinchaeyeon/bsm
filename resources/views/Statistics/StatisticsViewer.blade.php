@@ -504,11 +504,7 @@ else if (test[5].checked == true )
 				type="radio" name="chk_info" value="연도별"
 				onclick="javascript:checkRadio()">연도별</label><label><input
 				type="radio" name="chk_info" value="사업별"
-				onclick="javascript:checkRadio()">사업별</label><select name="type"
-				id="type" style="float: right;">
-				<option value="상위별">상위별</option>
-				<option value="하위별">하위별</option>
-			</select>
+				onclick="javascript:checkRadio()">사업별</label>
 		</div>
 		<div id="1" style="display: none; height: 500px;"></div>
 		<script>

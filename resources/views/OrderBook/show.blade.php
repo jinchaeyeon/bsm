@@ -732,4 +732,3 @@ th {
 		</script>
 	</div>
 @endsection
-
