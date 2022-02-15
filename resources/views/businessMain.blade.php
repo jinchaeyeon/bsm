@@ -9,11 +9,11 @@
 @include('Layout.Sidebar')
 <div class="min-h-screen" style="zmargin-left: 5%; margin-right: 5%;width: 77%;float:right">
     <h1>
-        진행사황 관리
+        진행상황 관리
     </h1>
     <table>
         <thead>
-        <td>명칭</td>
+        <td>파이프라인</td>
         <td></td>
         </thead>
         <tbody>

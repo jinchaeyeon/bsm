@@ -24,5 +24,7 @@ class ItemController extends Controller
         $items->standard_unit_price = $request->standard_unit_price;
         $items->note = $request->note;
         $items->save();
+
+        return redirect()->route('item');
     }
 }
