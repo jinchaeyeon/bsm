@@ -568,6 +568,7 @@
 		전체 검색
 	</label>
     </div>
+    
     <form id="search" style="display:inline" action="/customer_management" method="POST">
 		@csrf
         {{ method_field('PUT') }}
