@@ -552,8 +552,8 @@ th {
 			</thead>
 			<tbody>
 				<tr >
-					<td >1</td>
-					<td style="word-break: break-all; ">
+					<td>1</td>
+					<td>
 						<input type="text" name='item1' id="item1" value="{{$temp['orderbook_sales'][0]->item}}">
 					</td>
 					<td><input type="textarea" name='count1' id="count1" value="{{$temp['orderbook_sales'][0]->count}}"></input></td>
@@ -566,8 +566,8 @@ th {
 					<td><input type="text" name='note1' id="note1" value="{{$temp['orderbook_sales'][0]->note}}"></input></td>
 				</tr>
 				<tr>
-					<td height="10">2</td>
-					<td style="word-break: break-all; ">
+					<td >2</td>
+					<td>
 						<input type="text" name='item2' id="item2" value="{{$temp['orderbook_sales'][1]->item}}">
 					</td>
 					<td><input type="text" name='count2' id="count2" value="{{$temp['orderbook_sales'][1]->count}}"></td>
@@ -580,8 +580,8 @@ th {
 					<td><input type="text" name='note2' id="note2" value="{{$temp['orderbook_sales'][1]->note}}"></td>
 				</tr>
 				<tr>
-					<td height="10">3</td>
-					<td style="word-break: break-all; ">
+					<td >3</td>
+					<td>
 						<input type="text" name='item3' id="item3" value="{{$temp['orderbook_sales'][2]->item}}">
 					</td>
 					<td><input type="text" name='count3' id="count3" value="{{$temp['orderbook_sales'][2]->count}}"></td>
@@ -594,8 +594,8 @@ th {
 					<td><input type="text" name='note3' id="note3" value="{{$temp['orderbook_sales'][2]->note}}"></td>
 				</tr>
 				<tr>
-					<td height="10">4</td>
-					<td style="word-break: break-all; ">
+					<td>4</td>
+					<td>
 						<input type="text" name='item4' id="item4" value="{{$temp['orderbook_sales'][3]->item}}">
 					</td>
 					<td><input type="text" name='count4' id="count4" value="{{$temp['orderbook_sales'][3]->count}}"></td>
@@ -609,24 +609,23 @@ th {
 				</tr>
 				<tr>
 
-					<td colspan="2">합계 (VAT별도)</td>
-					<td colspan="2"><input type="text" name='total_count' id="total_count" value="{{$temp['orderbook_sales'][0]->total_count}}"></td>
-					<td colspan="2"><input type="text" name='total_sales' id="total_sales" value="{{$temp['orderbook_sales'][0]->total_sales}}"></td>
+					<td>합계 (VAT별도)</td>
+					<td><input type="text" name='total_count' id="total_count" value="{{$temp['orderbook_sales'][0]->total_count}}"></td>
+					<td><input type="text" name='total_sales' id="total_sales" value="{{$temp['orderbook_sales'][0]->total_sales}}"></td>
 					<td><input type="text" name='total_buy' id="total_buy" value="{{$temp['orderbook_sales'][0]->total_buy}}"></td>
 					<td><input type="text" name='total_profits' id="total_profits" value="{{$temp['orderbook_sales'][0]->total_profits}}"></td>
 					<td>이익률</td>
-					<td>12%</td>
+					<td><input type="text"></td>
 				</tr>
 				<tr>
 					<td height="10">담당엔지니어</td>
 					<td></td>
 					<td >기술자원료</td>
-					<td colspan="2"></td>
+					<td><input type="text"></td>
 					<td>실영업이익</td>
-					<td></td>
 					<td><input type="text" name='real_time_profit' id="real_time_profit" value="{{$temp['orderbook_sales'][0]->real_time_profit}}"></td>
-					<td></td>
-					<td></td>
+					<td><input type="text"></td>
+					<td><input type="text"></td>
 				</tr>
 				<tr>
 					<td height="30" >참고내용</td>
