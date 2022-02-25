@@ -708,7 +708,7 @@ th {
 		</a>
 		
 		<button onclick="return printPage();">프린트</button>
-
+		<p><a href="mailto: {{$temp['orderbook']->m_mail}}" title="마우스 올렸을 때 나타나는 문구">이메일 전송</a></p>
 		<script>
 			var initBodyHtml;
 

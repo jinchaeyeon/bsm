@@ -531,6 +531,7 @@ th {
 		<div style="border-top: 5px solid black">
 			<h4>사인 후 팩스 부탁드립니다.</h4>
 		</div>
+		<p><a href="mailto: {{$temp['orderbook']->m_mail}}" title="마우스 올렸을 때 나타나는 문구">이메일 전송</a></p>
 	</div>
 	@endforeach
 </body>
