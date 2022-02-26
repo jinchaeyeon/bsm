@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <title>영업관리 시스템</title>
 
@@ -551,7 +552,31 @@
     </div>
 </div>
 <button onclick="return printPage();">프린트</button>
-<button onclick="">견적리스트 다운로드</button>
+<button onclick="return downloadFile()">견적리스트 다운로드</button>
+<script>
+    function downloadFile() {
+        const retContent = [];
+        $('.table_EstimateDetail_List3 tbody tr').each(function (idx, elem)
+        {
+            const elemText = [];
+            $(elem).children('td').each(function (childIdx, childElem)
+            {
+                elemText.push($(childElem).text());
+            });
+            retContent.push(`[${elemText.join(',')}]`);
+        });
+
+        const content = retContent.join(',\r\n');
+        const blob = new Blob([content], {type: 'text/plain'})
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement("a")
+        a.href = url
+        a.download = `{{$Estimate->contact->company_name}}_견적목록.txt`
+        a.click()
+        a.remove()
+        window.URL.revokeObjectURL(url);
+    }
+</script>
 <script>
     var initBodyHtml;
 
