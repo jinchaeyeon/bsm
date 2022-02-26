@@ -13,6 +13,6 @@ class MainController extends Controller
         $estimate = Estimate::orderBy('update_date')->take(5)->get();
         $business = Business::orderBy('updated_at')->take(5)->get();
         $order = OrderBook::orderBy('updated_at')->take(5)->get();
-        return view('main', ['Estimates' => $estimate, 'business' => $business, 'order' => $order]);
+        return view('main')->with('Estimates', $estimate)-> with('business', $business)->with('order', $order);
     }
 }
