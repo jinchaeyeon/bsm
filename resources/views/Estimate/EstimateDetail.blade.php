@@ -431,6 +431,7 @@ th {
 @include('Layout.Sidebar')
 @foreach($Estimates as $Estimate)
 	<div class="min-h-screen" style="margin-left: 5%; margin-right: 5%; width: 77%; float: right;">
+		<div id="print">
 		<h2 style="text-align: center;">견적서</h2>
 		<table class="table_EstimateDetail_List1"
 			style="border: 1px solid black; width: 50%; float: left;">
@@ -524,15 +525,41 @@ th {
 				</tr>
 			</tbody>
 		</table>
+
 		<div>
 			<h2 style="display: inline-block">상기와 같이 발주 부탁합니다:</h2>
 			<h2 style="float: right;">담당자&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;사인</h2>
 		</div>
+
 		<div style="border-top: 5px solid black">
 			<h4>사인 후 팩스 부탁드립니다.</h4>
 		</div>
+
 		<p><a href="mailto: {{$temp['orderbook']->m_mail}}" title="마우스 올렸을 때 나타나는 문구">이메일 전송</a></p>
 	</div>
 	@endforeach
+	
+	</div>
+	<button onclick="return printPage();">프린트</button>
+	<script>
+			var initBodyHtml;
+
+			function printPage(){
+				window.print();
+			}
+
+			function beforePrint(){
+				initBodyHtml = document.body.innerHTML;
+				document.body.innerHTML = document.getElementById('print').innerHTML;
+			}
+
+			function afterPrint(){
+				document.body.innerHTML = initBodyHtml;
+			}
+
+			window.onbeforeprint = beforePrint;
+			window.onafterprint = afterPrint;
+
+		</script>
 </body>
 </html>

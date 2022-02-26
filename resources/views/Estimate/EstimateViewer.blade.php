@@ -617,62 +617,7 @@ form {
 			</tbody>
 		</table>
 		<div style="width: 5%; display: inline-block;"></div>
-			<?php
-
-function pageing()
-{
-
-    // 한번에 출력할 data수
-    $view_article = 2;
-    // page초기값 패이징여부
-    if (isset($_GET['page']))
-        $page = $_GET['page'];
-    else
-        $page = 1;
-    // 데이터 시작 번호
-    $start = ($page - 1) * $view_article;
-
-    // 전체 칼럼 수
-    $total = 2;
-
-    // 전체 페이지
-    $total_page = ceil($total / $view_article);
-    // 시작페이지
-    if ($page % 10) {
-        $start_page = $page - $page % 10 + 1;
-    } else {
-        $start_page = $page - 9;
-    }
-    // 마지막 페이지
-    $end_page = $start_page + 10;
-
-    // 초기 페이지로이동
-    if ($page != 1) {
-        echo "<font><a href=\"Customer_List.php?page=1\"><<</a></font>&nbsp;&nbsp;";
-    } else {
-        echo "<font><<</font>&nbsp;&nbsp;";
-    }
-
-    // 중간페이지 출력
-    for ($i = $start_page; $i < $end_page; $i ++) {
-        if ($i > $total_page)
-            break;
-        if ($i == $page) {
-            echo "(<font>$i</a></font>)&nbsp;&nbsp;";
-        } else {
-            echo "<font><a href=\"Customer_List.php?page=$i\">$i</a></font>&nbsp;&nbsp;";
-        }
-    }
-
-    // 마지막 페이지로 이동
-    if ($page != $total_page) {
-        echo "<font><a href=\"Customer_List.php?page=$total_page\">>></a></font>&nbsp;&nbsp;";
-    } else {
-        echo "<font>>></a></font>&nbsp;&nbsp;";
-    }
-}
-
-pageing()?>
+		
 		<div style="margin-top: 10px;">
 			<label><input type="radio" name="chk_info" value="부서별"
 				onclick="javascript:checkRadio()">부서별 검색</label><label><input
