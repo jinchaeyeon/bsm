@@ -135,7 +135,7 @@ Route::post('/business', 'BusinessController@store');
 Route::put('/business', 'BusinessController@update');
 Route::delete('/business/{business}', 'BusinessController@destroy');
 
-Route::get('/', 'MainController@index')->name('main');
+Route::get('/main', 'MainController@index')->name('main');
 
 Route::post('/Estimate/{id}', function ($id){
     $Estimates = null;
